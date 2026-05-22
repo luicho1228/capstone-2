@@ -23,6 +23,6 @@ public class Drinks implements Item {
 
     @Override
     public String getDetails() {
-        return String.format("the drink is flavor: %s",flavor.toString());
+        return String.format("%s|%s",size.toString(),flavor.toString());
     }
 }

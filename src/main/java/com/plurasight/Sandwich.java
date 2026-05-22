@@ -28,6 +28,15 @@ public class Sandwich implements Item{
     }
 
 
+    public double getSizeValue(){
+        double sizeValue = 0.0;
+        switch (size){
+            case SMALL -> sizeValue = 5.5;
+            case MEDIUM -> sizeValue = 7;
+            case LARGE -> sizeValue = 8.5;
+        }
+        return sizeValue;
+    }
 
     @Override
     public double getValue() {
@@ -88,6 +97,7 @@ public class Sandwich implements Item{
     @Override
     public String getDetails() {
         //todo implement the detailreceipt
-        return String.format("this item is a sandwish containing:\n %s bread\n %s\n %s Cheese", bread.toString(),meat.toString(), cheese.toString());
+        return String.format("Sandwich|%s|%s|%s|%b|%s|%b",size.toString(),bread.toString()
+                ,meat.toString(),extraMeat, cheese.toString(), extraCheese);
     }
 }
