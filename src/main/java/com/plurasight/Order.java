@@ -1,6 +1,7 @@
 package com.plurasight;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -8,6 +9,11 @@ public class Order {
     private int orderNumber;
     private LocalDate dateCreated;
     List<Item>items;
+
+    public Order(Item item){
+        items = new ArrayList<>();
+        items.add(item);
+    }
 
     public void addItem(Item newItem){
         this.items.add(newItem);
@@ -19,9 +25,13 @@ public class Order {
         //todo return detail list of items and their toppings woth price
         return"";
     }
-    public double getTotalCost(){
+    public double getTotalValue(){
         //todo return total cost of tis order
-        return 0;
+        double totalValue = 0.0;
+        for (Item item: items){
+            totalValue += item.getValue();
+        }
+        return totalValue;
     }
     public int getItemQuantity(){
         return this.items.size();
