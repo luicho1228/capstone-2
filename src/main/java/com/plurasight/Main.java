@@ -6,6 +6,8 @@ public class Main {
     public static void main(String[] args) {
 
         Sandwich sandwish = new Sandwich(Bread.WHITE,Size.SMALL,Meat.CHICKEN,false,Cheese.CHEDDAR,false);
-        System.out.println(sandwish.getDetails());
+        Drinks drinks = new Drinks(Size.LARGE,Flavors.GRAPE);
+
+        System.out.println(sandwish.getDetails() + "\n" + drinks.getDetails());
     }
 }
