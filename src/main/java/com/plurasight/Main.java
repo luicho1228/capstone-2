@@ -5,5 +5,7 @@ package com.plurasight;
 public class Main {
     public static void main(String[] args) {
 
+        Sandwich sandwish = new Sandwich(Bread.WHITE,Size.SMALL,Meat.CHICKEN,false,Cheese.CHEDDAR,false);
+        System.out.println(sandwish.getDetails());
     }
 }

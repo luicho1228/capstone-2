@@ -1,5 +1,6 @@
 package com.plurasight;
 
 public interface Item {
-    void getValue();
+    double getValue();
+    String getDetails();
 }
