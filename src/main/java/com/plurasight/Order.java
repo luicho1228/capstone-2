@@ -1,18 +1,28 @@
 package com.plurasight;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private String customerName;
     private int orderNumber;
-    private LocalDate dateCreated;
+    private LocalDateTime dateTimeCreated;
     List<Item>items;
 
     public Order(Item item){
         items = new ArrayList<>();
         items.add(item);
+        dateTimeCreated = LocalDateTime.now();
+        generateOrderNumber();
+    }
+
+    private void generateOrderNumber(){
+        orderNumber = (int)(Math.random()*100000);
+    }
+    public void setCustomerName(String customerName){
+        this.customerName = customerName;
     }
 
     public void addItem(Item newItem){
@@ -23,7 +33,7 @@ public class Order {
     }
     public String getOrderDetails(){
         //todo return detail list of items and their toppings woth price
-        return"";
+        return String.format("Order number: %04d \ndate created: %s",orderNumber,dateTimeCreated.toString());
     }
     public double getTotalValue(){
         //todo return total cost of tis order

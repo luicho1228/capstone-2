@@ -8,7 +8,8 @@ public class Main {
         Order order = new Order(sandwish);
         Drinks drinks = new Drinks(Size.LARGE,Flavors.GRAPE);
         order.addItem(drinks);
-        System.out.println(order.getItemQuantity() + " total value is: $" + order.getTotalValue());
-        System.out.println(sandwish.getDetails());
+//        System.out.println(order.getItemQuantity() + " total value is: $" + order.getTotalValue());
+//        System.out.println(sandwish.getDetails());
+        System.out.println(order.getOrderDetails());
     }
 }
