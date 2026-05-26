@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class UIManager {
 
     private Scanner scanner = new Scanner(System.in);
+    Order newOrder = null;
     private int userInput = 0;
     public void displayMainMenu() {
         boolean isRunning = true;
@@ -36,7 +37,7 @@ public class UIManager {
 
 
     public void newOrder(){
-        Order newOrder = null;
+
         boolean isRunning = true;
         do {
             System.out.println("ORDER SCREEN");
@@ -75,6 +76,18 @@ public class UIManager {
     }
 
     private void checkout() {
+        System.out.println("CHECKOUT");
+        System.out.println("\n"+"|Item|\t\t\t\t\t\tPrice");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Item item: newOrder.items){
+            if (item instanceof Sandwich){
+                Sandwich sandwich = (Sandwich)item;
+               stringBuilder.append("\n* ").append(sandwich.getSize()).append("\t").append(sandwich.getBread()).append("\t\t\t").append(sandwich.getValue());
+               stringBuilder.append("\n* ").append(sandwich.getMeat()).append("\n\t").append(sandwich.isExtraMeat());
+               stringBuilder.append("\n* ").append(sandwich.getCheese()).append("\n\t").append(sandwich.isExtraCheese());
+            }
+        }
+        System.out.println(stringBuilder);
 
     }
 
@@ -110,20 +123,116 @@ public class UIManager {
     }
     public Cheese addCheese(){
 
-        return null;
+        Cheese[] cheeseList = Cheese.values();
+        int count = 1;
+        for (Cheese c: cheeseList){
+            System.out.println("\n"+count+". "+ c);
+            count++;
+        }
+        userInput = scanner.nextInt();
+        scanner.nextLine();
+        Cheese cheese= null;
+        boolean isRunning =true;
+        do {
+            switch (userInput) {
+                case 1:
+                    cheese = Cheese.AMERICAN;
+                    isRunning = false;
+                    break;
+                case 2:
+                    cheese = Cheese.PROVOLONE;
+                    isRunning =false;
+                    break;
+                case 3:
+                    cheese = Cheese.CHEDDAR;
+                    isRunning = false;
+                    break;
+                case 4:
+                    cheese = Cheese.SWISS;
+                    isRunning = false;
+                    break;
+                case 5:
+                    cheese = Cheese.NO_CHEESE;
+                    isRunning = false;
+                default:
+            }
+        }while(isRunning);
+        return cheese;
     }
     public Size chooseSize(){
+        Size[] sizes = Size.values();
+        int count = 1;
+        for (Size s: sizes){
+            System.out.println("\n"+count+". "+ s);
+            count++;
+        }
+        userInput = scanner.nextInt();
+        scanner.nextLine();
+        Size size= null;
+        boolean isRunning =true;
+        do {
+            switch (userInput) {
+                case 1:
+                    size = Size.SMALL;
+                    isRunning = false;
+                    break;
+                case 2:
+                    size = Size.MEDIUM;
+                    isRunning =false;
+                    break;
+                case 3:
+                    size = Size.LARGE;
+                    isRunning = false;
+                    break;
+                default:
+            }
+        }while(isRunning);
 
-        return null;
+
+        return size;
     }
     public Bread addBread(){
 
-        return null;
+        Bread[] breadList = Bread.values();
+        int count = 1;
+        for (Bread b: breadList){
+            System.out.println("\n"+count+". "+ b);
+            count++;
+        }
+        userInput = scanner.nextInt();
+        scanner.nextLine();
+        Bread bread= null;
+        boolean isRunning =true;
+        do {
+            switch (userInput) {
+                case 1:
+                    bread = Bread.WHITE;
+                    isRunning = false;
+                    break;
+                case 2:
+                    bread = Bread.WHEAT;
+                    isRunning =false;
+                    break;
+                case 3:
+                    bread = Bread.RYE;
+                    isRunning = false;
+                    break;
+                case 4:
+                    bread = Bread.WRAP;
+                    isRunning = false;
+                    break;
+                default:
+            }
+        }while(isRunning);
+
+        return bread;
     }
     public Meat addMeat(){
         Meat[] meats = Meat.values();
+        int count  = 1;
         for (Meat m: meats){
-            System.out.println("\n" + m);
+            System.out.println("\n"+count+". "+ m);
+            count++;
         }
         userInput = scanner.nextInt();
         scanner.nextLine();
