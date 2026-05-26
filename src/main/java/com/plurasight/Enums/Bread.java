@@ -1,4 +1,4 @@
-package com.plurasight;
+package com.plurasight.Enums;
 
 public enum Bread {
     WHITE,

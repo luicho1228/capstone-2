@@ -1,6 +1,9 @@
 package com.plurasight;
 
-public class Drinks implements Item {
+import com.plurasight.Enums.Flavors;
+import com.plurasight.Enums.Size;
+
+public class Drinks extends Item {
 
     Flavors flavor;
     Size size;
@@ -23,6 +26,8 @@ public class Drinks implements Item {
 
     @Override
     public String getDetails() {
-        return String.format("%s|%s",size.toString(),flavor.toString());
+        return String.format("Drink:" +
+                "\n\t* %s\t\t\t\t\t\t\t$%.2f" +
+                "\n\t* %s",size.toString(),getValue(),flavor.toString());
     }
 }

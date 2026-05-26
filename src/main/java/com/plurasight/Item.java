@@ -1,6 +1,8 @@
 package com.plurasight;
 
-public interface Item {
-    double getValue();
-    String getDetails();
+abstract class Item {
+    protected double value;
+
+    public double getValue(){return 0.0;}
+    public String getDetails(){return "";}
 }
