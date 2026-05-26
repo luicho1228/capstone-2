@@ -36,7 +36,7 @@ public class UIManager {
 
 
     public void newOrder(){
-        Order order;
+        Order newOrder = null;
         boolean isRunning = true;
         do {
             System.out.println("ORDER SCREEN");
@@ -50,7 +50,7 @@ public class UIManager {
             scanner.nextLine();
             switch (userInput){
                 case 1:
-                    order = new Order(addSandwich());
+                    newOrder = new Order(addSandwich());
                     break;
                 case 2:
                     addDrink();
@@ -60,6 +60,7 @@ public class UIManager {
                     break;
                 case 4:
                     checkout();
+                    OrderFileManager.saveOrder(newOrder);
                     break;
                 case 0 :
                     isRunning = false;
@@ -74,6 +75,7 @@ public class UIManager {
     }
 
     private void checkout() {
+
     }
 
     private void addChips() {
@@ -88,22 +90,35 @@ public class UIManager {
         Bread bread = addBread();
         Size size = chooseSize();
         Meat meat = addMeat();
-        System.out.println();
-        boolean extraMeat;
-
+        System.out.println("Do you want extra Meat?\n1.Yes\t\t\t2.No");
+        userInput = scanner.nextInt();
+        scanner.nextLine();
+        boolean extraMeat = false;
+        if (userInput == 1){
+            extraMeat = true;
+        }
         Cheese cheese = addCheese();
-        boolean extraCheese;
+        System.out.println("Do you want extra Cheese?\n1.Yes\t\t\t2.No");
+        userInput = scanner.nextInt();
+        scanner.nextLine();
+        boolean extraCheese = false;
+        if (userInput == 1){
+            extraCheese = true;
+        }
         return new Sandwich(bread,size,meat,extraMeat,cheese,extraCheese);
 
     }
     public Cheese addCheese(){
 
+        return null;
     }
     public Size chooseSize(){
 
+        return null;
     }
     public Bread addBread(){
 
+        return null;
     }
     public Meat addMeat(){
         Meat[] meats = Meat.values();
