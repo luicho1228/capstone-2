@@ -1,0 +1,12 @@
+Order number: 1293
+No-Name					Date created: 05/26/2026-03:32
+---------------------------------------------------
+Custom Sandwich:
+	* 4" RYE bread				$5.50
+	* BACON						$1.00
+		No-Extra Meat					$0.00
+	* AMERICAN						$0.75
+		No-Extra Cheese					$0.00
+	* Total:						 $7.25
+---------------------------------------------------
+Total:									7.25

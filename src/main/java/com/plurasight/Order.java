@@ -12,9 +12,8 @@ public class Order {
     private DateTimeFormatter formatter;
     List<Item>items;
 
-    public Order(Item item){
+    public Order(){
         items = new ArrayList<>();
-        items.add(item);
         dateTimeCreated = LocalDateTime.now();
         generateOrderNumber();
     }
@@ -35,17 +34,18 @@ public class Order {
     }
     public String getOrderDetails(){
         //todo return detail list of items and their toppings woth price
-//        StringBuilder stringBuilder = new StringBuilder();
-//        formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy-hh:mm");
-//        stringBuilder.append("Order number: ").append(this.orderNumber).append("\n").append(this.customerName).append("\t\t\t\t\t").append("Date created: ").append(formatter.format(this.dateTimeCreated)).append("\n");
-//        stringBuilder.append("---------------------------------------------------\n");
-//        for (Item item: items){
-//            stringBuilder.append(item.getDetails()).append("\n");
-//        }
-//        stringBuilder.append("---------------------------------------------------\n");
-//        stringBuilder.append("Total:\t\t\t\t\t\t\t\t\t").append(getTotalValue());
+        StringBuilder stringBuilder = new StringBuilder();
         formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy-hh:mm");
-        return String.format("%d|%s|%s",orderNumber,customerName,formatter.format(dateTimeCreated));
+        stringBuilder.append("Order number: ").append(this.orderNumber).append("\n").append(this.customerName).append("\t\t\t\t\t").append("Date created: ").append(formatter.format(this.dateTimeCreated)).append("\n");
+        stringBuilder.append("---------------------------------------------------\n");
+        for (Item item: items){
+            stringBuilder.append(item.getDetails()).append("\n");
+        }
+        stringBuilder.append("---------------------------------------------------\n");
+        stringBuilder.append("Total:\t\t\t\t\t\t\t\t\t").append(getTotalValue());
+        return stringBuilder.toString();
+       // formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy-hh:mm");
+        //return String.format("%d|%s|%s",orderNumber,customerName,formatter.format(dateTimeCreated));
     }
     public double getTotalValue(){
         //todo return total cost of tis order

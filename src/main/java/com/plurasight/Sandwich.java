@@ -86,37 +86,6 @@ public class Sandwich extends Item {
         }
     }
 
-    public Bread getBread() {
-        return bread;
-    }
-
-    public Size getSize() {
-        return size;
-    }
-
-    public Cheese getCheese() {
-        return cheese;
-    }
-
-    public boolean isExtraCheese() {
-        return extraCheese;
-    }
-
-    public Meat getMeat() {
-        return meat;
-    }
-
-    public boolean isExtraMeat() {
-        return extraMeat;
-    }
-
-    public List<Topping> getToppings() {
-        return toppings;
-    }
-
-    public List<Sauce> getSauces() {
-        return sauces;
-    }
 
     @Override
     public double getValue() {
@@ -126,24 +95,25 @@ public class Sandwich extends Item {
     @Override
     public String getDetails() {
         //todo implement the detailreceipt
-//        String xtraCheese ="No-Extra Cheese";
-//        String xtraMeat ="No-Extra Meat";
-//        if (extraMeat){
-//            xtraMeat = "Extra Meat";
-//        }
-//        if (extraCheese){
-//            xtraCheese = "extra cheese";
-//        }
-//
-//        String sandwichDetails = String.format("Sandwich:" +
-//                        "\n\t* %s %s bread\t\t\t\t$%.2f"+
-//                        "\n\t* %s\t\t\t\t\t\t$%.2f" +
-//                        "\n\t\t* %s\t\t\t\t\t$%.2f" +
-//                        "\n\t* %s\t\t\t\t\t\t$%.2f" +
-//                        "\n\t\t* %s\t\t\t\t\t$%.2f" +
-//                        "\n\t* Total:\t\t\t\t\t\t $%.2f",breadSize,bread.toString(),sizeValue
-//                ,meat.toString(),meatValue,xtraMeat,extraMeatValue, cheese.toString(),cheeseValue, xtraCheese,extraCheeseValue,getValue());
-//
-        return String.format("Sandwich|%S|%s|%s|%b|%s|%b",size,bread,meat,extraMeat,cheese,extraCheese);
+        String xtraCheese ="No-Extra Cheese";
+        String xtraMeat ="No-Extra Meat";
+        if (extraMeat){
+            xtraMeat = "Extra Meat";
+        }
+        if (extraCheese){
+            xtraCheese = "extra cheese";
+        }
+
+        String sandwichDetails = String.format("Custom Sandwich:" +
+                        "\n\t* %s %s bread\t\t\t\t$%.2f"+
+                        "\n\t* %s\t\t\t\t\t\t$%.2f" +
+                        "\n\t\t%s\t\t\t\t\t$%.2f" +
+                        "\n\t* %s\t\t\t\t\t\t$%.2f" +
+                        "\n\t\t%s\t\t\t\t\t$%.2f" +
+                        "\n\t* Total:\t\t\t\t\t\t $%.2f",breadSize,bread.toString(),sizeValue
+                ,meat.toString(),meatValue,xtraMeat,extraMeatValue, cheese.toString(),cheeseValue, xtraCheese,extraCheeseValue,getValue());
+        return sandwichDetails;
+
+       // return String.format("Sandwich|%S|%s|%s|%b|%s|%b",size,bread,meat,extraMeat,cheese,extraCheese);
     }
 }
