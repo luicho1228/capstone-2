@@ -1,18 +1,18 @@
 package com.plurasight;
 
+import com.plurasight.Enums.Sauce;
+
 import java.util.Scanner;
 
 public class UIComponent{
 
 
     protected Scanner scanner;
-    protected int userInput;
     private int padding;
     private String stringColor;
 
-    public UIComponent(Scanner scanner, int userInput){
+    public UIComponent(Scanner scanner){
         this.scanner = scanner;
-        this.userInput = userInput;
     }
 
     public int getPadding() {
@@ -39,5 +39,10 @@ public class UIComponent{
             tabs.append(" ");
         }
         return tabs.toString();
+    }
+    public static int getUserInput(Scanner scanner){
+        int userInput = scanner.nextInt();
+        scanner.nextLine();
+        return userInput;
     }
 }

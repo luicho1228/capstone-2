@@ -22,11 +22,10 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * Constructs a new SandwichUIComponent with the specified scanner and initial user input.
      *
      * @param scanner The Scanner object used to capture user keyboard input.
-     * @param userInput The initial integer input state from the user.
      * @author Luis Vasquez
      */
-    public SandwichUIComponent(Scanner scanner, int userInput) {
-        super(scanner, userInput);
+    public SandwichUIComponent(Scanner scanner) {
+        super(scanner);
     }
 
     /**
@@ -42,8 +41,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
             boolean isRunning = true;
             do {
                 System.out.println("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
-                userInput = scanner.nextInt();
-                scanner.nextLine();
+                int userInput = UIComponent.getUserInput(scanner);
                 if (userInput == 1) {
                     extraMeat = true;
                     isRunning = false;
@@ -71,8 +69,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
             boolean isRunning = true;
             do {
                 System.out.println("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
-                userInput = scanner.nextInt();
-                scanner.nextLine();
+                int userInput = UIComponent.getUserInput(scanner);
                 if (userInput == 1) {
                     extraCheese = true;
                     isRunning = false;
@@ -126,8 +123,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 System.out.println(count + ". " + sauce);
                 count++;
             }
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
             if (userInput > 0 && userInput <= sauces.size()) {
                 Sauce chosenSauce = sauces.remove(userInput - 1);
                 selectedSauces.add(chosenSauce);
@@ -159,8 +155,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 System.out.println(count + ". " + topping);
                 count++;
             }
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
             if (userInput > 0 && userInput <= toppings.size()) {
                 Topping chosenTopping = toppings.remove(userInput - 1);
                 selectedToppings.add(chosenTopping);
@@ -192,8 +187,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 System.out.println(count + ". " + c);
                 count++;
             }
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
             switch (userInput) {
                 case 1:
                     cheese = Cheese.AMERICAN;
@@ -236,8 +230,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 System.out.println(count + ". " + s);
                 count++;
             }
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
             switch (userInput) {
                 case 1:
                     size = Size.SMALL;
@@ -275,8 +268,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 System.out.println(count + ". " + b);
                 count++;
             }
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
             switch (userInput) {
                 case 1:
                     bread = Bread.WHITE;
@@ -317,8 +309,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 System.out.println(count + ". " + m);
                 count++;
             }
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
             switch (userInput) {
                 case 1:
                     meat = Meat.STEAK;

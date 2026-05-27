@@ -7,7 +7,6 @@ public class UIManager {
 
     private Scanner scanner = new Scanner(System.in);
     Order newOrder = null;
-    private int userInput = 0;
     public void displayMainMenu() {
         boolean isRunning = true;
         do {
@@ -15,8 +14,7 @@ public class UIManager {
             System.out.println("""
                    \t1.New Order
                    \t2.Exit""");
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
            switch (userInput){
                case 1:
                    newOrder();
@@ -43,21 +41,20 @@ public class UIManager {
                 \t3.Add Chips
                 \t4.Checkout
                 \t0.Cancel Order""");
-            userInput = scanner.nextInt();
-            scanner.nextLine();
+            int userInput = UIComponent.getUserInput(scanner);
             switch (userInput){
                 case 1:
-                    SandwichUIComponent sandwichUI= new SandwichUIComponent(scanner,userInput);
+                    SandwichUIComponent sandwichUI= new SandwichUIComponent(scanner);
                     sandwichUI.displayComponent();
                     newOrder.addItem(sandwichUI.getItem());
                     break;
                 case 2:
-                    DrinkUIComponent drinkUi = new DrinkUIComponent(scanner,userInput);
+                    DrinkUIComponent drinkUi = new DrinkUIComponent(scanner);
                     drinkUi.displayComponent();
                     newOrder.addItem(drinkUi.getItem());
                     break;
                 case 3:
-                    ChipsUIComponent chipsUIComponent = new ChipsUIComponent(scanner,userInput);
+                    ChipsUIComponent chipsUIComponent = new ChipsUIComponent(scanner);
                     chipsUIComponent.displayComponent();;
                     newOrder.addItem(chipsUIComponent.getItem());
                     break;
