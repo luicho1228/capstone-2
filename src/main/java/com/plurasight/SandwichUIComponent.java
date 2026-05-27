@@ -4,14 +4,38 @@ import com.plurasight.Enums.*;
 
 import java.util.*;
 
+/**
+ * This class represents a User Interface component. It handles the user inputs
+ * to create a sandwich object.
+ * It also displays prompts and can return the created sandwich with the getItem() method.
+ *
+ * @author Luis Vasquez
+ */
 public class SandwichUIComponent extends UIComponent implements Displayable {
 
+    /**
+     * The sandwich item being configured or retrieved by this component.
+     */
     private Item item;
 
+    /**
+     * Constructs a new SandwichUIComponent with the specified scanner and initial user input.
+     *
+     * @param scanner The Scanner object used to capture user keyboard input.
+     * @param userInput The initial integer input state from the user.
+     * @author Luis Vasquez
+     */
     public SandwichUIComponent(Scanner scanner, int userInput) {
         super(scanner, userInput);
     }
 
+    /**
+     * This method prompts the user if they want extra meat.
+     *
+     * @param meat This parameter is used to detect if the user selected a meat already; if not, it doesn't run.
+     * @return true if the user selected yes, false if the user selected no.
+     * @author Luis Vasquez
+     */
     private boolean askForExtraMeat(Meat meat) {
         boolean extraMeat = false;
         if (!(meat == Meat.NO_MEAT)) {
@@ -33,6 +57,13 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return extraMeat;
     }
 
+    /**
+     * This method prompts the user if they want extra cheese.
+     *
+     * @param cheese This parameter is used to detect if the user selected a cheese already; if not, it doesn't run.
+     * @return true if the user selected yes, false if the user selected no.
+     * @author Luis Vasquez
+     */
     private boolean askForExtraCheese(Cheese cheese) {
 
         boolean extraCheese = false;
@@ -55,6 +86,12 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return extraCheese;
     }
 
+    /**
+     * This method handles the creation of the sandwich based on user inputs.
+     *
+     * @return A new Sandwich object matching the user's choices.
+     * @author Luis Vasquez
+     */
     private Item addSandwich() {
         System.out.println("ADD SANDWICH");
         System.out.println("\tSelect Bread:");
@@ -66,11 +103,17 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         boolean extraCheese = askForExtraCheese(cheese);
         HashSet<Topping> toppings = addToppings();
         HashSet<Sauce> sauces = addSauces();
-        return new Sandwich(bread, size, meat, extraMeat, cheese, extraCheese, toppings,sauces);
+        return new Sandwich(bread, size, meat, extraMeat, cheese, extraCheese, toppings, sauces);
 
     }
 
-    private HashSet<Sauce> addSauces(){
+    /**
+     * This method prompts the user to select from a list of sauces to add to the sandwich item.
+     *
+     * @return A HashSet of all sauces selected by the user.
+     * @author Luis Vasquez
+     */
+    private HashSet<Sauce> addSauces() {
         List<Sauce> sauces = new ArrayList<>(Arrays.asList(Sauce.values()));
         HashSet<Sauce> selectedSauces = new HashSet<>();
         System.out.println("ADD SAUCES");
@@ -89,7 +132,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 Sauce chosenSauce = sauces.remove(userInput - 1);
                 selectedSauces.add(chosenSauce);
             } else if (userInput == 0) {
-               break;
+                break;
             } else {
                 System.out.println("Invalid selection");
             }
@@ -97,6 +140,12 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return selectedSauces;
     }
 
+    /**
+     * This method prompts the user to select from a list of toppings to add to the sandwich item.
+     *
+     * @return A HashSet of all toppings selected by the user.
+     * @author Luis Vasquez
+     */
     private HashSet<Topping> addToppings() {
         List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
         HashSet<Topping> selectedToppings = new HashSet<>();
@@ -125,6 +174,14 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
 
     }
 
+    /**
+     * This method prompts the user to select from a list of cheese selections.
+     * The user can only choose one type of cheese.
+     * This cheese is added to the sandwich in the receipt.
+     *
+     * @return A Cheese type.
+     * @author Luis Vasquez
+     */
     private Cheese addCheese() {
         Cheese[] cheeseList = Cheese.values();
         Cheese cheese = null;
@@ -163,6 +220,12 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return cheese;
     }
 
+    /**
+     * Prompts the user to select a sandwich size from the available options.
+     *
+     * @return The selected Size enum value (SMALL, MEDIUM, or LARGE).
+     * @author Luis Vasquez
+     */
     private Size chooseSize() {
         Size[] sizes = Size.values();
         Size size = null;
@@ -196,6 +259,12 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return size;
     }
 
+    /**
+     * Prompts the user to select a type of bread for the sandwich.
+     *
+     * @return The selected Bread enum type.
+     * @author Luis Vasquez
+     */
     private Bread addBread() {
         Bread[] breadList = Bread.values();
         Bread bread = null;
@@ -232,6 +301,12 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return bread;
     }
 
+    /**
+     * Prompts the user to select a type of meat to add to the sandwich.
+     *
+     * @return The selected Meat enum type.
+     * @author Luis Vasquez
+     */
     private Meat addMeat() {
         Meat[] meats = Meat.values();
         Meat meat = null;
