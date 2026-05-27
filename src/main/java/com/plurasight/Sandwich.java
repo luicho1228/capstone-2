@@ -2,20 +2,21 @@ package com.plurasight;
 
 import com.plurasight.Enums.*;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Sandwich extends Item {
 
-    private Bread bread;
-    private Size size;
-    private Cheese cheese;
+    private final Bread bread;
+    private final Size size;
+    private final Cheese cheese;
     boolean extraCheese;
-    private Meat meat;
-    private boolean extraMeat;
-    private List<Topping> toppings;
-    private List<Sauce>sauces;
-    // List<Topping> toppings,List<Sauce>sauces
-    public Sandwich(Bread bread, Size size, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese){
+    private final Meat meat;
+    private final boolean extraMeat;
+    private HashSet<Topping> toppings;
+    private List<Sauce> sauces;
+
+    public Sandwich(Bread bread, Size size, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings, List<Sauce> sauces) {
         this.bread = bread;
         this.size = size;
         this.meat = meat;
@@ -26,9 +27,9 @@ public class Sandwich extends Item {
         this.sauces = sauces;
     }
 
-    private double getExtraMeatValue(){
+    private double getExtraMeatValue() {
         double extraMeatValue = 0.0;
-        switch (size){
+        switch (size) {
             case SMALL:
                 if (extraMeat) {
                     extraMeatValue = 0.5;
@@ -48,23 +49,20 @@ public class Sandwich extends Item {
         return extraMeatValue;
     }
 
-    private double getExtraCheeseValue(){
+    private double getExtraCheeseValue() {
         double extraCheeseValue = 0.0;
-        switch (size){
+        switch (size) {
             case SMALL:
-
                 if (extraCheese) {
                     extraCheeseValue = 0.3;
                 }
                 break;
             case MEDIUM:
-
                 if (extraCheese) {
                     extraCheeseValue = 0.6;
                 }
                 break;
             case LARGE:
-
                 if (extraCheese) {
                     extraCheeseValue = 0.9;
                 }
@@ -73,21 +71,21 @@ public class Sandwich extends Item {
         return extraCheeseValue;
     }
 
-    private double getMeatValue(){
+    private double getMeatValue() {
         double meatValue = 0.0;
-        switch (size){
+        switch (size) {
             case SMALL:
-                if (meat != Meat.NO_MEAT){
+                if (meat != Meat.NO_MEAT) {
                     meatValue = 1;
                 }
                 break;
             case MEDIUM:
-                if (meat != Meat.NO_MEAT){
+                if (meat != Meat.NO_MEAT) {
                     meatValue = 2;
                 }
                 break;
             case LARGE:
-                if (meat != Meat.NO_MEAT){
+                if (meat != Meat.NO_MEAT) {
                     meatValue = 3;
                 }
                 break;
@@ -95,9 +93,9 @@ public class Sandwich extends Item {
         return meatValue;
     }
 
-    private double getCheeseValue(){
+    private double getCheeseValue() {
         double cheeseValue = 0.0;
-        switch (size){
+        switch (size) {
             case SMALL:
                 if (cheese != Cheese.NO_CHEESE) {
                     cheeseValue = 0.75;
@@ -117,14 +115,15 @@ public class Sandwich extends Item {
         return cheeseValue;
     }
 
-    private String getBreadSize(){
+    private String getBreadSize() {
         return switch (size) {
             case SMALL -> "4\"";
             case MEDIUM -> "8\"";
             case LARGE -> "12\"";
         };
     }
-    private double getSizeValue(){
+
+    private double getSizeValue() {
         return switch (size) {
             case SMALL -> 5.5;
             case MEDIUM -> 7;
@@ -132,30 +131,28 @@ public class Sandwich extends Item {
         };
     }
 
-
-
     @Override
     public double getValue() {
-        return getSizeValue()+ getMeatValue() + getExtraMeatValue() + getCheeseValue() + getExtraCheeseValue();
+        return getSizeValue() + getMeatValue() + getExtraMeatValue() + getCheeseValue() + getExtraCheeseValue();
     }
 
     @Override
     public String getDetails() {
-        String xtraCheese ="No-Extra Cheese";
-        String xtraMeat ="No-Extra Meat";
-        if (extraMeat){
+        String xtraCheese = "No-Extra Cheese";
+        String xtraMeat = "No-Extra Meat";
+        if (extraMeat) {
             xtraMeat = "Extra Meat";
         }
-        if (extraCheese){
+        if (extraCheese) {
             xtraCheese = "extra cheese";
         }
         return String.format("Custom Sandwich:" +
-                        "\n\t* %s %s bread\t\t\t\t$%.2f"+
+                        "\n\t* %s %s bread\t\t\t\t$%.2f" +
                         "\n\t* %s\t\t\t\t\t\t$%.2f" +
                         "\n\t\t%s\t\t\t\t\t$%.2f" +
                         "\n\t* %s\t\t\t\t\t\t$%.2f" +
                         "\n\t\t%s\t\t\t\t\t$%.2f" +
-                        "\n\t* Subtotal:\t\t\t\t\t\t $%.2f",getBreadSize(),bread.toString(),getSizeValue()
-                ,meat.toString(),getMeatValue(),xtraMeat,getExtraMeatValue(), cheese.toString(),getCheeseValue(), xtraCheese,getExtraCheeseValue(),getValue());
+                        "\n\t* Subtotal:\t\t\t\t\t\t $%.2f", getBreadSize(), bread.toString(), getSizeValue()
+                , meat.toString(), getMeatValue(), xtraMeat, getExtraMeatValue(), cheese.toString(), getCheeseValue(), xtraCheese, getExtraCheeseValue(), getValue());
     }
 }
