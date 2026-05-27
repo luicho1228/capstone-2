@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class DrinkUIComponent extends UIComponent implements Displayable {
 
     private Item item;
-    public DrinkUIComponent(Scanner scanner, int userInput){
-        super(scanner,userInput);
+    public DrinkUIComponent(Scanner scanner){
+        super(scanner);
 
     }
 
@@ -25,8 +25,7 @@ public class DrinkUIComponent extends UIComponent implements Displayable {
             System.out.println(count+". " + size);
             count++;
         }
-        userInput = scanner.nextInt();
-        scanner.nextLine();
+        int userInput = UIComponent.getUserInput(scanner);
         Size size = null;
         switch (userInput){
             case 1:
@@ -51,8 +50,7 @@ public class DrinkUIComponent extends UIComponent implements Displayable {
             System.out.println(count+". " + flavor);
             count++;
         }
-        userInput = scanner.nextInt();
-        scanner.nextLine();
+        int userInput = UIComponent.getUserInput(scanner);
         Flavor flavor = null;
         switch (userInput){
             case 1:

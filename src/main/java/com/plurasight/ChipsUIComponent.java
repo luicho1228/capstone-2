@@ -9,8 +9,8 @@ public class ChipsUIComponent extends UIComponent implements Displayable {
 
 
     private Item item;
-    public ChipsUIComponent(Scanner scanner, int userInput) {
-        super(scanner, userInput);
+    public ChipsUIComponent(Scanner scanner) {
+        super(scanner);
     }
 
     private Item addChips(){
@@ -20,8 +20,7 @@ public class ChipsUIComponent extends UIComponent implements Displayable {
             System.out.println(count+". " + chipsType);
             count++;
         }
-        userInput = scanner.nextInt();
-        scanner.nextLine();
+        int userInput = UIComponent.getUserInput(scanner);
         ChipsType chipsType = null;
         switch (userInput){
             case 1:

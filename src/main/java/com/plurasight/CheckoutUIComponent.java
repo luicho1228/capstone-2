@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class CheckoutUIComponent extends UIComponent implements Displayable{
 
     private Order order;
-    public CheckoutUIComponent(Scanner scanner, int userInput,Order order) {
-        super(scanner, userInput);
+    public CheckoutUIComponent(Scanner scanner,Order order) {
+        super(scanner);
         this.order = order;
     }
 

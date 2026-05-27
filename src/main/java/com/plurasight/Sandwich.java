@@ -160,7 +160,7 @@ public class Sandwich extends Item {
         stringBuilder.append(taps).append(cheese).append(UIComponent.formatTaps(cheese.toString())).append(getCheeseValue());
         stringBuilder.append(subTaps).append(xtraCheese).append(UIComponent.formatTaps("* " + xtraCheese)).append(getExtraCheeseValue());
         stringBuilder.append(taps).append("Toppings");
-        if (!(toppings == null)) {
+        if (!(toppings.isEmpty())) {
             String toppingString = "";
             int toppingCount = 1;
             for (Topping topping : toppings) {
@@ -172,10 +172,10 @@ public class Sandwich extends Item {
             }
             stringBuilder.append(subTaps).append(toppingString);
         }else {
-            System.out.println("No Toppings");
+            stringBuilder.append(subTaps).append("No Toppings");
         }
         stringBuilder.append(taps).append("Sauces");
-        if (!(sauces == null)) {
+        if (!(sauces.isEmpty())) {
             String sauceString = "";
             int sauceCount = 1;
             for (Sauce sauce : sauces) {
@@ -187,7 +187,7 @@ public class Sandwich extends Item {
             }
             stringBuilder.append(subTaps).append(sauceString);
         } else {
-            stringBuilder.append(taps).append("N0 Sauce");
+            stringBuilder.append(subTaps).append("No Sauce");
         }
         String subTotal = "Subtotal:";
         stringBuilder.append("\n\n").append(subTotal).append(UIComponent.formatTaps("\t* " + subTotal)).append("$").append(getValue());

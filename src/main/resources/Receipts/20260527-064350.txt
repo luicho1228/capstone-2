@@ -1,0 +1,16 @@
+Order number: 71011
+No-Name					Date created: 05/27/2026-06:43
+---------------------------------------------------
+Custom Sandwich
+	* 12" WHITE Bread                                    8.5
+	* HAM                                                3.0
+		No-Extra Meat                                    0.0
+	* CHEDDAR                                            2.25
+		No-Extra Cheese                                  0.0
+	* Toppings
+	* Sauces
+	* 		No Sauce
+
+Subtotal:                                       $13.75
+---------------------------------------------------
+Total:									13.75
