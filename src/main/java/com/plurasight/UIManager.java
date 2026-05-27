@@ -1,10 +1,5 @@
 package com.plurasight;
 
-import com.plurasight.Enums.Bread;
-import com.plurasight.Enums.Cheese;
-import com.plurasight.Enums.Meat;
-import com.plurasight.Enums.Size;
-
 import java.util.Scanner;
 
 
@@ -57,10 +52,14 @@ public class UIManager {
                     newOrder.addItem(sandwichUI.getItem());
                     break;
                 case 2:
-                    addDrink();
+                    DrinkUIComponent drinkUi = new DrinkUIComponent(scanner,userInput);
+                    drinkUi.displayComponent();
+                    newOrder.addItem(drinkUi.getItem());
                     break;
                 case 3:
-                    addChips();
+                    ChipsUIComponent chipsUIComponent = new ChipsUIComponent(scanner,userInput);
+                    chipsUIComponent.displayComponent();;
+                    newOrder.addItem(chipsUIComponent.getItem());
                     break;
                 case 4:
                     checkout();
@@ -85,11 +84,6 @@ public class UIManager {
 
     }
 
-    private void addChips() {
-    }
-
-    private void addDrink() {
-    }
 
 
 

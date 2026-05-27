@@ -7,14 +7,11 @@ import com.plurasight.Enums.Size;
 
 import java.util.Scanner;
 
-public class SandwichUIComponent extends UIComponent implements Displayable{
-    private Scanner scanner;
-    private int userInput;
-    private Item item;
+public class SandwichUIComponent extends UIComponent implements Displayable {
 
+    private Item item;
     public SandwichUIComponent(Scanner scanner, int userInput){
-        this.scanner = scanner;
-        this.userInput = userInput;
+        super(scanner,userInput);
     }
 
     private Item addSandwich(){
@@ -202,7 +199,6 @@ public class SandwichUIComponent extends UIComponent implements Displayable{
         item = addSandwich();
     }
 
-    @Override
     public Item getItem() {
         return this.item;
     }

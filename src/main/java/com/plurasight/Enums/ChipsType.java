@@ -1,0 +1,11 @@
+package com.plurasight.Enums;
+
+public enum ChipsType {
+    DORITOS_NACHO_CHEESE,
+    CLASSIC_POTATO_CHIPS,
+    BBQ_POTATO_CHIPS,
+    KETTLE_POTATO_CHIPS,
+    CHEETOS_JALAPENOS_CHEESE,
+    RUFFLES_CHEDDAR_SOURCREAM
+
+}

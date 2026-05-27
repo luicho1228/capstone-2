@@ -1,6 +1,6 @@
 package com.plurasight.Enums;
 
-public enum Flavors {
+public enum Flavor {
     COCA_COLA,
     PEPSI,
     ORANGE,

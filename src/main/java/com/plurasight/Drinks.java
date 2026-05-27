@@ -1,14 +1,14 @@
 package com.plurasight;
 
-import com.plurasight.Enums.Flavors;
+import com.plurasight.Enums.Flavor;
 import com.plurasight.Enums.Size;
 
 public class Drinks extends Item {
 
-    Flavors flavor;
+    Flavor flavor;
     Size size;
 
-    public Drinks(Size size, Flavors flavor){
+    public Drinks(Size size, Flavor flavor){
         this.size = size;
         this.flavor = flavor;
     }
