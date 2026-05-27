@@ -17,7 +17,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable{
         this.userInput = userInput;
     }
 
-    public Item addSandwich(){
+    private Item addSandwich(){
         System.out.println("ADD SANDWICH");
         System.out.println("\tSelect Bread:");
         Bread bread = addBread();
@@ -41,7 +41,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable{
         return new Sandwich(bread,size,meat,extraMeat,cheese,extraCheese);
 
     }
-    public Cheese addCheese(){
+    private Cheese addCheese(){
 
         Cheese[] cheeseList = Cheese.values();
         int count = 1;
@@ -79,7 +79,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable{
         }while(isRunning);
         return cheese;
     }
-    public Size chooseSize(){
+    private Size chooseSize(){
         Size[] sizes = Size.values();
         int count = 1;
         for (Size s: sizes){
@@ -111,7 +111,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable{
 
         return size;
     }
-    public Bread addBread(){
+    private Bread addBread(){
 
         Bread[] breadList = Bread.values();
         int count = 1;
@@ -147,7 +147,8 @@ public class SandwichUIComponent extends UIComponent implements Displayable{
 
         return bread;
     }
-    public Meat addMeat(){
+
+    private Meat addMeat(){
         Meat[] meats = Meat.values();
         int count  = 1;
         for (Meat m: meats){
