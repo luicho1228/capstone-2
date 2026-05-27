@@ -28,59 +28,13 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         super(scanner);
     }
 
-    /**
-     * This method prompts the user if they want extra meat.
-     *
-     * @param meat This parameter is used to detect if the user selected a meat already; if not, it doesn't run.
-     * @return true if the user selected yes, false if the user selected no.
-     * @author Luis Vasquez
-     */
-    private boolean askForExtraMeat(Meat meat) {
-        boolean extraMeat = false;
-        if (!(meat == Meat.NO_MEAT)) {
-            boolean isRunning = true;
-            do {
-                System.out.println("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
-                int userInput = UIComponent.getUserInput(scanner);
-                if (userInput == 1) {
-                    extraMeat = true;
-                    isRunning = false;
-                } else if (userInput == 2) {
-                    isRunning = false;
-                } else {
-                    System.out.println("Enter correct value!");
-                }
-            } while (isRunning);
-        }
-        return extraMeat;
+    @Override
+    public void displayComponent() {
+        item = buildSandwich();
     }
 
-    /**
-     * This method prompts the user if they want extra cheese.
-     *
-     * @param cheese This parameter is used to detect if the user selected a cheese already; if not, it doesn't run.
-     * @return true if the user selected yes, false if the user selected no.
-     * @author Luis Vasquez
-     */
-    private boolean askForExtraCheese(Cheese cheese) {
-
-        boolean extraCheese = false;
-        if (!(cheese == Cheese.NO_CHEESE)) {
-            boolean isRunning = true;
-            do {
-                System.out.println("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
-                int userInput = UIComponent.getUserInput(scanner);
-                if (userInput == 1) {
-                    extraCheese = true;
-                    isRunning = false;
-                } else if (userInput == 2) {
-                    isRunning = false;
-                } else {
-                    System.out.println("Enter correct value!");
-                }
-            } while (isRunning);
-        }
-        return extraCheese;
+    public Item getItem() {
+        return this.item;
     }
 
     /**
@@ -89,129 +43,19 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @return A new Sandwich object matching the user's choices.
      * @author Luis Vasquez
      */
-    private Item addSandwich() {
+    private Item buildSandwich() {
         System.out.println("ADD SANDWICH");
         System.out.println("\tSelect Bread:");
-        Bread bread = addBread();
-        Size size = chooseSize();
-        Meat meat = addMeat();
+        Bread bread = selectBread();
+        Size size = selectSize();
+        Meat meat = selectMeat();
         boolean extraMeat = askForExtraMeat(meat);
-        Cheese cheese = addCheese();
+        Cheese cheese = selectCheese();
         boolean extraCheese = askForExtraCheese(cheese);
-        HashSet<Topping> toppings = addToppings();
-        HashSet<Sauce> sauces = addSauces();
+        HashSet<Topping> toppings = selectToppings();
+        HashSet<Sauce> sauces = selectSauces();
         return new Sandwich(bread, size, meat, extraMeat, cheese, extraCheese, toppings, sauces);
 
-    }
-
-    /**
-     * This method prompts the user to select from a list of sauces to add to the sandwich item.
-     *
-     * @return A HashSet of all sauces selected by the user.
-     * @author Luis Vasquez
-     */
-    private HashSet<Sauce> addSauces() {
-        List<Sauce> sauces = new ArrayList<>(Arrays.asList(Sauce.values()));
-        HashSet<Sauce> selectedSauces = new HashSet<>();
-        System.out.println("ADD SAUCES");
-        while (!sauces.isEmpty()) {
-            System.out.println("Select 0 to stop adding sauces.");
-            System.out.println("Select Sauces: ");
-            System.out.println("0. Done adding sauces");
-            int count = 1;
-            for (Sauce sauce : sauces) {
-                System.out.println(count + ". " + sauce);
-                count++;
-            }
-            int userInput = UIComponent.getUserInput(scanner);
-            if (userInput > 0 && userInput <= sauces.size()) {
-                Sauce chosenSauce = sauces.remove(userInput - 1);
-                selectedSauces.add(chosenSauce);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Invalid selection");
-            }
-        }
-        return selectedSauces;
-    }
-
-    /**
-     * This method prompts the user to select from a list of toppings to add to the sandwich item.
-     *
-     * @return A HashSet of all toppings selected by the user.
-     * @author Luis Vasquez
-     */
-    private HashSet<Topping> addToppings() {
-        List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
-        HashSet<Topping> selectedToppings = new HashSet<>();
-        System.out.println("ADD TOPPINGS");
-        while (!toppings.isEmpty()) {
-            System.out.println("Select 0 to stop adding toppings.");
-            System.out.println("Select Toppings: ");
-            System.out.println("0. Done adding sauces");
-            int count = 1;
-            for (Topping topping : toppings) {
-                System.out.println(count + ". " + topping);
-                count++;
-            }
-            int userInput = UIComponent.getUserInput(scanner);
-            if (userInput > 0 && userInput <= toppings.size()) {
-                Topping chosenTopping = toppings.remove(userInput - 1);
-                selectedToppings.add(chosenTopping);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Invalid selection");
-            }
-        }
-        return selectedToppings;
-
-    }
-
-    /**
-     * This method prompts the user to select from a list of cheese selections.
-     * The user can only choose one type of cheese.
-     * This cheese is added to the sandwich in the receipt.
-     *
-     * @return A Cheese type.
-     * @author Luis Vasquez
-     */
-    private Cheese addCheese() {
-        Cheese[] cheeseList = Cheese.values();
-        Cheese cheese = null;
-        boolean isRunning = true;
-        do {
-            int count = 1;
-            for (Cheese c : cheeseList) {
-                System.out.println(count + ". " + c);
-                count++;
-            }
-            int userInput = UIComponent.getUserInput(scanner);
-            switch (userInput) {
-                case 1:
-                    cheese = Cheese.AMERICAN;
-                    isRunning = false;
-                    break;
-                case 2:
-                    cheese = Cheese.PROVOLONE;
-                    isRunning = false;
-                    break;
-                case 3:
-                    cheese = Cheese.CHEDDAR;
-                    isRunning = false;
-                    break;
-                case 4:
-                    cheese = Cheese.SWISS;
-                    isRunning = false;
-                    break;
-                case 5:
-                    cheese = Cheese.NO_CHEESE;
-                    isRunning = false;
-                default:
-            }
-        } while (isRunning);
-        return cheese;
     }
 
     /**
@@ -220,7 +64,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @return The selected Size enum value (SMALL, MEDIUM, or LARGE).
      * @author Luis Vasquez
      */
-    private Size chooseSize() {
+    private Size selectSize() {
         Size[] sizes = Size.values();
         Size size = null;
         boolean isRunning = true;
@@ -258,7 +102,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @return The selected Bread enum type.
      * @author Luis Vasquez
      */
-    private Bread addBread() {
+    private Bread selectBread() {
         Bread[] breadList = Bread.values();
         Bread bread = null;
         boolean isRunning = true;
@@ -299,7 +143,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @return The selected Meat enum type.
      * @author Luis Vasquez
      */
-    private Meat addMeat() {
+    private Meat selectMeat() {
         Meat[] meats = Meat.values();
         Meat meat = null;
         boolean isRunning = true;
@@ -346,12 +190,168 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return meat;
     }
 
-    @Override
-    public void displayComponent() {
-        item = addSandwich();
+    /**
+     * This method prompts the user if they want extra selectedMeat.
+     *
+     * @param selectedMeat This parameter is used to detect if the user selected a selectedMeat already; if not, it doesn't run.
+     * @return true if the user selected yes, false if the user selected no.
+     * @author Luis Vasquez
+     */
+    private boolean askForExtraMeat(Meat selectedMeat) {
+        boolean wantsExtra = false;
+        if (!(selectedMeat == Meat.NO_MEAT)) {
+            boolean needsInput = true;
+            do {
+                System.out.println("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
+                int userInput = UIComponent.getUserInput(scanner);
+                if (userInput == 1) {
+                    wantsExtra = true;
+                    needsInput = false;
+                } else if (userInput == 2) {
+                    needsInput = false;
+                } else {
+                    System.out.println("Enter correct value!");
+                }
+            } while (needsInput);
+        }
+        return wantsExtra;
     }
 
-    public Item getItem() {
-        return this.item;
+    /**
+     * This method prompts the user to select from a list of cheese selections.
+     * The user can only choose one type of cheese.
+     * This cheese is added to the sandwich in the receipt.
+     *
+     * @return A Cheese type.
+     * @author Luis Vasquez
+     */
+    private Cheese selectCheese() {
+        Cheese[] cheeseOptions = Cheese.values();
+        Cheese cheese = null;
+        boolean isRunning = true;
+        do {
+            int count = 1;
+            for (Cheese c : cheeseOptions) {
+                System.out.println(count + ". " + c);
+                count++;
+            }
+            int userInput = UIComponent.getUserInput(scanner);
+            switch (userInput) {
+                case 1:
+                    cheese = Cheese.AMERICAN;
+                    isRunning = false;
+                    break;
+                case 2:
+                    cheese = Cheese.PROVOLONE;
+                    isRunning = false;
+                    break;
+                case 3:
+                    cheese = Cheese.CHEDDAR;
+                    isRunning = false;
+                    break;
+                case 4:
+                    cheese = Cheese.SWISS;
+                    isRunning = false;
+                    break;
+                case 5:
+                    cheese = Cheese.NO_CHEESE;
+                    isRunning = false;
+                default:
+            }
+        } while (isRunning);
+        return cheese;
+    }
+
+    /**
+     * This method prompts the user if they want extra selectedCheese.
+     *
+     * @param selectedCheese This parameter is used to detect if the user selected a selectedCheese already; if not, it doesn't run.
+     * @return true if the user selected yes, false if the user selected no.
+     * @author Luis Vasquez
+     */
+    private boolean askForExtraCheese(Cheese selectedCheese) {
+
+        boolean wamtsExtra = false;
+        if (!(selectedCheese == Cheese.NO_CHEESE)) {
+            boolean needsInput = true;
+            do {
+                System.out.println("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
+                int userInput = UIComponent.getUserInput(scanner);
+                if (userInput == 1) {
+                    wamtsExtra = true;
+                    needsInput = false;
+                } else if (userInput == 2) {
+                    needsInput = false;
+                } else {
+                    System.out.println("Enter correct value!");
+                }
+            } while (needsInput);
+        }
+        return wamtsExtra;
+    }
+
+    /**
+     * This method prompts the user to select from a list of toppings to add to the sandwich item.
+     *
+     * @return A HashSet of all toppings selected by the user.
+     * @author Luis Vasquez
+     */
+    private HashSet<Topping> selectToppings() {
+        List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
+        HashSet<Topping> selectedToppings = new HashSet<>();
+        System.out.println("ADD TOPPINGS");
+        while (!toppings.isEmpty()) {
+            System.out.println("Select 0 to stop adding toppings.");
+            System.out.println("Select Toppings: ");
+            System.out.println("0. Done adding toppings");
+            int count = 1;
+            for (Topping topping : toppings) {
+                System.out.println(count + ". " + topping);
+                count++;
+            }
+            int userInput = UIComponent.getUserInput(scanner);
+            if (userInput > 0 && userInput <= toppings.size()) {
+                Topping chosenTopping = toppings.remove(userInput - 1);
+                selectedToppings.add(chosenTopping);
+            } else if (userInput == 0) {
+                break;
+            } else {
+                System.out.println("Invalid selection");
+            }
+        }
+        return selectedToppings;
+
+    }
+
+    /**
+     * This method prompts the user to select from a list of sauces to add to the sandwich item.
+     *
+     * @return A HashSet of all sauces selected by the user.
+     * @author Luis Vasquez
+     */
+    private HashSet<Sauce> selectSauces() {
+        List<Sauce> sauces = new ArrayList<>(Arrays.asList(Sauce.values()));
+        HashSet<Sauce> selectedSauces = new HashSet<>();
+        System.out.println("ADD SAUCES");
+        while (!sauces.isEmpty()) {
+            System.out.println("Select 0 to stop adding sauces.");
+            System.out.println("Select Sauces: ");
+            System.out.println("0. Done adding sauces");
+            int count = 1;
+            for (Sauce sauce : sauces) {
+                System.out.println(count + ". " + sauce);
+                count++;
+            }
+            int userInput = UIComponent.getUserInput(scanner);
+            if (userInput > 0 && userInput <= sauces.size()) {
+                Sauce chosenSauce = sauces.remove(userInput - 1);
+                selectedSauces.add(chosenSauce);
+            } else if (userInput == 0) {
+                break;
+            } else {
+                System.out.println("Invalid selection");
+            }
+        }
+        return selectedSauces;
     }
 }
