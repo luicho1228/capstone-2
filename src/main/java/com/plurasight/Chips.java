@@ -3,7 +3,7 @@ package com.plurasight;
 import com.plurasight.Enums.ChipsType;
 
 public class Chips extends Item{
-    private ChipsType chipsType;
+    private final ChipsType chipsType;
 
     public Chips(ChipsType chipsType){
         this.chipsType = chipsType;
