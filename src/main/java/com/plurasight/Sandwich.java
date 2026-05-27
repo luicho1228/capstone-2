@@ -15,8 +15,9 @@ public class Sandwich extends Item {
     private final boolean extraMeat;
     private HashSet<Topping> toppings;
     private List<Sauce> sauces;
+    private String sandwichName = "Custom Sandwich";
 
-    public Sandwich(Bread bread, Size size, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings, List<Sauce> sauces) {
+    public Sandwich(Bread bread, Size size, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings) {
         this.bread = bread;
         this.size = size;
         this.meat = meat;
@@ -24,7 +25,7 @@ public class Sandwich extends Item {
         this.cheese = cheese;
         this.extraCheese = extraCheese;
         this.toppings = toppings;
-        this.sauces = sauces;
+       // this.sauces = sauces;
     }
 
     private double getExtraMeatValue() {
@@ -146,13 +147,29 @@ public class Sandwich extends Item {
         if (extraCheese) {
             xtraCheese = "extra cheese";
         }
-        return String.format("Custom Sandwich:" +
-                        "\n\t* %s %s bread\t\t\t\t$%.2f" +
-                        "\n\t* %s\t\t\t\t\t\t$%.2f" +
-                        "\n\t\t%s\t\t\t\t\t$%.2f" +
-                        "\n\t* %s\t\t\t\t\t\t$%.2f" +
-                        "\n\t\t%s\t\t\t\t\t$%.2f" +
-                        "\n\t* Subtotal:\t\t\t\t\t\t $%.2f", getBreadSize(), bread.toString(), getSizeValue()
-                , meat.toString(), getMeatValue(), xtraMeat, getExtraMeatValue(), cheese.toString(), getCheeseValue(), xtraCheese, getExtraCheeseValue(), getValue());
+        String taps = "\n\t* ";
+        String subTaps ="\n\t\t";
+        String breadString = getBreadSize()+ " " + bread + " Bread";
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(sandwichName).append(taps).append(breadString).append(UIComponent.formatTaps(breadString)).append(getSizeValue());
+        stringBuilder.append(taps).append(meat).append(UIComponent.formatTaps(meat.toString())).append(getMeatValue());
+        stringBuilder.append(subTaps).append(xtraMeat).append(UIComponent.formatTaps("* " + xtraMeat)).append(getExtraMeatValue());
+        stringBuilder.append(taps).append(cheese).append(UIComponent.formatTaps(cheese.toString())).append(getCheeseValue());
+        stringBuilder.append(subTaps).append(xtraCheese).append(UIComponent.formatTaps("* " + xtraCheese)).append(getExtraCheeseValue());
+        stringBuilder.append(taps).append("Toppings");
+        String toppingString ="";
+        int count = 1;
+        for (Topping topping: toppings){
+            if (count%3 == 0){
+                toppingString += subTaps;
+            }
+            toppingString += topping.toString()+", ";
+            count++;
+        }
+        stringBuilder.append(subTaps).append(toppingString);
+        String subTotal = "Subtotal:";
+        stringBuilder.append(subTotal).append(UIComponent.formatTaps(subTotal)).append("$").append(getValue());
+        return stringBuilder.toString();
+
     }
 }

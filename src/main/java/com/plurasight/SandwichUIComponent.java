@@ -1,11 +1,8 @@
 package com.plurasight;
 
-import com.plurasight.Enums.Bread;
-import com.plurasight.Enums.Cheese;
-import com.plurasight.Enums.Meat;
-import com.plurasight.Enums.Size;
+import com.plurasight.Enums.*;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class SandwichUIComponent extends UIComponent implements Displayable {
 
@@ -14,32 +11,93 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         super(scanner,userInput);
     }
 
+    private boolean askForExtraMeat(Meat meat){
+        boolean extraMeat = false;
+        if (!(meat == Meat.NO_MEAT)) {
+            boolean isRunning = true;
+            do {
+                System.out.println("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
+                userInput = scanner.nextInt();
+                scanner.nextLine();
+                if (userInput == 1) {
+                    extraMeat = true;
+                    isRunning = false;
+                } else if (userInput == 2) {
+                    isRunning = false;
+                    break;
+                } else {
+                    System.out.println("Enter correct value!");
+                }
+            } while (isRunning);
+        }
+        return extraMeat;
+    }
+
+    private boolean askForExtraCheese(Cheese cheese){
+
+        boolean extraCheese = false;
+        if(!(cheese == Cheese.NO_CHEESE)) {
+            boolean isRunning = true;
+            do {
+                System.out.println("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
+                userInput = scanner.nextInt();
+                scanner.nextLine();
+                if (userInput == 1) {
+                    extraCheese = true;
+                    isRunning = false;
+                } else if (userInput == 2) {
+                    isRunning = false;
+                    break;
+                } else {
+                    System.out.println("Enter correct value!");
+                }
+            } while (isRunning);
+        }
+        return extraCheese;
+    }
+
     private Item addSandwich(){
         System.out.println("ADD SANDWICH");
         System.out.println("\tSelect Bread:");
         Bread bread = addBread();
         Size size = chooseSize();
         Meat meat = addMeat();
-        System.out.println("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
-        userInput = scanner.nextInt();
-        scanner.nextLine();
-        boolean extraMeat = false;
-        if (userInput == 1){
-            extraMeat = true;
-        }
+        boolean extraMeat = askForExtraMeat();
         Cheese cheese = addCheese();
         System.out.println("Do you want extra Cheese?\n1.Yes\t\t\t2.No");
         userInput = scanner.nextInt();
         scanner.nextLine();
-        boolean extraCheese = false;
-        if (userInput == 1){
-            extraCheese = true;
-        }
-        return new Sandwich(bread,size,meat,extraMeat,cheese,extraCheese);
+        boolean extraCheese = askForExtraCheese();
+        HashSet<Topping> toppings = addToppings();
+        return new Sandwich(bread,size,meat,extraMeat,cheese,extraCheese,toppings);
 
     }
+    
+    private HashSet<Topping> addToppings(){
+        List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
+        HashSet<Topping>selectedToppings = new HashSet<>();
+        System.out.println("ADD TOPPINGS");
+        while (!toppings.isEmpty()){
+            System.out.println("Toppings: ");
+            int count = 1;
+            for (Topping topping: toppings){
+                System.out.println(count+". "+topping);
+                count++;
+            }
+            userInput = scanner.nextInt();
+            scanner.nextLine();
+            if (userInput > 0 && userInput <= toppings.size()){
+                Topping chosenTopping = toppings.remove(userInput-1);
+                selectedToppings.add(chosenTopping);
+            }else {
+                System.out.println("Invalid selection");
+            }
+        }
+        return selectedToppings;
+        
+    }
+    
     private Cheese addCheese(){
-
         Cheese[] cheeseList = Cheese.values();
         int count = 1;
         for (Cheese c: cheeseList){

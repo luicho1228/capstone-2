@@ -1,0 +1,16 @@
+Order number: 33175
+No-Name					Date created: 05/27/2026-03:39
+---------------------------------------------------
+Custom Sandwich
+	* 8"WHITE                                            7.0
+	* SALAMI                                             2.0
+		Extra Meat                                        1.0
+	* SWISS                                              1.5
+		extra cheese                                      0.6
+	* Toppings
+		ONIONS, JALAPENOS, 
+CUCUMBERS, LETTUCE, PICKLES, 
+MUSHROOMS, TOMATOES, GUACAMOLE, 
+PEPPERS, 
+---------------------------------------------------
+Total:									12.1

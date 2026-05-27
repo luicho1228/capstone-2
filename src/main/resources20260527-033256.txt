@@ -1,0 +1,10 @@
+Order number: 9870
+No-Name					Date created: 05/27/2026-03:32
+---------------------------------------------------
+Custom Sandwich
+	* 12"WHITE                                           8.5
+	* HAM                                                3.0		Extra Meat                                         1.5
+	* SWISS                                              2.25		extra cheese                                       0.9
+	* Toppings		CUCUMBERS, GUACAMOLE, MUSHROOMS, ONIONS, TOMATOES, PEPPERS, LETTUCE, PICKLES, JALAPENOS, 
+---------------------------------------------------
+Total:									16.15

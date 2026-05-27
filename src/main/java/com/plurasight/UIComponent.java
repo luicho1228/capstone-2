@@ -30,4 +30,14 @@ public class UIComponent{
     public void setStringColor(String stringColor) {
         this.stringColor = stringColor;
     }
+    public static String formatTaps(String string){
+        int receiptDetailPadding = 50;
+        int stringLength = string.length();
+        int tapLength = receiptDetailPadding - stringLength;
+        StringBuilder tabs = new StringBuilder();
+        for (int i = 0; i <= tapLength;i++){
+            tabs.append(" ");
+        }
+        return tabs.toString();
+    }
 }
