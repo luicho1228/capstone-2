@@ -7,11 +7,12 @@ import java.util.*;
 public class SandwichUIComponent extends UIComponent implements Displayable {
 
     private Item item;
-    public SandwichUIComponent(Scanner scanner, int userInput){
-        super(scanner,userInput);
+
+    public SandwichUIComponent(Scanner scanner, int userInput) {
+        super(scanner, userInput);
     }
 
-    private boolean askForExtraMeat(Meat meat){
+    private boolean askForExtraMeat(Meat meat) {
         boolean extraMeat = false;
         if (!(meat == Meat.NO_MEAT)) {
             boolean isRunning = true;
@@ -24,7 +25,6 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     isRunning = false;
                 } else if (userInput == 2) {
                     isRunning = false;
-                    break;
                 } else {
                     System.out.println("Enter correct value!");
                 }
@@ -33,10 +33,10 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return extraMeat;
     }
 
-    private boolean askForExtraCheese(Cheese cheese){
+    private boolean askForExtraCheese(Cheese cheese) {
 
         boolean extraCheese = false;
-        if(!(cheese == Cheese.NO_CHEESE)) {
+        if (!(cheese == Cheese.NO_CHEESE)) {
             boolean isRunning = true;
             do {
                 System.out.println("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
@@ -47,7 +47,6 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     isRunning = false;
                 } else if (userInput == 2) {
                     isRunning = false;
-                    break;
                 } else {
                     System.out.println("Enter correct value!");
                 }
@@ -56,59 +55,88 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         return extraCheese;
     }
 
-    private Item addSandwich(){
+    private Item addSandwich() {
         System.out.println("ADD SANDWICH");
         System.out.println("\tSelect Bread:");
         Bread bread = addBread();
         Size size = chooseSize();
         Meat meat = addMeat();
-        boolean extraMeat = askForExtraMeat();
+        boolean extraMeat = askForExtraMeat(meat);
         Cheese cheese = addCheese();
-        System.out.println("Do you want extra Cheese?\n1.Yes\t\t\t2.No");
-        userInput = scanner.nextInt();
-        scanner.nextLine();
-        boolean extraCheese = askForExtraCheese();
+        boolean extraCheese = askForExtraCheese(cheese);
         HashSet<Topping> toppings = addToppings();
-        return new Sandwich(bread,size,meat,extraMeat,cheese,extraCheese,toppings);
+        HashSet<Sauce> sauces = addSauces();
+        return new Sandwich(bread, size, meat, extraMeat, cheese, extraCheese, toppings,sauces);
 
     }
-    
-    private HashSet<Topping> addToppings(){
-        List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
-        HashSet<Topping>selectedToppings = new HashSet<>();
-        System.out.println("ADD TOPPINGS");
-        while (!toppings.isEmpty()){
-            System.out.println("Toppings: ");
+
+    private HashSet<Sauce> addSauces(){
+        List<Sauce> sauces = new ArrayList<>(Arrays.asList(Sauce.values()));
+        HashSet<Sauce> selectedSauces = new HashSet<>();
+        System.out.println("ADD SAUCES");
+        while (!sauces.isEmpty()) {
+            System.out.println("Select 0 to stop adding sauces.");
+            System.out.println("Select Sauces: ");
+            System.out.println("0. Done adding sauces");
             int count = 1;
-            for (Topping topping: toppings){
-                System.out.println(count+". "+topping);
+            for (Sauce sauce : sauces) {
+                System.out.println(count + ". " + sauce);
                 count++;
             }
             userInput = scanner.nextInt();
             scanner.nextLine();
-            if (userInput > 0 && userInput <= toppings.size()){
-                Topping chosenTopping = toppings.remove(userInput-1);
+            if (userInput > 0 && userInput <= sauces.size()) {
+                Sauce chosenSauce = sauces.remove(userInput - 1);
+                selectedSauces.add(chosenSauce);
+            } else if (userInput == 0) {
+               break;
+            } else {
+                System.out.println("Invalid selection");
+            }
+        }
+        return selectedSauces;
+    }
+
+    private HashSet<Topping> addToppings() {
+        List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
+        HashSet<Topping> selectedToppings = new HashSet<>();
+        System.out.println("ADD TOPPINGS");
+        while (!toppings.isEmpty()) {
+            System.out.println("Select 0 to stop adding toppings.");
+            System.out.println("Select Toppings: ");
+            System.out.println("0. Done adding sauces");
+            int count = 1;
+            for (Topping topping : toppings) {
+                System.out.println(count + ". " + topping);
+                count++;
+            }
+            userInput = scanner.nextInt();
+            scanner.nextLine();
+            if (userInput > 0 && userInput <= toppings.size()) {
+                Topping chosenTopping = toppings.remove(userInput - 1);
                 selectedToppings.add(chosenTopping);
-            }else {
+            } else if (userInput == 0) {
+                break;
+            } else {
                 System.out.println("Invalid selection");
             }
         }
         return selectedToppings;
-        
+
     }
-    
-    private Cheese addCheese(){
+
+    private Cheese addCheese() {
         Cheese[] cheeseList = Cheese.values();
-        int count = 1;
-        for (Cheese c: cheeseList){
-            System.out.println(count+". "+ c);
-            count++;
-        }
-        userInput = scanner.nextInt();
-        scanner.nextLine();
-        Cheese cheese= null;
-        boolean isRunning =true;
+        Cheese cheese = null;
+        boolean isRunning = true;
         do {
+            int count = 1;
+            for (Cheese c : cheeseList) {
+                System.out.println(count + ". " + c);
+                count++;
+            }
+            userInput = scanner.nextInt();
+            scanner.nextLine();
             switch (userInput) {
                 case 1:
                     cheese = Cheese.AMERICAN;
@@ -116,7 +144,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     break;
                 case 2:
                     cheese = Cheese.PROVOLONE;
-                    isRunning =false;
+                    isRunning = false;
                     break;
                 case 3:
                     cheese = Cheese.CHEDDAR;
@@ -131,21 +159,22 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     isRunning = false;
                 default:
             }
-        }while(isRunning);
+        } while (isRunning);
         return cheese;
     }
-    private Size chooseSize(){
+
+    private Size chooseSize() {
         Size[] sizes = Size.values();
-        int count = 1;
-        for (Size s: sizes){
-            System.out.println(count+". "+ s);
-            count++;
-        }
-        userInput = scanner.nextInt();
-        scanner.nextLine();
-        Size size= null;
-        boolean isRunning =true;
+        Size size = null;
+        boolean isRunning = true;
         do {
+            int count = 1;
+            for (Size s : sizes) {
+                System.out.println(count + ". " + s);
+                count++;
+            }
+            userInput = scanner.nextInt();
+            scanner.nextLine();
             switch (userInput) {
                 case 1:
                     size = Size.SMALL;
@@ -153,7 +182,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     break;
                 case 2:
                     size = Size.MEDIUM;
-                    isRunning =false;
+                    isRunning = false;
                     break;
                 case 3:
                     size = Size.LARGE;
@@ -161,24 +190,24 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     break;
                 default:
             }
-        }while(isRunning);
+        } while (isRunning);
 
 
         return size;
     }
-    private Bread addBread(){
 
+    private Bread addBread() {
         Bread[] breadList = Bread.values();
-        int count = 1;
-        for (Bread b: breadList){
-            System.out.println(count+". "+ b);
-            count++;
-        }
-        userInput = scanner.nextInt();
-        scanner.nextLine();
-        Bread bread= null;
-        boolean isRunning =true;
+        Bread bread = null;
+        boolean isRunning = true;
         do {
+            int count = 1;
+            for (Bread b : breadList) {
+                System.out.println(count + ". " + b);
+                count++;
+            }
+            userInput = scanner.nextInt();
+            scanner.nextLine();
             switch (userInput) {
                 case 1:
                     bread = Bread.WHITE;
@@ -186,7 +215,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     break;
                 case 2:
                     bread = Bread.WHEAT;
-                    isRunning =false;
+                    isRunning = false;
                     break;
                 case 3:
                     bread = Bread.RYE;
@@ -198,23 +227,23 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                     break;
                 default:
             }
-        }while(isRunning);
+        } while (isRunning);
 
         return bread;
     }
 
-    private Meat addMeat(){
+    private Meat addMeat() {
         Meat[] meats = Meat.values();
-        int count  = 1;
-        for (Meat m: meats){
-            System.out.println(count+". "+ m);
-            count++;
-        }
-        userInput = scanner.nextInt();
-        scanner.nextLine();
         Meat meat = null;
         boolean isRunning = true;
         do {
+            int count = 1;
+            for (Meat m : meats) {
+                System.out.println(count + ". " + m);
+                count++;
+            }
+            userInput = scanner.nextInt();
+            scanner.nextLine();
             switch (userInput) {
                 case 1:
                     meat = Meat.STEAK;
@@ -247,10 +276,9 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 default:
                     System.out.println("Select from the option provided");
             }
-        }while (isRunning);
-        return  meat;
+        } while (isRunning);
+        return meat;
     }
-
 
     @Override
     public void displayComponent() {

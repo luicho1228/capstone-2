@@ -14,10 +14,10 @@ public class Sandwich extends Item {
     private final Meat meat;
     private final boolean extraMeat;
     private HashSet<Topping> toppings;
-    private List<Sauce> sauces;
+    private HashSet<Sauce> sauces;
     private String sandwichName = "Custom Sandwich";
 
-    public Sandwich(Bread bread, Size size, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings) {
+    public Sandwich(Bread bread, Size size, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings,HashSet<Sauce> sauces) {
         this.bread = bread;
         this.size = size;
         this.meat = meat;
@@ -25,9 +25,12 @@ public class Sandwich extends Item {
         this.cheese = cheese;
         this.extraCheese = extraCheese;
         this.toppings = toppings;
-       // this.sauces = sauces;
+        this.sauces = sauces;
     }
 
+    public void setSandwichName(String name){
+        this.sandwichName = name;
+    }
     private double getExtraMeatValue() {
         double extraMeatValue = 0.0;
         switch (size) {
@@ -157,18 +160,37 @@ public class Sandwich extends Item {
         stringBuilder.append(taps).append(cheese).append(UIComponent.formatTaps(cheese.toString())).append(getCheeseValue());
         stringBuilder.append(subTaps).append(xtraCheese).append(UIComponent.formatTaps("* " + xtraCheese)).append(getExtraCheeseValue());
         stringBuilder.append(taps).append("Toppings");
-        String toppingString ="";
-        int count = 1;
-        for (Topping topping: toppings){
-            if (count%3 == 0){
-                toppingString += subTaps;
+        if (!(toppings == null)) {
+            String toppingString = "";
+            int toppingCount = 1;
+            for (Topping topping : toppings) {
+                if (toppingCount % 3 == 0) {
+                    toppingString += subTaps;
+                }
+                toppingString += topping.toString() + ", ";
+                toppingCount++;
             }
-            toppingString += topping.toString()+", ";
-            count++;
+            stringBuilder.append(subTaps).append(toppingString);
+        }else {
+            System.out.println("No Toppings");
         }
-        stringBuilder.append(subTaps).append(toppingString);
+        stringBuilder.append(taps).append("Sauces");
+        if (!(sauces == null)) {
+            String sauceString = "";
+            int sauceCount = 1;
+            for (Sauce sauce : sauces) {
+                if (sauceCount % 3 == 0) {
+                    sauceString += subTaps;
+                }
+                sauceString += sauce.toString() + ", ";
+                sauceCount++;
+            }
+            stringBuilder.append(subTaps).append(sauceString);
+        } else {
+            stringBuilder.append(taps).append("N0 Sauce");
+        }
         String subTotal = "Subtotal:";
-        stringBuilder.append(subTotal).append(UIComponent.formatTaps(subTotal)).append("$").append(getValue());
+        stringBuilder.append("\n\n").append(subTotal).append(UIComponent.formatTaps("\t* " + subTotal)).append("$").append(getValue());
         return stringBuilder.toString();
 
     }

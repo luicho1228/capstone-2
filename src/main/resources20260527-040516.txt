@@ -1,0 +1,16 @@
+Order number: 48738
+No-Name					Date created: 05/27/2026-04:05
+---------------------------------------------------
+Custom Sandwich
+	* 8" WHITE Bread                                     7.0
+	* SALAMI                                             2.0
+		Extra Meat                                       1.0
+	* SWISS                                              1.5
+		No-Extra Cheese                                  0.0
+	* Toppings
+		ONIONS, JALAPENOS, 
+		CUCUMBERS, LETTUCE, PICKLES, 
+		MUSHROOMS, TOMATOES, GUACAMOLE, 
+		PEPPERS, Subtotal:                                          $11.5
+---------------------------------------------------
+Total:									11.5

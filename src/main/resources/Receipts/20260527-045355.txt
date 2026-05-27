@@ -1,0 +1,17 @@
+Order number: 38264
+No-Name					Date created: 05/27/2026-04:53
+---------------------------------------------------
+Custom Sandwich
+	* 4" WHITE Bread                                     5.5
+	* STEAK                                              1.0
+		Extra Meat                                       0.5
+	* AMERICAN                                           0.75
+		extra cheese                                     0.3
+	* Toppings
+		ONIONS, LETTUCE, 
+	* Sauces
+		
+
+Subtotal:                                       $8.05
+---------------------------------------------------
+Total:									8.05
