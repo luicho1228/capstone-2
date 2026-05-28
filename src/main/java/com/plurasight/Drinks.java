@@ -1,22 +1,19 @@
 package com.plurasight;
 
-import com.plurasight.Enums.Flavor;
 import com.plurasight.Enums.Size;
 
 public class Drinks extends Item {
 
-    Flavor flavor;
     Size size;
 
-    public Drinks(Size size, Flavor flavor){
+    public Drinks(Size size) {
         this.size = size;
-        this.flavor = flavor;
     }
 
     @Override
     public double getValue() {
         double value = 0.0;
-        switch (size){
+        switch (size) {
             case SMALL -> value = 2;
             case MEDIUM -> value = 2.5;
             case LARGE -> value = 3;
@@ -26,8 +23,9 @@ public class Drinks extends Item {
 
     @Override
     public String getDetails() {
-        return String.format("Drink:" +
-                "\n\t* %s\t\t\t\t\t\t\t$%.2f" +
-                "\n\t* %s",size.toString(),getValue(),flavor.toString());
+        String drinkName = "Drink";
+
+        return drinkName + UIComponent.formatTaps(drinkName.length() - getTaps().length()) + "$" + getValue() +
+                getTaps() + size.toString();
     }
 }

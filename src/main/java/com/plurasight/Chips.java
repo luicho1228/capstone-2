@@ -16,7 +16,9 @@ public class Chips extends Item{
 
     @Override
     public String getDetails() {
-        return "Chips: \t\t\t&"+getValue()+
-                "\n"+ this.chipsType;
+        String chipsString = "Chips";
+        return chipsString + UIComponent.formatTaps(chipsString.length() - getTaps().length()) + "$" + getValue() +
+                getTaps() + chipsType;
+
     }
 }

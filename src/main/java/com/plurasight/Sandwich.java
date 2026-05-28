@@ -65,9 +65,6 @@ public class Sandwich extends Item {
      */
     @Override
     public String getDetails() {
-        String taps = "\n\t* ";
-        String subTaps ="\n\t\t";
-
         String extraMeatDisplay = extraMeat ? "Extra Meat" : "No-Extra Meat";
         String extraCheeseDisplay = extraCheese ? "Extra Cheese" : "No-Extra Cheese";
         String breadDisplay = getBreadSize()+ " " + bread + " Bread";
@@ -75,49 +72,46 @@ public class Sandwich extends Item {
         StringBuilder details = new StringBuilder();
 
         //print general sandwich details
-        details.append(sandwichName).append(taps).append(breadDisplay).append(UIComponent.formatTaps(breadDisplay)).append(getSizeValue());
-        details.append(taps).append(meat).append(UIComponent.formatTaps(meat.toString())).append(getMeatValue());
-        details.append(subTaps).append(extraMeatDisplay).append(UIComponent.formatTaps("* " + extraMeatDisplay)).append(getExtraMeatValue());
-        details.append(taps).append(cheese).append(UIComponent.formatTaps(cheese.toString())).append(getCheeseValue());
-        details.append(subTaps).append(extraCheeseDisplay).append(UIComponent.formatTaps("* " + extraCheeseDisplay)).append(getExtraCheeseValue());
+        details.append(sandwichName).append(UIComponent.formatTaps(sandwichName.length() - getTaps().length())).append("$").append(getValue());
+        details.append(getTaps()).append(breadDisplay).append(UIComponent.formatTaps(breadDisplay.length())).append(getSizeValue());
+        details.append(getTaps()).append(meat).append(UIComponent.formatTaps(meat.toString().length())).append(getMeatValue());
+        details.append(getSubTaps()).append(extraMeatDisplay).append(UIComponent.formatTaps(("* " + extraMeatDisplay).length())).append(getExtraMeatValue());
+        details.append(getTaps()).append(cheese).append(UIComponent.formatTaps(cheese.toString().length())).append(getCheeseValue());
+        details.append(getSubTaps()).append(extraCheeseDisplay).append(UIComponent.formatTaps(("* " + extraCheeseDisplay).length())).append(getExtraCheeseValue());
 
         //Process toppings
-        details.append(taps).append("Toppings");
+        details.append(getTaps()).append("Toppings");
         if (!(toppings.isEmpty())) {
             StringBuilder toppingString = new StringBuilder();
             int toppingCount = 1;
             for (Topping topping : toppings) {
                 if (toppingCount % 3 == 0) {
-                    toppingString.append(subTaps);
+                    toppingString.append(getSubTaps());
                 }
                 toppingString.append(topping.toString()).append(", ");
                 toppingCount++;
             }
-            details.append(subTaps).append(toppingString);
+            details.append(getSubTaps()).append(toppingString);
         }else {
-            details.append(subTaps).append("No Toppings");
+            details.append(getSubTaps()).append("No Toppings");
         }
 
         //process Sauces
-        details.append(taps).append("Sauces");
+        details.append(getTaps()).append("Sauces");
         if (!(sauces.isEmpty())) {
             StringBuilder sauceString = new StringBuilder();
             int sauceCount = 1;
             for (Sauce sauce : sauces) {
                 if (sauceCount % 3 == 0) {
-                    sauceString.append(subTaps);
+                    sauceString.append(getSubTaps());
                 }
                 sauceString.append(sauce.toString()).append(", ");
                 sauceCount++;
             }
-            details.append(subTaps).append(sauceString);
+            details.append(getSubTaps()).append(sauceString);
         } else {
-            details.append(subTaps).append("No Sauce");
+            details.append(getSubTaps()).append("No Sauce");
         }
-
-        //Process subtotal
-        String subTotal = "Subtotal:";
-        details.append("\n\n").append(subTotal).append(UIComponent.formatTaps("\t* " + subTotal)).append("$").append(getValue());
 
         return details.toString();
     }
