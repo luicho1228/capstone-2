@@ -31,12 +31,8 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
             int userInput = getUserInput(scanner);
             switch (userInput) {
                 case 1:
-                    if (!(order.isEmpty())) {
-                        finishCheckout();
-                        needsInput = false;
-                    }else {
-                        System.out.println("There must be at least ONE item in your order to checkout");
-                    }
+                    finishCheckout();
+                    needsInput = false;
                     break;
                 case 2:
                     Item itemToEdit = selectItemToEdit();

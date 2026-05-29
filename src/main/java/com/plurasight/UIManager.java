@@ -38,9 +38,10 @@ public class UIManager {
             System.out.println("ORDER SCREEN");
             System.out.println("""
                 \t1.Add Sandwich
-                \t2.Add Drink
-                \t3.Add Chips
-                \t4.Checkout
+                \t2.Add Signature Sandwich
+                \t3.Add Drink
+                \t4.Add Chips
+                \t5.Checkout
                 \t0.Cancel Order""");
             int userInput = UIComponent.getUserInput(scanner);
             switch (userInput){
@@ -50,21 +51,28 @@ public class UIManager {
                     newOrder.addItem(sandwichUI.getItem());
                     break;
                 case 2:
+
+                    break;
+                case 3:
                     DrinkUIComponent drinkUi = new DrinkUIComponent(scanner);
                     drinkUi.displayComponent();
                     newOrder.addItem(drinkUi.getItem());
                     break;
-                case 3:
+                case 4:
                     ChipsUIComponent chipsUIComponent = new ChipsUIComponent(scanner);
                     chipsUIComponent.displayComponent();;
                     newOrder.addItem(chipsUIComponent.getItem());
                     break;
-                case 4:
-                    CheckoutUIComponent checkoutUIComponent = new CheckoutUIComponent(scanner,newOrder);
-                    checkoutUIComponent.displayComponent();
-                    if (checkoutUIComponent.isOrderCheckedout()) {
-                        newOrder = null;
-                        isRunning = false;
+                case 5:
+                    if (!(newOrder.isEmpty())) {
+                        CheckoutUIComponent checkoutUIComponent = new CheckoutUIComponent(scanner, newOrder);
+                        checkoutUIComponent.displayComponent();
+                        if (checkoutUIComponent.isOrderCheckedout()) {
+                            newOrder = null;
+                            isRunning = false;
+                        }
+                    }else {
+                        System.out.println("There must be at least ONE item in your order to checkout");
                     }
                     break;
                 case 0 :
