@@ -47,7 +47,12 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Item buildSandwich() {
-        System.out.println("ADD SANDWICH");
+        System.out.println("  ____        _ _     _   ____                  _          _      _     \n" +
+                " | __ ) _   _(_) | __| | / ___|  __ _ _ __   __| |_      _(_) ___| |__  \n" +
+                " |  _ \\| | | | | |/ _` | \\___ \\ / _` | '_ \\ / _` \\ \\ /\\ / / |/ __| '_ \\ \n" +
+                " | |_) | |_| | | | (_| |  ___) | (_| | | | | (_| |\\ V  V /| | (__| | | |\n" +
+                " |____/ \\__,_|_|_|\\__,_| |____/ \\__,_|_| |_|\\__,_| \\_/\\_/ |_|\\___|_| |_|\n" +
+                "                                                                        ");
         Bread bread = selectBread();
         Size size = selectSize();
         boolean toasted = isToasted();
@@ -83,7 +88,8 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Bread selectBread() {
-       return selectEnumOption(Bread.values(),"Select Bread:");
+       displayBorders();
+        return selectEnumOption(Bread.values(),"Select Bread:");
     }
 
     /**
@@ -93,7 +99,8 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Meat selectMeat() {
-       return selectEnumOption(Meat.values(),"Select Meat:");
+       displayBorders();
+        return selectEnumOption(Meat.values(),"Select Meat:");
     }
 
     /**
@@ -104,6 +111,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private boolean askForExtraMeat(Meat selectedMeat) {
+        displayBorders();
         if (!(selectedMeat == Meat.NO_MEAT)) {
             return getBooleanFromPrompt("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
         }
@@ -119,6 +127,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Cheese selectCheese() {
+        displayBorders();
        return selectEnumOption(Cheese.values(),"Select Cheese:");
     }
 
@@ -130,6 +139,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private boolean askForExtraCheese(Cheese selectedCheese) {
+        displayBorders();
         if (!(selectedCheese == Cheese.NO_CHEESE)) {
             return getBooleanFromPrompt("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
         }
@@ -143,6 +153,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private HashSet<Topping> selectToppings() {
+        displayBorders();
        return selectMultipleEnumFromOptions(Topping.values(),"Add Toppings");
     }
 
@@ -153,6 +164,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private HashSet<Sauce> selectSauces() {
+        displayBorders();
        return selectMultipleEnumFromOptions(Sauce.values(),"Add Sauces");
     }
 }

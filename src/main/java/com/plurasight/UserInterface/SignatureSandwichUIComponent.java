@@ -50,13 +50,24 @@ public class SignatureSandwichUIComponent extends UIComponent implements Display
      * Each sandwich is shown with a number so the user can select one.
      */
     private void displaySignatureSandwiches() {
-        System.out.println("SIGNATURE SANDWICHES");
+        displayBorders();
+        System.out.println("  ____  _                   _                    ____                  _          _      _     \n" +
+                " / ___|(_) __ _ _ __   __ _| |_ _   _ _ __ ___  / ___|  __ _ _ __   __| |_      _(_) ___| |__  \n" +
+                " \\___ \\| |/ _` | '_ \\ / _` | __| | | | '__/ _ \\ \\___ \\ / _` | '_ \\ / _` \\ \\ /\\ / / |/ __| '_ \\ \n" +
+                "  ___) | | (_| | | | | (_| | |_| |_| | | |  __/  ___) | (_| | | | | (_| |\\ V  V /| | (__| | | |\n" +
+                " |____/|_|\\__, |_| |_|\\__,_|\\__|\\__,_|_|  \\___| |____/ \\__,_|_| |_|\\__,_| \\_/\\_/ |_|\\___|_| |_|\n" +
+                "          |___/                 |  \\/  | ___ _ __  _   _                                       \n" +
+                "                                | |\\/| |/ _ \\ '_ \\| | | |                                      \n" +
+                "                                | |  | |  __/ | | | |_| |                                      \n" +
+                "                                |_|  |_|\\___|_| |_|\\__,_|                                      \n" +
+                "                                                                                               ");
         System.out.println("Select a signature sandwich:");
         int count = 1;
         for (SignatureSandwich signatureSandwich : signatureSandwiches) {
             System.out.println(count + ". " + signatureSandwich.getDetails());
             count++;
         }
+        displayBorders();
     }
 
     /**

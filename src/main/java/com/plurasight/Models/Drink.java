@@ -54,7 +54,7 @@ public class Drink extends Item {
     public String getDetails() {
         String drinkName = "Drink";
 
-        return drinkName + UIComponent.formatPadding(drinkName.length() - getTaps().length()) + "$" + getValue() + getTaps() + size.toString();
+        return drinkName + UIComponent.formatPadding(drinkName.length() - getTaps().length()) + String.format("$%.2f",getValue()) + getTaps() + size.toString();
     }
 
     /**

@@ -31,7 +31,13 @@ public class DrinkUIComponent extends UIComponent implements Displayable {
      * @return A Drink item with the selected size.
      */
     private Item addDrink() {
-        System.out.println("ADD DRINK");
+        displayBorders();
+        System.out.println("  ____       _       _      ____  _         \n" +
+                " |  _ \\ _ __(_)_ __ | | __ / ___|(_)_______ \n" +
+                " | | | | '__| | '_ \\| |/ / \\___ \\| |_  / _ \\\n" +
+                " | |_| | |  | | | | |   <   ___) | |/ /  __/\n" +
+                " |____/|_|  |_|_| |_|_|\\_\\ |____/|_/___\\___|\n" +
+                "                                            ");
         return new Drink(selectSize());
     }
 

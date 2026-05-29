@@ -33,7 +33,13 @@ public class CheckoutUIComponent extends UIComponent implements Displayable {
      */
     @Override
     public void displayComponent() {
-        System.out.println("CHECKOUT");
+        displayBorders();
+        System.out.println("   ____ _               _       ___        _   \n" +
+                "  / ___| |__   ___  ___| | __  / _ \\ _   _| |_ \n" +
+                " | |   | '_ \\ / _ \\/ __| |/ / | | | | | | | __|\n" +
+                " | |___| | | |  __/ (__|   <  | |_| | |_| | |_ \n" +
+                "  \\____|_| |_|\\___|\\___|_|\\_\\  \\___/ \\__,_|\\__|\n" +
+                "                                               ");
 
         boolean needsInput = true;
 
@@ -41,13 +47,13 @@ public class CheckoutUIComponent extends UIComponent implements Displayable {
             System.out.println(order.getOrderDetails());
 
             String[] menuOptions = {
-                    "Process check-out",
+                    "Confirm Order",
                     "Edit Order",
                     "Remove Item",
                     "Go Back"
             };
 
-            switch (getUserInputFromMenu(menuOptions, false)) {
+            switch (getUserInputFromMenu(menuOptions)) {
                 case 1:
                     processCheckout();
                     needsInput = false;
@@ -103,7 +109,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable {
             itemOptions[i] = items.get(i).getItemHeader();
         }
 
-        int selectedItem = getUserInputFromMenu(itemOptions, false);
+        int selectedItem = getUserInputFromMenu(itemOptions);
         return items.get(selectedItem - 1);
     }
 
@@ -163,7 +169,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable {
         boolean needsInput = true;
 
         do {
-            switch (getUserInputFromMenu(menuOptions, false)) {
+            switch (getUserInputFromMenu(menuOptions)) {
                 case 1:
                     sandwichToEdit.setSize(selectEnumOption(Size.values(), "Select sandwich size:"));
                     break;

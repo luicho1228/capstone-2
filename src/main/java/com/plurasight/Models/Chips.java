@@ -37,7 +37,7 @@ public class Chips extends Item {
     @Override
     public String getDetails() {
         String chipsString = "Chips";
-        return chipsString + UIComponent.formatPadding(chipsString.length() - getTaps().length()) + "$" + getValue() +
+        return chipsString + UIComponent.formatPadding(chipsString.length() - getTaps().length())+String.format("$%.2f",getValue()) +
                 getTaps() + chipsType;
 
     }

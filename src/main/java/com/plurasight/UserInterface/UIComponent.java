@@ -9,6 +9,7 @@ import java.util.*;
  */
 public class UIComponent {
 
+    protected final static int BORDER_LENGTH = 100;
     protected Scanner scanner;
 
     /**
@@ -46,6 +47,7 @@ public class UIComponent {
      * @return The number entered by the user.
      */
     public static int getUserInput(Scanner scanner) {
+        System.out.println("Enter input:");
         int userInput = scanner.nextInt();
         scanner.nextLine();
         return userInput;
@@ -54,11 +56,10 @@ public class UIComponent {
     /**
      * Shows a menu and gets the option selected by the user.
      *
-     * @param menu             The menu options to display.
-     * @param indexZeroAllowed true if 0 is allowed as an option, false if it is not.
+     * @param menu The menu options to display.
      * @return The menu option selected by the user.
      */
-    protected int getUserInputFromMenu(String[] menu, boolean indexZeroAllowed) {
+    protected int getUserInputFromMenu(String[] menu) {
         do {
             System.out.println("Select from the options:");
 
@@ -66,22 +67,16 @@ public class UIComponent {
                 System.out.println((i + 1) + ". " + menu[i]);
             }
 
+            displayBorders();
             try {
                 int userInput = getUserInput(scanner);
 
-                if (!indexZeroAllowed) {
-                    if (userInput > 0 && userInput <= menu.length) {
-                        return userInput;
-                    } else {
-                        System.err.println("Select an option provided");
-                    }
+                if (userInput > 0 && userInput <= menu.length) {
+                    return userInput;
                 } else {
-                    if (userInput >= 0 && userInput <= menu.length) {
-                        return userInput;
-                    } else {
-                        System.err.println("Select an option provided");
-                    }
+                    System.err.println("Select an option provided");
                 }
+
             } catch (InputMismatchException ime) {
                 System.err.println("Error: Select a numeric value from the options provided");
                 scanner.nextLine();
@@ -137,6 +132,7 @@ public class UIComponent {
                 System.out.println((i + 1) + ". " + options[i]);
             }
 
+            displayBorders();
             try {
                 int userInput = getUserInput(scanner);
 
@@ -180,6 +176,7 @@ public class UIComponent {
                 System.out.println(count + ". " + e);
                 count++;
             }
+            displayBorders();
 
             System.out.println("0. Done adding");
 
@@ -201,5 +198,12 @@ public class UIComponent {
         }
 
         return selectedEnums;
+    }
+
+    protected void displayBorders() {
+        for (int i = 0; i < BORDER_LENGTH; i++) {
+            System.out.print("-");
+        }
+        System.out.print("\n");
     }
 }

@@ -36,8 +36,15 @@ public class OrderUIComponent extends UIComponent implements Displayable {
      */
     @Override
     public void displayComponent() {
+        displayBorders();
+        System.out.println("   ___          _             __  __                  \n" +
+                "  / _ \\ _ __ __| | ___ _ __  |  \\/  | ___ _ __  _   _ \n" +
+                " | | | | '__/ _` |/ _ \\ '__| | |\\/| |/ _ \\ '_ \\| | | |\n" +
+                " | |_| | | | (_| |  __/ |    | |  | |  __/ | | | |_| |\n" +
+                "  \\___/|_|  \\__,_|\\___|_|    |_|  |_|\\___|_| |_|\\__,_|\n" +
+                "                                                      ");
         String[] optionArray = {"Add Sandwich", "Add Signature Sandwich", "Add Drink", "Add Chips", "Add Customer Name to the order", "Checkout", "Cancel Order"};
 
-        input = getUserInputFromMenu(optionArray, false);
+        input = getUserInputFromMenu(optionArray);
     }
 }

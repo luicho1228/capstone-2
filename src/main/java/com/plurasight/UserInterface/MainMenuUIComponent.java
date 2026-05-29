@@ -35,7 +35,14 @@ public class MainMenuUIComponent extends UIComponent implements Displayable {
      */
     @Override
     public void displayComponent() {
+        displayBorders();
+        System.out.println("  __  __       _         __  __                  \n" +
+                " |  \\/  | __ _(_)_ __   |  \\/  | ___ _ __  _   _ \n" +
+                " | |\\/| |/ _` | | '_ \\  | |\\/| |/ _ \\ '_ \\| | | |\n" +
+                " | |  | | (_| | | | | | | |  | |  __/ | | | |_| |\n" +
+                " |_|  |_|\\__,_|_|_| |_| |_|  |_|\\___|_| |_|\\__,_|\n" +
+                "                                                 ");
         String[] optionsArray = {"New Order", "Exit"};
-        input = getUserInputFromMenu(optionsArray, false);
+        input = getUserInputFromMenu(optionsArray);
     }
 }

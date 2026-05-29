@@ -39,6 +39,13 @@ public class ChipsUIComponent extends UIComponent implements Displayable {
      */
     @Override
     public void displayComponent() {
+        displayBorders();
+        System.out.println("   ____ _     _             __  __                  \n" +
+                "  / ___| |__ (_)_ __  ___  |  \\/  | ___ _ __  _   _ \n" +
+                " | |   | '_ \\| | '_ \\/ __| | |\\/| |/ _ \\ '_ \\| | | |\n" +
+                " | |___| | | | | |_) \\__ \\ | |  | |  __/ | | | |_| |\n" +
+                "  \\____|_| |_|_| .__/|___/ |_|  |_|\\___|_| |_|\\__,_|\n" +
+                "               |_|                                  ");
         item = selectChips();
     }
 

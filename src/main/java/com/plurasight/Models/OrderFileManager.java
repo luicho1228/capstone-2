@@ -16,8 +16,7 @@ public class OrderFileManager {
      * Private constructor so this class cannot be created as an object.
      * This class only uses static methods.
      */
-    private OrderFileManager() {
-    }
+    private OrderFileManager() {}
 
     /**
      * Saves the order as a receipt text file.
@@ -36,4 +35,5 @@ public class OrderFileManager {
             throw new RuntimeException(e);
         }
     }
+
 }
