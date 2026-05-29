@@ -18,28 +18,7 @@ public class DrinkUIComponent extends UIComponent implements Displayable {
     }
 
     private Size selectSize(){
-        System.out.println("Select Size:");
-        int count = 1;
-        for (Size size: Size.values()){
-            System.out.println(count+". " + size);
-            count++;
-        }
-        int userInput = UIComponent.getUserInput(scanner);
-        Size size = null;
-        switch (userInput){
-            case 1:
-                size =Size.SMALL;
-                break;
-            case 2:
-                size = Size.MEDIUM;
-                break;
-            case 3:
-                size = Size.LARGE;
-                break;
-            default:
-        }
-
-        return size;
+        return selectEnumOptions(Size.values(),"Select Size:");
     }
 
     @Override

@@ -40,7 +40,7 @@ public class Order {
         StringBuilder orderDetails = new StringBuilder();
         orderDetails.append("Order number: ").append(orderNumber).append("\n").append(customerName).append("\t\t\t\t\t").append("Date created: ").append(ORDER_DATE_FORMATTER.format(createdAt)).append("\n");
         orderDetails.append("---------------------------------------------------\n");
-        orderDetails.append("Item count: ").append(getItemCount());
+        orderDetails.append("Item count: ").append(getItemCount()).append("\n");
         for (Item item : items) {
             orderDetails.append(item.getDetails()).append("\n");
         }

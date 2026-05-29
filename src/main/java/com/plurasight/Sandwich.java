@@ -3,6 +3,7 @@ package com.plurasight;
 import com.plurasight.Enums.*;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Represents a custom sandwich item in the point-of-sale system.
@@ -20,8 +21,8 @@ public class Sandwich extends Item {
     private boolean extraCheese;
     private Meat meat;
     private boolean extraMeat;
-    private HashSet<Topping> toppings;
-    private HashSet<Sauce> sauces;
+    private Set<Topping> toppings;
+    private Set<Sauce> sauces;
     private String sandwichName = "Custom Sandwich";
 
     /**
@@ -269,9 +270,7 @@ public class Sandwich extends Item {
     public void setToast(boolean isToasted){
         this.isToasted = isToasted;
     }
-    public boolean isToasted(){
-        return this.isToasted;
-    }
+
     public void setBread(Bread bread) {
         this.bread = bread;
     }
@@ -284,16 +283,8 @@ public class Sandwich extends Item {
         this.meat = meat;
     }
 
-    public void setExtraMeat(boolean extraMeat) {
-        this.extraMeat = extraMeat;
-    }
-
     public void setCheese(Cheese cheese) {
         this.cheese = cheese;
-    }
-
-    public void setExtraCheese(boolean extraCheese) {
-        this.extraCheese = extraCheese;
     }
 
     public void setToppings(HashSet<Topping> toppings) {

@@ -86,25 +86,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Size selectSize() {
-        Size[] sizeOptions = Size.values();
-        Size size = null;
-        boolean needsInput = true;
-        do {
-            int count = 1;
-            for (Size s : sizeOptions) {
-                System.out.println(count + ". " + s);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= sizeOptions.length) {
-                size = sizeOptions[userInput - 1];
-                needsInput = false;
-            } else {
-                System.out.println("Select from the option provided");
-            }
-        } while (needsInput);
-
-        return size;
+       return selectEnumOptions(Size.values(),"Select Bread Size:");
     }
 
     /**
@@ -114,23 +96,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Bread selectBread() {
-        Bread[] breadOptions = Bread.values();
-        Bread bread = null;
-        boolean needsInput = true;
-        do {
-            int count = 1;
-            for (Bread b : breadOptions) {
-                System.out.println(count + ". " + b);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= breadOptions.length) {
-                bread = breadOptions[userInput - 1];
-                needsInput = false;
-            }
-        } while (needsInput);
-
-        return bread;
+       return selectEnumOptions(Bread.values(),"Select Bread:");
     }
 
     /**
@@ -140,24 +106,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Meat selectMeat() {
-        Meat[] meatOptions = Meat.values();
-        Meat meat = null;
-        boolean needsInput = true;
-        do {
-            int count = 1;
-            for (Meat m : meatOptions) {
-                System.out.println(count + ". " + m);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= meatOptions.length) {
-                meat = meatOptions[userInput - 1];
-                needsInput = false;
-            } else {
-                System.out.println("Select from the option provided");
-            }
-        } while (needsInput);
-        return meat;
+       return selectEnumOptions(Meat.values(),"Select Meat:");
     }
 
     /**
@@ -196,24 +145,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Cheese selectCheese() {
-        Cheese[] cheeseOptions = Cheese.values();
-        Cheese cheese = null;
-        boolean needsInput = true;
-        do {
-            int count = 1;
-            for (Cheese c : cheeseOptions) {
-                System.out.println(count + ". " + c);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= cheeseOptions.length) {
-                cheese = cheeseOptions[userInput - 1];
-                needsInput = false;
-            } else {
-                System.out.println("Select correct value");
-            }
-        } while (needsInput);
-        return cheese;
+       return selectEnumOptions(Cheese.values(),"Select Cheese:");
     }
 
     /**
@@ -224,24 +156,10 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private boolean askForExtraCheese(Cheese selectedCheese) {
-
-        boolean wantsExtra = false;
         if (!(selectedCheese == Cheese.NO_CHEESE)) {
-            boolean needsInput = true;
-            do {
-                System.out.println("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
-                int userInput = getUserInput(scanner);
-                if (userInput == 1) {
-                    wantsExtra = true;
-                    needsInput = false;
-                } else if (userInput == 2) {
-                    needsInput = false;
-                } else {
-                    System.out.println("Enter correct value!");
-                }
-            } while (needsInput);
+            return getBooleanFromPrompt("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
         }
-        return wantsExtra;
+        return false;
     }
 
     /**
@@ -251,29 +169,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private HashSet<Topping> selectToppings() {
-        List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
-        HashSet<Topping> selectedToppings = new HashSet<>();
-        System.out.println("ADD TOPPINGS");
-        while (!toppings.isEmpty()) {
-            System.out.println("Select 0 to stop adding toppings.");
-            System.out.println("Select Toppings: ");
-            System.out.println("0. Done adding toppings");
-            int count = 1;
-            for (Topping topping : toppings) {
-                System.out.println(count + ". " + topping);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= toppings.size()) {
-                Topping chosenTopping = toppings.remove(userInput - 1);
-                selectedToppings.add(chosenTopping);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Invalid selection");
-            }
-        }
-        return selectedToppings;
+       return selectMultipleEnumFromOptions(Topping.values(),"Add Toppings");
     }
 
     /**
@@ -283,28 +179,6 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private HashSet<Sauce> selectSauces() {
-        List<Sauce> sauces = new ArrayList<>(Arrays.asList(Sauce.values()));
-        HashSet<Sauce> selectedSauces = new HashSet<>();
-        System.out.println("ADD SAUCES");
-        while (!sauces.isEmpty()) {
-            System.out.println("Select 0 to stop adding sauces.");
-            System.out.println("Select Sauces: ");
-            System.out.println("0. Done adding sauces");
-            int count = 1;
-            for (Sauce sauce : sauces) {
-                System.out.println(count + ". " + sauce);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= sauces.size()) {
-                Sauce chosenSauce = sauces.remove(userInput - 1);
-                selectedSauces.add(chosenSauce);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Invalid selection");
-            }
-        }
-        return selectedSauces;
+       return selectMultipleEnumFromOptions(Sauce.values(),"Add Sauces");
     }
 }
