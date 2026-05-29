@@ -1,0 +1,10 @@
+Order number: 13232
+No-Name					Date created: 05/29/2026 06:12
+---------------------------------------------------
+Item count: 2
+Chips                                                  $1.5
+	* CHEETOS_JALAPENOS_CHEESE
+Drink                                                  $3.0
+	* LARGE
+---------------------------------------------------
+Total:                                                 $4.50

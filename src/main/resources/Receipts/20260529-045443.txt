@@ -1,0 +1,17 @@
+Order number: 65849
+No-Name					Date created: 05/29/2026 04:54
+---------------------------------------------------
+Item count: 1
+Custom Sandwich                                        $16.15
+	* Toasted 12" WHITE Bread                            8.5
+	* HAM                                                3.0
+		Extra Meat                                       1.5
+	* SWISS                                              2.25
+		Extra Cheese                                     0.9
+	* Toppings
+		LETTUCE, ONIONS, 
+		PEPPERS, 
+	* Sauces
+		RANCH, MUSTARD, 
+---------------------------------------------------
+Total:                                                 $16.15

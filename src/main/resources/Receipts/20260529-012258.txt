@@ -1,0 +1,27 @@
+Order number: 86833
+Luis Vasquez					Date created: 05/29/2026 01:22
+---------------------------------------------------
+Philly Cheese Steak                                    $7.25
+	* Toasted 4" WHITE Bread                             5.5
+	* STEAK                                              1.0
+		No-Extra Meat                                    0.0
+	* AMERICAN                                           0.75
+		No-Extra Cheese                                  0.0
+	* Toppings
+		PEPPERS, 
+	* Sauces
+		MAYO, 
+Philly Cheese Steak                                    $7.25
+	* Toasted 4" WHITE Bread                             5.5
+	* STEAK                                              1.0
+		No-Extra Meat                                    0.0
+	* AMERICAN                                           0.75
+		No-Extra Cheese                                  0.0
+	* Toppings
+		PEPPERS, 
+	* Sauces
+		MAYO, 
+Drink                                                  $3.0
+	* LARGE
+---------------------------------------------------
+Total:                                                 $17.50
