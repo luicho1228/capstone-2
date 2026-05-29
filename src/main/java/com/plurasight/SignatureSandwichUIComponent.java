@@ -7,12 +7,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 
-public class SignatureSadwichUIComponent extends UIComponent implements Displayable{
+public class SignatureSandwichUIComponent extends UIComponent implements Displayable{
 
     private final List<SignatureSandwich> signatureSandwiches;
     private SignatureSandwich signatureSandwich;
 
-    public SignatureSadwichUIComponent(Scanner scanner) {
+    public SignatureSandwichUIComponent(Scanner scanner) {
         super(scanner);
         signatureSandwiches = new ArrayList<>();
         loadSignatureSandwiches();

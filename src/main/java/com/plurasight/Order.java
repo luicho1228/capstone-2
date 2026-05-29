@@ -46,7 +46,7 @@ public class Order {
         }
         orderDetails.append("---------------------------------------------------\n");
         String totalLabel = "Total:";
-        orderDetails.append(totalLabel).append(UIComponent.formatTaps(totalLabel.length() - Item.getTaps().length())).append("$").append(String.format("%.2f", getTotalPrice()));
+        orderDetails.append(totalLabel).append(UIComponent.formatPadding(totalLabel.length() - Item.getTaps().length())).append("$").append(String.format("%.2f", getTotalPrice()));
         return orderDetails.toString();
     }
 

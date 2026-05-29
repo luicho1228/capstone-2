@@ -74,12 +74,12 @@ public class Sandwich extends Item {
 
         //print general sandwich details
         StringBuilder details = new StringBuilder();
-        details.append(sandwichName).append(UIComponent.formatTaps(sandwichName.length() - getTaps().length())).append("$").append(getValue());
-        details.append(getTaps()).append(breadDisplay).append(UIComponent.formatTaps(breadDisplay.length())).append(getSizeValue());
-        details.append(getTaps()).append(meat).append(UIComponent.formatTaps(meat.toString().length())).append(getMeatValue());
-        details.append(getSubTaps()).append(extraMeatDisplay).append(UIComponent.formatTaps(("* " + extraMeatDisplay).length())).append(getExtraMeatValue());
-        details.append(getTaps()).append(cheese).append(UIComponent.formatTaps(cheese.toString().length())).append(getCheeseValue());
-        details.append(getSubTaps()).append(extraCheeseDisplay).append(UIComponent.formatTaps(("* " + extraCheeseDisplay).length())).append(getExtraCheeseValue());
+        details.append(sandwichName).append(UIComponent.formatPadding(sandwichName.length() - getTaps().length())).append("$").append(getValue());
+        details.append(getTaps()).append(breadDisplay).append(UIComponent.formatPadding(breadDisplay.length())).append(getSizeValue());
+        details.append(getTaps()).append(meat).append(UIComponent.formatPadding(meat.toString().length())).append(getMeatValue());
+        details.append(getSubTaps()).append(extraMeatDisplay).append(UIComponent.formatPadding(("* " + extraMeatDisplay).length())).append(getExtraMeatValue());
+        details.append(getTaps()).append(cheese).append(UIComponent.formatPadding(cheese.toString().length())).append(getCheeseValue());
+        details.append(getSubTaps()).append(extraCheeseDisplay).append(UIComponent.formatPadding(("* " + extraCheeseDisplay).length())).append(getExtraCheeseValue());
 
         //Process toppings
         details.append(getTaps()).append("Toppings");

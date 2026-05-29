@@ -10,7 +10,6 @@ public class SignatureSandwich extends Sandwich{
      *
      * @param bread       The chosen bread type.
      * @param size        The chosen sandwich length profile.
-     * @param isToasted
      * @param meat        The base meat choice.
      * @param extraMeat   True if an extra portion of meat should be charged and added.
      * @param cheese      The base cheese choice.

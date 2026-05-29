@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class UIManager {
 
     private final Scanner scanner = new Scanner(System.in);
-    private Order newOrder = null;
+    private Order currentOrder = null;
 
     public void displayMainMenu() {
         boolean isRunning = true;
@@ -20,7 +20,7 @@ public class UIManager {
                 int userInput = UIComponent.getUserInput(scanner);
                 switch (userInput) {
                     case 1:
-                        newOrder();
+                        displayOrderMenu();
                         break;
                     case 2:
                         isRunning = false;
@@ -36,9 +36,9 @@ public class UIManager {
     }
 
 
-    public void newOrder() {
+    public void displayOrderMenu() {
 
-        newOrder = new Order();
+        currentOrder = new Order();
         boolean needsInput = true;
         do {
             System.out.println("ORDER SCREEN");
@@ -56,35 +56,35 @@ public class UIManager {
                     case 1:
                         SandwichUIComponent sandwichUI = new SandwichUIComponent(scanner);
                         sandwichUI.displayComponent();
-                        newOrder.addItem(sandwichUI.getItem());
+                        currentOrder.addItem(sandwichUI.getItem());
                         break;
                     case 2:
 
-                        SignatureSadwichUIComponent signatureSadwichUIComponent = new SignatureSadwichUIComponent(scanner);
+                        SignatureSandwichUIComponent signatureSadwichUIComponent = new SignatureSandwichUIComponent(scanner);
                         signatureSadwichUIComponent.displayComponent();
-                        newOrder.addItem(signatureSadwichUIComponent.getSignatureSandwich());
+                        currentOrder.addItem(signatureSadwichUIComponent.getSignatureSandwich());
 
                         break;
                     case 3:
                         DrinkUIComponent drinkUi = new DrinkUIComponent(scanner);
                         drinkUi.displayComponent();
-                        newOrder.addItem(drinkUi.getItem());
+                        currentOrder.addItem(drinkUi.getItem());
                         break;
                     case 4:
                         ChipsUIComponent chipsUIComponent = new ChipsUIComponent(scanner);
                         chipsUIComponent.displayComponent();
                         ;
-                        newOrder.addItem(chipsUIComponent.getItem());
+                        currentOrder.addItem(chipsUIComponent.getItem());
                         break;
                     case 5:
                         addCustomerNameToOrder();
                         break;
                     case 6:
-                        if (!(newOrder.isEmpty())) {
-                            CheckoutUIComponent checkoutUIComponent = new CheckoutUIComponent(scanner, newOrder);
+                        if (!(currentOrder.isEmpty())) {
+                            CheckoutUIComponent checkoutUIComponent = new CheckoutUIComponent(scanner, currentOrder);
                             checkoutUIComponent.displayComponent();
-                            if (checkoutUIComponent.isOrderCheckedout()) {
-                                newOrder = null;
+                            if (checkoutUIComponent.isOrderCheckedOut()) {
+                                currentOrder = null;
                                 needsInput = false;
                             }
                         } else {
@@ -92,7 +92,7 @@ public class UIManager {
                         }
                         break;
                     case 0:
-                        newOrder = null;
+                        currentOrder = null;
                         needsInput = false;
                         break;
                     default:
@@ -110,6 +110,6 @@ public class UIManager {
     private void addCustomerNameToOrder() {
         System.out.println("Enter customer name: ");
         String customerName = scanner.nextLine();
-        newOrder.setCustomerName(customerName);
+        currentOrder.setCustomerName(customerName);
     }
 }

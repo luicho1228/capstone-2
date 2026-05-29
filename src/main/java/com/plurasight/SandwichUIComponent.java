@@ -225,14 +225,14 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      */
     private boolean askForExtraCheese(Cheese selectedCheese) {
 
-        boolean wamtsExtra = false;
+        boolean wantsExtra = false;
         if (!(selectedCheese == Cheese.NO_CHEESE)) {
             boolean needsInput = true;
             do {
                 System.out.println("\tDo you want extra Cheese?\n1.Yes\t\t\t2.No");
                 int userInput = getUserInput(scanner);
                 if (userInput == 1) {
-                    wamtsExtra = true;
+                    wantsExtra = true;
                     needsInput = false;
                 } else if (userInput == 2) {
                     needsInput = false;
@@ -241,7 +241,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
                 }
             } while (needsInput);
         }
-        return wamtsExtra;
+        return wantsExtra;
     }
 
     /**

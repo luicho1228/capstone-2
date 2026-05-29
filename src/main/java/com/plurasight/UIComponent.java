@@ -1,8 +1,5 @@
 package com.plurasight;
 
-import com.plurasight.Enums.Meat;
-import com.plurasight.Enums.Sauce;
-
 import java.util.Scanner;
 
 public class UIComponent{
@@ -32,7 +29,7 @@ public class UIComponent{
         this.stringColor = stringColor;
     }
 
-    public static String formatTaps(int stringLength){
+    public static String formatPadding(int stringLength){
         int receiptDetailPadding = 50;
         int tapLength = Math.abs(receiptDetailPadding - stringLength);
         StringBuilder tabs = new StringBuilder();

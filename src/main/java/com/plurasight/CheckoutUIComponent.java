@@ -7,7 +7,7 @@ import java.util.*;
 public class CheckoutUIComponent extends UIComponent implements Displayable{
 
     private Order order;
-    private boolean isOrdercheckedout = false;
+    private boolean ordercheckedOut = false;
     public CheckoutUIComponent(Scanner scanner,Order order) {
         super(scanner);
         this.order = order;
@@ -35,12 +35,12 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
                     needsInput = false;
                     break;
                 case 2:
-                    Item itemToEdit = selectItemToEdit();
+                    Item itemToEdit = selectItemFromOrder();
                     order.replaceItem(itemToEdit,editOrder(itemToEdit));
                     break;
                 case 3:
-                    Item itemToRemove = selectItemToEdit();
-                    Item removedItem = removeOrder(itemToRemove);
+                    Item itemToRemove = selectItemFromOrder();
+                    Item removedItem = removeItemFromOrder(itemToRemove);
                     System.out.println("This Item has been removed: " + removedItem);
                     if (order.isEmpty()){
                         System.out.println("All items are removed, order must have at least ONE item");
@@ -54,7 +54,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
         }while (needsInput);
     }
 
-    public Item selectItemToEdit(){
+    public Item selectItemFromOrder(){
         System.out.println("Select item to edit");
         List<Item> items = order.getItems();
         int count = 1;
@@ -70,15 +70,15 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
         return itemToEdit;
     }
 
-    public boolean isOrderCheckedout(){
-        return this.isOrdercheckedout;
+    public boolean isOrderCheckedOut(){
+        return this.ordercheckedOut;
     }
     private void finishCheckout() {
         OrderFileManager.saveOrder(order);
         System.out.println("Receipt saved!");
-        isOrdercheckedout = true;
+        ordercheckedOut = true;
     }
-    private Item removeOrder(Item itemToRemove) {
+    private Item removeItemFromOrder(Item itemToRemove) {
         order.removeItem(itemToRemove);
         return itemToRemove;
     }
@@ -119,8 +119,8 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
                 default:
             }
             return editedSandwich;
-        }else if (itemToEdit instanceof Drinks){
-            Drinks editedDrink =(Drinks)itemToEdit;
+        }else if (itemToEdit instanceof Drink){
+            Drink editedDrink =(Drink)itemToEdit;
             System.out.println("Change editedDrink size:" +
                     "\n1.Small" +
                     "\n2.Medium" +

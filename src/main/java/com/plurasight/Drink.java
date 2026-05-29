@@ -2,11 +2,11 @@ package com.plurasight;
 
 import com.plurasight.Enums.Size;
 
-public class Drinks extends Item {
+public class Drink extends Item {
 
     private Size size;
 
-    public Drinks(Size size) {
+    public Drink(Size size) {
         this.size = size;
     }
 
@@ -29,7 +29,7 @@ public class Drinks extends Item {
     public String getDetails() {
         String drinkName = "Drink";
 
-        return drinkName + UIComponent.formatTaps(drinkName.length() - getTaps().length()) + "$" + getValue() +
+        return drinkName + UIComponent.formatPadding(drinkName.length() - getTaps().length()) + "$" + getValue() +
                 getTaps() + size.toString();
     }
 

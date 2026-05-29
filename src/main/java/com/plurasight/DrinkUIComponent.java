@@ -14,7 +14,7 @@ public class DrinkUIComponent extends UIComponent implements Displayable {
 
     private Item addDrink(){
         System.out.println("ADD DRINK");
-        return new Drinks(selectSize());
+        return new Drink(selectSize());
     }
 
     private Size selectSize(){

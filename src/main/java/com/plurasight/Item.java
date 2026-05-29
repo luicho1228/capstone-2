@@ -1,6 +1,6 @@
 package com.plurasight;
 
-abstract class Item {
+public abstract class Item {
     private final static String taps = "\n\t* ";
     private final static String subTaps ="\n\t\t";
 
