@@ -62,12 +62,13 @@ public class UIManager {
                 case 4:
                     CheckoutUIComponent checkoutUIComponent = new CheckoutUIComponent(scanner,newOrder);
                     checkoutUIComponent.displayComponent();
-                    if (checkoutUIComponent.isOrdercheckeout()) {
+                    if (checkoutUIComponent.isOrderCheckedout()) {
                         newOrder = null;
                         isRunning = false;
                     }
                     break;
                 case 0 :
+                    newOrder = null;
                     isRunning = false;
                     break;
                 default:

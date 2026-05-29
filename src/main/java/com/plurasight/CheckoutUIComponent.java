@@ -2,7 +2,6 @@ package com.plurasight;
 
 import com.plurasight.Enums.*;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class CheckoutUIComponent extends UIComponent implements Displayable{
@@ -32,8 +31,12 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
             int userInput = getUserInput(scanner);
             switch (userInput) {
                 case 1:
-                    finishCheckout();
-                    needsInput = false;
+                    if (!(order.isEmpty())) {
+                        finishCheckout();
+                        needsInput = false;
+                    }else {
+                        System.out.println("There must be at least ONE item in your order to checkout");
+                    }
                     break;
                 case 2:
                     Item itemToEdit = selectItemToEdit();
@@ -67,15 +70,13 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
         return itemToEdit;
     }
 
-    public boolean isOrdercheckeout(){
+    public boolean isOrderCheckedout(){
         return this.isOrdercheckedout;
     }
     private void finishCheckout() {
         OrderFileManager.saveOrder(order);
         System.out.println("Receipt saved!");
         isOrdercheckedout = true;
-
-
     }
     private Item removeOrder(Item itemToRemove) {
         order.removeItem(itemToRemove);

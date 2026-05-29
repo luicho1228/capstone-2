@@ -58,6 +58,9 @@ public class Order {
         }
         return totalValue;
     }
+    public boolean isEmpty(){
+        return this.items.isEmpty();
+    }
     public int getItemsQuantity(){
         return this.items.size();
     }
