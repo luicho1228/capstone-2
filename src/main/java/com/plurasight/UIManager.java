@@ -1,5 +1,6 @@
 package com.plurasight;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -15,17 +16,22 @@ public class UIManager {
             System.out.println("""
                    \t1.New Order
                    \t2.Exit""");
-            int userInput = UIComponent.getUserInput(scanner);
-           switch (userInput){
-               case 1:
-                   newOrder();
-                   break;
-               case 2:
-                   isRunning = false;
-                   break;
-               default:
-                   System.out.println("Select an option provided.");
-           }
+            try {
+                int userInput = UIComponent.getUserInput(scanner);
+                switch (userInput) {
+                    case 1:
+                        newOrder();
+                        break;
+                    case 2:
+                        isRunning = false;
+                        break;
+                    default:
+                        System.out.println("Select an option provided.");
+                }
+            } catch (InputMismatchException ime) {
+               System.err.println("Error: Select a numeric value from the options provided");
+               scanner.nextLine();
+            }
         } while (isRunning);
     }
 
@@ -33,7 +39,7 @@ public class UIManager {
     public void newOrder(){
 
         newOrder = new Order();
-        boolean isRunning = true;
+        boolean needsInput = true;
         do {
             System.out.println("ORDER SCREEN");
             System.out.println("""
@@ -43,7 +49,8 @@ public class UIManager {
                 \t4.Add Chips
                 \t5.Checkout
                 \t0.Cancel Order""");
-            int userInput = UIComponent.getUserInput(scanner);
+            try {
+                int userInput = UIComponent.getUserInput(scanner);
             switch (userInput){
                 case 1:
                     SandwichUIComponent sandwichUI= new SandwichUIComponent(scanner);
@@ -52,7 +59,9 @@ public class UIManager {
                     break;
                 case 2:
 
-                    
+                    SignatureSadwichUIComponent signatureSadwichUIComponent = new SignatureSadwichUIComponent(scanner);
+                    signatureSadwichUIComponent.displayComponent();
+                    newOrder.addItem(signatureSadwichUIComponent.getSignatureSandwich());
 
                     break;
                 case 3:
@@ -71,7 +80,7 @@ public class UIManager {
                         checkoutUIComponent.displayComponent();
                         if (checkoutUIComponent.isOrderCheckedout()) {
                             newOrder = null;
-                            isRunning = false;
+                            needsInput = false;
                         }
                     }else {
                         System.out.println("There must be at least ONE item in your order to checkout");
@@ -79,13 +88,17 @@ public class UIManager {
                     break;
                 case 0 :
                     newOrder = null;
-                    isRunning = false;
+                    needsInput = false;
                     break;
                 default:
                     System.out.println("Select an option provided");
             }
+            } catch (InputMismatchException ime) {
+                System.err.println("Error: Select a numeric value from the options provided");
+                scanner.nextLine();
+            }
 
-        }while (isRunning);
+        }while (needsInput);
 
 
     }

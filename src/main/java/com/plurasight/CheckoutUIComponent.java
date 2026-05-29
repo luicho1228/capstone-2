@@ -42,6 +42,10 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
                     Item itemToRemove = selectItemToEdit();
                     Item removedItem = removeOrder(itemToRemove);
                     System.out.println("This Item has been removed: " + removedItem);
+                    if (order.isEmpty()){
+                        System.out.println("All items are removed, order must have at least ONE item");
+                        needsInput = false;
+                    }
                     break;
                 case 4:
                     needsInput = false;

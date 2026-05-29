@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class SignatureSadwichUIComponent extends UIComponent implements Displayable{
 
     private final List<SignatureSandwich> signatureSandwiches;
+    private SignatureSandwich signatureSandwich;
 
     public SignatureSadwichUIComponent(Scanner scanner) {
         super(scanner);
@@ -32,16 +33,26 @@ public class SignatureSadwichUIComponent extends UIComponent implements Displaya
     }
 
     private void displaySignatureSandwiches(){
-
         System.out.println("SIGNATURE SANDWICHES");
+        System.out.println("Select a signature sandwich:");
+        int count = 1;
         for (SignatureSandwich signatureSandwich: signatureSandwiches){
-            signatureSandwich.getDetails();
+            System.out.println(count +". " + signatureSandwich.getDetails());
+            count++;
         }
+    }
+
+    public SignatureSandwich getSignatureSandwich(){
+        return this.signatureSandwich;
     }
 
     @Override
     public void displayComponent() {
-
         displaySignatureSandwiches();
+        int userInput = getUserInput(scanner);
+        if (userInput > 0 && userInput <= signatureSandwiches.size()){
+            signatureSandwich = signatureSandwiches.get(userInput - 1);
+        }
+
     }
 }

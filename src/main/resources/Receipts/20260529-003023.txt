@@ -1,0 +1,17 @@
+Order number: 10017
+No-Name					Date created: 05/29/2026-00:30
+---------------------------------------------------
+Philly Cheese Steak                                    $7.25
+	* Not-Toasted 4" WHITE Bread                         5.5
+	* STEAK                                              1.0
+		No-Extra Meat                                    0.0
+	* AMERICAN                                           0.75
+		No-Extra Cheese                                  0.0
+	* Toppings
+		PEPPERS, 
+	* Sauces
+		KETCHUP, 
+Drink                                                  $2.0
+	* SMALL
+---------------------------------------------------
+Total:                                                 $9.25
