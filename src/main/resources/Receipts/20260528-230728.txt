@@ -1,0 +1,21 @@
+Order number: 23070
+No-Name					Date created: 05/28/2026-23:07
+---------------------------------------------------
+Custom Sandwich                                        $11.1
+	* 8" WHITE Bread                                     7.0
+	* SALAMI                                             2.0
+		No-Extra Meat                                    0.0
+	* PROVOLONECheese                                          1.5
+		Extra Cheese                                     0.6
+	* Toppings
+		GUACAMOLE, PICKLES, 
+	* Sauces
+		THOUSAND_ISLANDS, 
+Drink                                                  $2.0
+	* SMALL
+Drink                                                  $3.0
+	* LARGE
+Chips                                                  $1.5
+	* KETTLE_POTATO_CHIPS
+---------------------------------------------------
+Total:                                                 $17.6

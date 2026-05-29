@@ -1,0 +1,27 @@
+Order number: 54202
+No-Name					Date created: 05/28/2026-13:52
+---------------------------------------------------
+Custom Sandwich                                        $15.25
+	* 12" WHITE Bread                                    8.5
+	* STEAK                                              3.0
+		Extra Meat                                       1.5
+	* SWISSCheese                                              2.25
+		No-Extra Cheese                                  0.0
+	* Toppings
+		PEPPERS, PICKLES, 
+		LETTUCE, 
+	* Sauces
+		RANCH, 
+Custom Sandwich                                        $7.55
+	* 4" WRAP Bread                                      5.5
+	* CHICKEN                                            1.0
+		No-Extra Meat                                    0.0
+	* AMERICANCheese                                           0.75
+		Extra Cheese                                     0.3
+	* Toppings
+		MUSHROOMS, PICKLES, 
+		LETTUCE, CUCUMBERS, ONIONS, 
+	* Sauces
+		VINAIGRETTE, 
+---------------------------------------------------
+Total:                                                 $22.8

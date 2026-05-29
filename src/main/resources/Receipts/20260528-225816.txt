@@ -1,0 +1,22 @@
+Order number: 38689
+No-Name					Date created: 05/28/2026-22:58
+---------------------------------------------------
+Custom Sandwich                                        $16.15
+	* 12" WHEAT Bread                                    8.5
+	* ROAST_BEEF                                         3.0
+		Extra Meat                                       1.5
+	* SWISSCheese                                              2.25
+		Extra Cheese                                     0.9
+	* Toppings
+		PEPPERS, LETTUCE, 
+		TOMATOES, PICKLES, 
+	* Sauces
+		THOUSAND_ISLANDS, MAYO, 
+Drink                                                  $2.5
+	* MEDIUM
+Chips                                                  $1.5
+	* CLASSIC_POTATO_CHIPS
+Chips                                                  $1.5
+	* BBQ_POTATO_CHIPS
+---------------------------------------------------
+Total:                                                 $21.65

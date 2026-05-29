@@ -1,0 +1,16 @@
+Order number: 82080
+No-Name					Date created: 05/28/2026-11:16
+---------------------------------------------------
+Custom Sandwich                                        $8.05
+	* 4" WHEAT Bread                                     5.5
+	* SALAMI                                             1.0
+		Extra Meat                                       0.5
+	* SWISS                                              0.75
+		Extra Cheese                                     0.3
+	* Toppings
+		LETTUCE, TOMATOES, 
+		CUCUMBERS, 
+	* Sauces
+		MAYO, 
+---------------------------------------------------
+Total:                                                 $8.05

@@ -1,0 +1,18 @@
+Order number: 67195
+No-Name					Date created: 05/27/2026-07:57
+---------------------------------------------------
+Custom Sandwich                                    $14.65
+	* 12" WHITE Bread                                    8.5
+	* BACON                                              3.0
+		No-Extra Meat                                    0.0
+	* AMERICAN                                           2.25
+		Extra Cheese                                     0.9
+	* Toppings
+		PICKLES, GUACAMOLE, 
+	* Sauces
+		No Sauce
+Drink:
+	* SMALL							$2.00
+	* GINGER_ALE
+---------------------------------------------------
+Total:									16.65

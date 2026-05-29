@@ -1,0 +1,16 @@
+Order number: 28461
+No-Name					Date created: 05/27/2026-08:10
+---------------------------------------------------
+Custom Sandwich                                        $10.5
+	* 8" WHITE Bread                                     7.0
+	* SALAMI                                             2.0
+		No-Extra Meat                                    0.0
+	* AMERICAN                                           1.5
+		No-Extra Cheese                                  0.0
+	* Toppings
+		CUCUMBERS, GUACAMOLE, 
+		TOMATOES, 
+	* Sauces
+		MUSTARD, THOUSAND_ISLANDS, 
+---------------------------------------------------
+Total:									10.5

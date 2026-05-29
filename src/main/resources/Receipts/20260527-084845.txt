@@ -1,0 +1,18 @@
+Order number: 79068
+No-Name					Date created: 05/27/2026-08:48
+---------------------------------------------------
+Chips                                              $1.5
+	* CLASSIC_POTATO_CHIPS
+Custom Sandwich                                        $11.1
+	* 8" WHITE Bread                                     7.0
+	* SALAMI                                             2.0
+		No-Extra Meat                                    0.0
+	* SWISS                                              1.5
+		Extra Cheese                                     0.6
+	* Toppings
+		PICKLES, JALAPENOS, 
+		PEPPERS, 
+	* Sauces
+		THOUSAND_ISLANDS, 
+---------------------------------------------------
+Total:									12.6

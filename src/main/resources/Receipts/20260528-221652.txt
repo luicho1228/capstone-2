@@ -1,0 +1,27 @@
+Order number: 37903
+No-Name					Date created: 05/28/2026-22:16
+---------------------------------------------------
+Custom Sandwich                                        $11.5
+	* 8" WHITE Bread                                     7.0
+	* ROAST_BEEF                                         2.0
+		Extra Meat                                       1.0
+	* CHEDDARCheese                                            1.5
+		No-Extra Cheese                                  0.0
+	* Toppings
+		ONIONS, JALAPENOS, 
+		LETTUCE, 
+	* Sauces
+		MUSTARD, RANCH, 
+Custom Sandwich                                        $14.65
+	* 12" WRAP Bread                                     8.5
+	* BACON                                              3.0
+		No-Extra Meat                                    0.0
+	* AMERICANCheese                                           2.25
+		Extra Cheese                                     0.9
+	* Toppings
+		JALAPENOS, MUSHROOMS, 
+		PICKLES, 
+	* Sauces
+		MUSTARD, 
+---------------------------------------------------
+Total:                                                 $26.15

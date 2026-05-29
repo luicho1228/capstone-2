@@ -85,12 +85,13 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
 
         if (itemToEdit instanceof Sandwich){
             Sandwich editedSandwich = (Sandwich) itemToEdit;
-            System.out.println("1.Edit Sandwich size" +
+            System.out.println("\n1.Edit Sandwich size" +
                     "\n2.Edit bread choice" +
-                    "\n3.Edit meat choice " +
-                    "\n4.Edit Cheese choice " +
-                    "\n5.Edit Topping selection " +
-                    "\n6.Edit Sauce choice");
+                    "\n3.Change bread toast" +
+                    "\n4.Edit meat choice " +
+                    "\n5.Edit Cheese choice " +
+                    "\n6.Edit Topping selection " +
+                    "\n7.Edit Sauce choice");
             int userInput = getUserInput(scanner);
             switch (userInput){
                 case 1:
@@ -100,15 +101,18 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
                     editBreadChoice(editedSandwich);
                     break;
                 case 3:
-                    editMeatChoice(editedSandwich);
+                    changeBreadToast(editedSandwich);
                     break;
                 case 4:
-                    editCheeseChoice(editedSandwich);
+                    editMeatChoice(editedSandwich);
                     break;
                 case 5:
-                    editToppings(editedSandwich);
+                    editCheeseChoice(editedSandwich);
                     break;
                 case 6:
+                    editToppings(editedSandwich);
+                    break;
+                case 7:
                     editSauces(editedSandwich);
                     break;
                 default:
@@ -149,6 +153,19 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
             return editedChips;
         }
         return null;
+    }
+
+    private void changeBreadToast(Sandwich editedSandwich) {
+        System.out.println("do you want the sandwich tpasted?" +
+                "\n1.Yes \t\t\t\t 2.No");
+        switch (getUserInput(scanner)){
+            case 1:
+                editedSandwich.setToast(true);
+                break;
+            case 2:
+                editedSandwich.setToast(false);
+                break;
+        }
     }
 
     private void editSauces(Sandwich sandwichToEdit) {

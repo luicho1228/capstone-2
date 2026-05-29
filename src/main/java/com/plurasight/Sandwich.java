@@ -36,7 +36,7 @@ public class Sandwich extends Item {
      * @param toppings     A set of chosen garnishes.
      * @param sauces       A set of chosen sauces.
      */
-    public Sandwich(Bread bread, Size size, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings,HashSet<Sauce> sauces) {
+    public Sandwich(Bread bread, Size size,boolean isToasted ,Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings,HashSet<Sauce> sauces) {
         this.bread = bread;
         this.size = size;
         this.meat = meat;
@@ -45,7 +45,7 @@ public class Sandwich extends Item {
         this.extraCheese = extraCheese;
         this.toppings = toppings;
         this.sauces = sauces;
-        this.isToasted = false;
+        this.isToasted = isToasted;
     }
 
     /**
@@ -69,11 +69,11 @@ public class Sandwich extends Item {
     public String getDetails() {
         String extraMeatDisplay = extraMeat ? "Extra Meat" : "No-Extra Meat";
         String extraCheeseDisplay = extraCheese ? "Extra Cheese" : "No-Extra Cheese";
-        String breadDisplay = getBreadSize()+ " " + bread + " Bread";
-
-        StringBuilder details = new StringBuilder();
+        String isToastedDisplay = isToasted ? "Toasted" : "Not-Toasted";
+        String breadDisplay = isToastedDisplay + " " + getBreadSize()+ " " + bread + " Bread";
 
         //print general sandwich details
+        StringBuilder details = new StringBuilder();
         details.append(sandwichName).append(UIComponent.formatTaps(sandwichName.length() - getTaps().length())).append("$").append(getValue());
         details.append(getTaps()).append(breadDisplay).append(UIComponent.formatTaps(breadDisplay.length())).append(getSizeValue());
         details.append(getTaps()).append(meat).append(UIComponent.formatTaps(meat.toString().length())).append(getMeatValue());
@@ -266,8 +266,8 @@ public class Sandwich extends Item {
         return extraCheeseValue;
     }
 
-    public void ToasteIt(){
-        this.isToasted = true;
+    public void setToast(boolean isToasted){
+        this.isToasted = isToasted;
     }
     public boolean isToasted(){
         return this.isToasted;

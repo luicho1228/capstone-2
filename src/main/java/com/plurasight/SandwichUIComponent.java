@@ -48,14 +48,35 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
         System.out.println("\tSelect Bread:");
         Bread bread = selectBread();
         Size size = selectSize();
+        boolean toasted = isToasted();
         Meat meat = selectMeat();
         boolean extraMeat = askForExtraMeat(meat);
         Cheese cheese = selectCheese();
         boolean extraCheese = askForExtraCheese(cheese);
         HashSet<Topping> toppings = selectToppings();
         HashSet<Sauce> sauces = selectSauces();
-        return new Sandwich(bread, size, meat, extraMeat, cheese, extraCheese, toppings, sauces);
+        return new Sandwich(bread, size,toasted,meat, extraMeat, cheese, extraCheese, toppings, sauces);
 
+    }
+
+    private boolean isToasted(){
+        boolean isToasted = false;
+        boolean needsInput = true;
+        do {
+            System.out.println("Do you want your sandwich toasted? " +
+                    "\n1.yes \t\t\t\t 2.No");
+            switch (getUserInput(scanner)) {
+                case 1:
+                    isToasted = true;
+                    needsInput =false;
+                break;
+                case 2:
+                    needsInput = false;
+                break;
+                default:
+            }
+        }while (needsInput);
+        return isToasted;
     }
 
     /**

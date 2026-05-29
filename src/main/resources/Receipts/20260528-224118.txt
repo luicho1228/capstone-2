@@ -1,0 +1,22 @@
+Order number: 41193
+No-Name					Date created: 05/28/2026-22:41
+---------------------------------------------------
+Custom Sandwich                                        $11.5
+	* 8" WHITE Bread                                     7.0
+	* BACON                                              2.0
+		Extra Meat                                       1.0
+	* CHEDDARCheese                                            1.5
+		No-Extra Cheese                                  0.0
+	* Toppings
+		LETTUCE, JALAPENOS, 
+		GUACAMOLE, 
+	* Sauces
+		VINAIGRETTE, MUSTARD, 
+Drink                                                  $2.5
+	* MEDIUM
+Chips                                                  $1.5
+	* RUFFLES_CHEDDAR_SOURCREAM
+Chips                                                  $1.5
+	* CHEETOS_JALAPENOS_CHEESE
+---------------------------------------------------
+Total:                                                 $17.0
