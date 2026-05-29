@@ -18,7 +18,7 @@ public class DrinkUIComponent extends UIComponent implements Displayable {
     }
 
     private Size selectSize(){
-        return selectEnumOptions(Size.values(),"Select Size:");
+        return selectEnumOption(Size.values(),"Select Size:");
     }
 
     @Override

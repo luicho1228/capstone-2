@@ -13,7 +13,7 @@ public class ChipsUIComponent extends UIComponent implements Displayable {
     }
 
     private Item selectChips(){
-      return new Chips(selectEnumOptions(ChipsType.values(),"Select Chips type"));
+      return new Chips(selectEnumOption(ChipsType.values(),"Select Chips type"));
     }
 
     @Override

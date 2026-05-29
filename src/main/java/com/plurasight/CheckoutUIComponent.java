@@ -2,276 +2,210 @@ package com.plurasight;
 
 import com.plurasight.Enums.*;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
 
-public class CheckoutUIComponent extends UIComponent implements Displayable{
+/**
+ * This class handles the checkout screen for the order.
+ * It lets the user see the order, edit items, remove items,
+ * finish checkout, or go back to the order menu.
+ */
+public class CheckoutUIComponent extends UIComponent implements Displayable {
 
-    private Order order;
-    private boolean ordercheckedOut = false;
-    public CheckoutUIComponent(Scanner scanner,Order order) {
+    private final Order order;
+    private boolean orderCheckedOut = false;
+
+    /**
+     * Creates a CheckoutUIComponent.
+     *
+     * @param scanner The Scanner used to read user input.
+     * @param order The order that is being checked out.
+     */
+    public CheckoutUIComponent(Scanner scanner, Order order) {
         super(scanner);
         this.order = order;
     }
 
-    private void displayOrder(){
-        System.out.println(order.getOrderDetails());
-
-    }
-
+    /**
+     * Displays the checkout menu and lets the user choose what to do.
+     * The user can finish checkout, edit the order, remove an item, or go back.
+     */
     @Override
     public void displayComponent() {
         System.out.println("CHECKOUT");
+
         boolean needsInput = true;
+
         do {
-            displayOrder();
-            String[] menuArray = {"Process check-out", "Edit Order", "Remove Item", "Go Back"};
-            switch (getUserInputFromMenu(menuArray,false)) {
+            System.out.println(order.getOrderDetails());
+
+            String[] menuOptions = {
+                    "Process check-out",
+                    "Edit Order",
+                    "Remove Item",
+                    "Go Back"
+            };
+
+            switch (getUserInputFromMenu(menuOptions, false)) {
                 case 1:
-                    finishCheckout();
+                    processCheckout();
                     needsInput = false;
                     break;
                 case 2:
-                    Item itemToEdit = selectItemFromOrder();
-                    order.replaceItem(itemToEdit,editOrder(itemToEdit));
+                    if (!order.isEmpty()) {
+                        Item itemToEdit = selectItemFromOrder();
+                        editItem(itemToEdit);
+                    } else {
+                        System.err.println("There are no items to edit.");
+                    }
                     break;
                 case 3:
-                    Item itemToRemove = selectItemFromOrder();
-                    Item removedItem = removeItemFromOrder(itemToRemove);
-                    System.out.println("This Item has been removed: " + removedItem);
-                    if (order.isEmpty()){
-                        System.out.println("All items are removed, order must have at least ONE item");
-                        needsInput = false;
+                    if (!order.isEmpty()) {
+                        Item itemToRemove = selectItemFromOrder();
+                        removeItemFromOrder(itemToRemove);
+
+                        if (order.isEmpty()) {
+                            System.err.println("All items were removed. The order must have at least one item.");
+                            needsInput = false;
+                        }
+                    } else {
+                        System.err.println("There are no items to remove.");
                     }
                     break;
                 case 4:
                     needsInput = false;
                     break;
             }
-        }while (needsInput);
+
+        } while (needsInput);
     }
 
-    public Item selectItemFromOrder(){
-        System.out.println("Select item to edit");
+    /**
+     * Checks if the order was checked out.
+     *
+     * @return true if the order was checked out, false if it was not.
+     */
+    public boolean isOrderCheckedOut() {
+        return orderCheckedOut;
+    }
+
+    /**
+     * Shows all the items in the order and lets the user pick one.
+     *
+     * @return The item selected by the user.
+     */
+    private Item selectItemFromOrder() {
         List<Item> items = order.getItems();
-        int count = 1;
-        for (Item item: items){
-            System.out.println("* " + count+ ". " + item.getItemHeader());
-            count++;
+        String[] itemOptions = new String[items.size()];
+
+        for (int i = 0; i < items.size(); i++) {
+            itemOptions[i] = items.get(i).getItemHeader();
         }
-        Item itemToEdit = null;
-        int userInput = getUserInput(scanner);
-        if (userInput > 0 && userInput <= items.size()){
-            itemToEdit = items.get(userInput - 1);
-        }
-        return itemToEdit;
+
+        int selectedItem = getUserInputFromMenu(itemOptions, false);
+        return items.get(selectedItem - 1);
     }
 
-    public boolean isOrderCheckedOut(){
-        return this.ordercheckedOut;
-    }
-    private void finishCheckout() {
+    /**
+     * Saves the order receipt and marks the order as checked out.
+     */
+    private void processCheckout() {
         OrderFileManager.saveOrder(order);
         System.out.println("Receipt saved!");
-        ordercheckedOut = true;
+        orderCheckedOut = true;
     }
-    private Item removeItemFromOrder(Item itemToRemove) {
-        order.removeItem(itemToRemove);
-        return itemToRemove;
-    }
-    private Item editOrder(Item itemToEdit) {
 
-        if (itemToEdit instanceof Sandwich){
-            Sandwich editedSandwich = (Sandwich) itemToEdit;
-            String[] optionsArray= {"Edit Sandwich Size", "Edit Bread Choice",
-            "Change Bread Toast", "Edit Meat Choice", "Edit Cheese Choice",
-            "Edit Topping Selection", "Edit Sauce Selection"};
-            switch (getUserInputFromMenu(optionsArray,false)){
+    /**
+     * Removes an item from the order.
+     *
+     * @param itemToRemove The item that will be removed from the order.
+     */
+    private void removeItemFromOrder(Item itemToRemove) {
+        order.removeItem(itemToRemove);
+        System.out.println("This item has been removed: " + itemToRemove.getItemHeader());
+    }
+
+    /**
+     * Checks what type of item was selected and sends it to the correct edit method.
+     *
+     * @param itemToEdit The item that the user wants to edit.
+     */
+    private void editItem(Item itemToEdit) {
+        if (itemToEdit instanceof Sandwich) {
+            editSandwich((Sandwich) itemToEdit);
+        } else if (itemToEdit instanceof Drink) {
+            editDrink((Drink) itemToEdit);
+        } else if (itemToEdit instanceof Chips) {
+            editChips((Chips) itemToEdit);
+        } else {
+            System.err.println("This item type cannot be edited.");
+        }
+    }
+
+    /**
+     * Displays the sandwich edit menu and lets the user change sandwich options.
+     *
+     * @param sandwichToEdit The sandwich that the user wants to edit.
+     */
+    private void editSandwich(Sandwich sandwichToEdit) {
+        String[] menuOptions = {
+                "Edit Sandwich Size",
+                "Edit Bread Choice",
+                "Change Bread Toast",
+                "Edit Meat Choice",
+                "Edit Cheese Choice",
+                "Edit Topping Selection",
+                "Edit Sauce Selection",
+                "Go Back"
+        };
+
+        boolean needsInput = true;
+
+        do {
+            switch (getUserInputFromMenu(menuOptions, false)) {
                 case 1:
-                    editSandwichSize(editedSandwich);
+                    sandwichToEdit.setSize(selectEnumOption(Size.values(), "Select sandwich size:"));
                     break;
                 case 2:
-                    editBreadChoice(editedSandwich);
+                    sandwichToEdit.setBread(selectEnumOption(Bread.values(), "Select bread:"));
                     break;
                 case 3:
-                    changeBreadToast(editedSandwich);
+                    sandwichToEdit.setToast(getBooleanFromPrompt("Do you want the sandwich toasted?\n1.Yes\t\t\t2.No"));
                     break;
                 case 4:
-                    editMeatChoice(editedSandwich);
+                    sandwichToEdit.setMeat(selectEnumOption(Meat.values(), "Select meat:"));
                     break;
                 case 5:
-                    editCheeseChoice(editedSandwich);
+                    sandwichToEdit.setCheese(selectEnumOption(Cheese.values(), "Select cheese:"));
                     break;
                 case 6:
-                    editToppings(editedSandwich);
+                    sandwichToEdit.setToppings(selectMultipleEnumFromOptions(Topping.values(), "ADD TOPPINGS"));
                     break;
                 case 7:
-                    editSauces(editedSandwich);
+                    sandwichToEdit.setSauces(selectMultipleEnumFromOptions(Sauce.values(), "ADD SAUCES"));
                     break;
-                default:
-            }
-            return editedSandwich;
-        }else if (itemToEdit instanceof Drink){
-            Drink editedDrink =(Drink)itemToEdit;
-            System.out.println("Change editedDrink size:" +
-                    "\n1.Small" +
-                    "\n2.Medium" +
-                    "\n3.Large");
-            switch (getUserInput(scanner)){
-                case 1:
-                    editedDrink.setSize(Size.SMALL);
+                case 8:
+                    needsInput = false;
                     break;
-                case 2:
-                    editedDrink.setSize(Size.MEDIUM);
-                    break;
-                case 3:
-                    editedDrink.setSize(Size.LARGE);
-                    break;
-                default:
-            }
-            return editedDrink;
-        } else if (itemToEdit instanceof Chips) {
-            Chips editedChips = (Chips) itemToEdit;
-            ChipsType[] chipsTypes = ChipsType.values();
-            System.out.println("select chips type:");
-            int count = 1;
-            for (ChipsType chips: chipsTypes){
-                System.out.println(count + ". " + chips);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= ChipsType.values().length){
-                editedChips.setChipsType(chipsTypes[userInput-1]);
-            }
-            return editedChips;
-        }
-        return null;
-    }
-
-    private void changeBreadToast(Sandwich editedSandwich) {
-        System.out.println("do you want the sandwich tpasted?" +
-                "\n1.Yes \t\t\t\t 2.No");
-        switch (getUserInput(scanner)){
-            case 1:
-                editedSandwich.setToast(true);
-                break;
-            case 2:
-                editedSandwich.setToast(false);
-                break;
-        }
-    }
-
-    private void editSauces(Sandwich sandwichToEdit) {
-        List<Sauce> sauces = new ArrayList<>(Arrays.asList(Sauce.values()));
-        HashSet<Sauce> selectedSauces = new HashSet<>();
-        System.out.println("ADD SAUCES");
-        while (!sauces.isEmpty()) {
-            System.out.println("Select 0 to stop adding sauces.");
-            System.out.println("Select Sauces: ");
-            System.out.println("0. Done adding sauces");
-            int count = 1;
-            for (Sauce sauce : sauces) {
-                System.out.println(count + ". " + sauce);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= sauces.size()) {
-                Sauce chosenSauce = sauces.remove(userInput - 1);
-                selectedSauces.add(chosenSauce);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Invalid selection");
-            }
-        }
-        sandwichToEdit.setSauces(selectedSauces);
-    }
-
-    private void editToppings(Sandwich sandwichToEdit) {
-        List<Topping> toppings = new ArrayList<>(Arrays.asList(Topping.values()));
-        HashSet<Topping> selectedToppings = new HashSet<>();
-        System.out.println("ADD TOPPINGS");
-        while (!toppings.isEmpty()) {
-            System.out.println("Select 0 to stop adding toppings.");
-            System.out.println("Select Toppings: ");
-            System.out.println("0. Done adding toppings");
-            int count = 1;
-            for (Topping topping : toppings) {
-                System.out.println(count + ". " + topping);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= toppings.size()) {
-                Topping chosenTopping = toppings.remove(userInput - 1);
-                selectedToppings.add(chosenTopping);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Invalid selection");
-            }
-        }
-        sandwichToEdit.setToppings(selectedToppings);
-    }
-
-    private void editCheeseChoice(Sandwich sandwichToEdit) {
-       sandwichToEdit.setCheese(selectEnumOptions(Cheese.values(),"Select cheese:"));
-
-    }
-
-    private void editMeatChoice(Sandwich sandwichToEdit) {
-        Meat[] meatOptions = Meat.values();
-        boolean needsInput = true;
-        do {
-            int count = 1;
-            for (Meat m : meatOptions) {
-                System.out.println(count + ". " + m);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= meatOptions.length) {
-                sandwichToEdit.setMeat(meatOptions[userInput - 1]);
-                needsInput = false;
-            } else {
-                System.out.println("Select from the option provided");
             }
         } while (needsInput);
     }
 
-    private void editBreadChoice(Sandwich sandwichToEdit) {
-        Bread[] breadOptions = Bread.values();
-        boolean needsInput = true;
-        do {
-            System.out.println("Select bread options:");
-            int count = 1;
-            for (Bread b : breadOptions) {
-                System.out.println(count + ". " + b);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= breadOptions.length) {
-                sandwichToEdit.setBread(breadOptions[userInput - 1]);
-                needsInput = false;
-            }
-        } while (needsInput);
+    /**
+     * Lets the user change the size of a drink.
+     *
+     * @param drinkToEdit The drink that the user wants to edit.
+     */
+    private void editDrink(Drink drinkToEdit) {
+        drinkToEdit.setSize(selectEnumOption(Size.values(), "Select drink size:"));
     }
 
-    private void editSandwichSize(Sandwich sandwichToEdit) {
-        System.out.println("Select Sandwich size: " +
-                "\n1. 4\"Bread (Small)" +
-                "\n2. 8\"Bread (Medium)" +
-                "\n3. 12\"Bread (Large)");
-        switch (getUserInput(scanner)){
-            case 1:
-                sandwichToEdit.setSize(Size.SMALL);
-                break;
-            case 2:
-                sandwichToEdit.setSize(Size.MEDIUM);
-                break;
-            case 3:
-                sandwichToEdit.setSize(Size.LARGE);
-                break;
-            default:
-        }
+    /**
+     * Lets the user change the type of chips.
+     *
+     * @param chipsToEdit The chips item that the user wants to edit.
+     */
+    private void editChips(Chips chipsToEdit) {
+        chipsToEdit.setChipsType(selectEnumOption(ChipsType.values(), "Select chips type:"));
     }
-
-
 }

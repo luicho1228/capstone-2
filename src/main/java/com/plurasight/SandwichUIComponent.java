@@ -70,7 +70,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Size selectSize() {
-       return selectEnumOptions(Size.values(),"Select Bread Size:");
+       return selectEnumOption(Size.values(),"Select Bread Size:");
     }
 
     /**
@@ -80,7 +80,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Bread selectBread() {
-       return selectEnumOptions(Bread.values(),"Select Bread:");
+       return selectEnumOption(Bread.values(),"Select Bread:");
     }
 
     /**
@@ -90,7 +90,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Meat selectMeat() {
-       return selectEnumOptions(Meat.values(),"Select Meat:");
+       return selectEnumOption(Meat.values(),"Select Meat:");
     }
 
     /**
@@ -116,7 +116,7 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private Cheese selectCheese() {
-       return selectEnumOptions(Cheese.values(),"Select Cheese:");
+       return selectEnumOption(Cheese.values(),"Select Cheese:");
     }
 
     /**

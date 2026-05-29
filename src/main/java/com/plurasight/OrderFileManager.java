@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class OrderFileManager {
     private final static String receiptFilePath = "src/main/resources/Receipts/";
-    private static String receiptName;
     private OrderFileManager(){}
 
     public static void saveOrder(Order order){

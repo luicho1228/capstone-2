@@ -21,6 +21,31 @@ public class UIComponent{
         return tabs.toString();
     }
 
+    protected Item selectFromItemList(List<Item> items,String prompt){
+        Item itemToEdit = null;
+        do {
+            System.out.println(prompt);
+            int count = 1;
+            for (Item item : items) {
+                System.out.println("* " + count + ". " + item.getItemHeader());
+                count++;
+            }
+            try {
+                int userInput = getUserInput(scanner);
+                if (userInput > 0 && userInput <= items.size()) {
+                    itemToEdit = items.get(userInput - 1);
+                    break;
+                } else {
+                    System.err.println("Select an option provided");
+                }
+            }catch (InputMismatchException ime){
+                System.err.println("Error: Select a numeric value from the options provided");
+                scanner.nextLine();
+            }
+        }while (true);
+        return itemToEdit;
+    }
+
     protected int getUserInputFromMenu(String[] menu , boolean indexZeroAllowed){
         do {
             System.out.println("Select from the options:");
@@ -69,7 +94,7 @@ public class UIComponent{
 
     }
 
-    protected <T extends Enum<T>> T selectEnumOptions(T[] options, String prompt){
+    protected <T extends Enum<T>> T selectEnumOption(T[] options, String prompt){
         boolean needsInput = true;
         T selectedEnum = null;
         while (needsInput){
