@@ -13,14 +13,14 @@ import java.util.HashSet;
  */
 public class Sandwich extends Item {
 
-    private final Bread bread;
-    private final Size size;
-    private final Cheese cheese;
-    private final boolean extraCheese;
-    private final Meat meat;
-    private final boolean extraMeat;
-    private final HashSet<Topping> toppings;
-    private final HashSet<Sauce> sauces;
+    private Bread bread;
+    private Size size;
+    private Cheese cheese;
+    private boolean extraCheese;
+    private Meat meat;
+    private boolean extraMeat;
+    private HashSet<Topping> toppings;
+    private HashSet<Sauce> sauces;
     private String sandwichName = "Custom Sandwich";
 
     /**
@@ -76,7 +76,7 @@ public class Sandwich extends Item {
         details.append(getTaps()).append(breadDisplay).append(UIComponent.formatTaps(breadDisplay.length())).append(getSizeValue());
         details.append(getTaps()).append(meat).append(UIComponent.formatTaps(meat.toString().length())).append(getMeatValue());
         details.append(getSubTaps()).append(extraMeatDisplay).append(UIComponent.formatTaps(("* " + extraMeatDisplay).length())).append(getExtraMeatValue());
-        details.append(getTaps()).append(cheese).append(UIComponent.formatTaps(cheese.toString().length())).append(getCheeseValue());
+        details.append(getTaps()).append(cheese).append("Cheese").append(UIComponent.formatTaps(cheese.toString().length())).append(getCheeseValue());
         details.append(getSubTaps()).append(extraCheeseDisplay).append(UIComponent.formatTaps(("* " + extraCheeseDisplay).length())).append(getExtraCheeseValue());
 
         //Process toppings
@@ -116,6 +116,11 @@ public class Sandwich extends Item {
         return details.toString();
     }
 
+    @Override
+    public String getItemHeader() {
+        return sandwichName + "{ "+meat+","+cheese+","+toppings.toString()+","+sauces+","+"$"+getValue()+ "}" ;
+    }
+
     /**
      * Updates the identifier name of the sandwich.
      *
@@ -139,9 +144,9 @@ public class Sandwich extends Item {
     }
 
     /**
-     * Retrieves the structural base financial value tied purely to the sandwich size selection.
+     * Retrieves the value of the base sandwich size selection.
      *
-     * @return The base monetary rate of the shell sandwich item.
+     * @return a double representing The base size cost of the sandwich item.
      */
     private double getSizeValue() {
         return switch (size) {
@@ -152,9 +157,9 @@ public class Sandwich extends Item {
     }
 
     /**
-     * Calculates base meat premiums according to the relative size constraint tiering profiles.
+     * Calculates base meat cost according to the sandwich size.
      *
-     * @return The total cost addition assigned to base meat provisions.
+     * @return a double representing the total cost addition assigned to base meat provisions.
      */
     private double getMeatValue() {
         double meatValue = 0.0;
@@ -181,7 +186,7 @@ public class Sandwich extends Item {
     /**
      * Calculates supplementary markup overheads required when adding a double meat package.
      *
-     * @return The total extra meat cost modification evaluated against current tier bounds.
+     * @return a double representing The total extra meat cost.
      */
     private double getExtraMeatValue() {
         double extraMeatValue = 0.0;
@@ -206,9 +211,9 @@ public class Sandwich extends Item {
     }
 
     /**
-     * Calculates fundamental cheese premiums according to the relative size constraint tiering profiles.
+     * Calculates fundamental cheese premiums according to the sandwich size.
      *
-     * @return The total cost addition assigned to base cheese provisions.
+     * @return  a double representing the total cost of base cheese addition.
      */
     private double getCheeseValue() {
         double cheeseValue = 0.0;
@@ -233,9 +238,9 @@ public class Sandwich extends Item {
     }
 
     /**
-     * Calculates supplementary markup overheads required when adding a double cheese package.
+     * Calculates supplementary markup overheads required when user wants extra cheese in their sandwich.
      *
-     * @return The total extra cheese cost modification evaluated against current tier bounds.
+     * @return a double representing the total extra cheese cost.
      */
     private double getExtraCheeseValue() {
         double extraCheeseValue = 0.0;
@@ -257,5 +262,37 @@ public class Sandwich extends Item {
                 break;
         }
         return extraCheeseValue;
+    }
+
+    public void setBread(Bread bread) {
+        this.bread = bread;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    public void setMeat(Meat meat) {
+        this.meat = meat;
+    }
+
+    public void setExtraMeat(boolean extraMeat) {
+        this.extraMeat = extraMeat;
+    }
+
+    public void setCheese(Cheese cheese) {
+        this.cheese = cheese;
+    }
+
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+    }
+
+    public void setToppings(HashSet<Topping> toppings) {
+        this.toppings = toppings;
+    }
+
+    public void setSauces(HashSet<Sauce> sauces) {
+        this.sauces = sauces;
     }
 }

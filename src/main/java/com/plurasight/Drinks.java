@@ -4,7 +4,7 @@ import com.plurasight.Enums.Size;
 
 public class Drinks extends Item {
 
-    Size size;
+    private Size size;
 
     public Drinks(Size size) {
         this.size = size;
@@ -27,5 +27,10 @@ public class Drinks extends Item {
 
         return drinkName + UIComponent.formatTaps(drinkName.length() - getTaps().length()) + "$" + getValue() +
                 getTaps() + size.toString();
+    }
+
+    @Override
+    public String getItemHeader() {
+        return "";
     }
 }

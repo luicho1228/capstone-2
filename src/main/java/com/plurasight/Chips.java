@@ -21,4 +21,9 @@ public class Chips extends Item{
                 getTaps() + chipsType;
 
     }
+
+    @Override
+    public String getItemHeader() {
+        return "";
+    }
 }

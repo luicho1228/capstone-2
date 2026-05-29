@@ -13,4 +13,6 @@ abstract class Item {
     public static String getSubTaps() {
         return subTaps;
     }
+
+    public abstract String getItemHeader();
 }

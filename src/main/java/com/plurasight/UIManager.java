@@ -7,6 +7,7 @@ public class UIManager {
 
     private Scanner scanner = new Scanner(System.in);
     Order newOrder = null;
+
     public void displayMainMenu() {
         boolean isRunning = true;
         do {
@@ -59,8 +60,8 @@ public class UIManager {
                     newOrder.addItem(chipsUIComponent.getItem());
                     break;
                 case 4:
-                    checkout();
-                    OrderFileManager.saveOrder(newOrder);
+                    CheckoutUIComponent checkoutUIComponent = new CheckoutUIComponent(scanner,newOrder);
+                    checkoutUIComponent.displayComponent();
                     break;
                 case 0 :
                     isRunning = false;
