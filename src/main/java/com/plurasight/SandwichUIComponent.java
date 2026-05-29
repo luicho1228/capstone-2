@@ -45,7 +45,6 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      */
     private Item buildSandwich() {
         System.out.println("ADD SANDWICH");
-        System.out.println("\tSelect Bread:");
         Bread bread = selectBread();
         Size size = selectSize();
         boolean toasted = isToasted();
@@ -60,23 +59,8 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
     }
 
     private boolean isToasted(){
-        boolean isToasted = false;
-        boolean needsInput = true;
-        do {
-            System.out.println("Do you want your sandwich toasted? " +
-                    "\n1.yes \t\t\t\t 2.No");
-            switch (getUserInput(scanner)) {
-                case 1:
-                    isToasted = true;
-                    needsInput =false;
-                break;
-                case 2:
-                    needsInput = false;
-                break;
-                default:
-            }
-        }while (needsInput);
-        return isToasted;
+      return getBooleanFromPrompt("Do you want your sandwich toasted? " +
+              "\n1.yes \t\t\t\t 2.No");
     }
 
     /**
@@ -117,23 +101,10 @@ public class SandwichUIComponent extends UIComponent implements Displayable {
      * @author Luis Vasquez
      */
     private boolean askForExtraMeat(Meat selectedMeat) {
-        boolean wantsExtra = false;
         if (!(selectedMeat == Meat.NO_MEAT)) {
-            boolean needsInput = true;
-            do {
-                System.out.println("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
-                int userInput = getUserInput(scanner);
-                if (userInput == 1) {
-                    wantsExtra = true;
-                    needsInput = false;
-                } else if (userInput == 2) {
-                    needsInput = false;
-                } else {
-                    System.out.println("Enter correct value!");
-                }
-            } while (needsInput);
+            return getBooleanFromPrompt("\tDo you want extra Meat?\n1.Yes\t\t\t2.No");
         }
-        return wantsExtra;
+        return false;
     }
 
     /**

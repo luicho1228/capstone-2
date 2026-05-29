@@ -40,6 +40,14 @@ public class UIComponent{
     }
 
 
+    protected int getUserInputFromMenu(String[] menu){
+        System.out.println("Select from the options:");
+        for (int i = 0; i < menu.length; i++){
+            System.out.println((i + 1) + ". " + menu[i]);
+        }
+        return getUserInput(scanner);
+    }
+
     protected boolean getBooleanFromPrompt(String prompt){
         do {
             System.out.println(prompt);

@@ -24,12 +24,8 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
         boolean needsInput = true;
         do {
             displayOrder();
-            System.out.println("1.Finish check-out" +
-                    "\n2.Edit Order" +
-                    "\n3.Remove item" +
-                    "\n4.Go back");
-            int userInput = getUserInput(scanner);
-            switch (userInput) {
+            String[] menuArray = {"Process check-out", "Edit Order", "Remove Item", "Go Back"};
+            switch (getUserInputFromMenu(menuArray)) {
                 case 1:
                     finishCheckout();
                     needsInput = false;
@@ -86,15 +82,10 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
 
         if (itemToEdit instanceof Sandwich){
             Sandwich editedSandwich = (Sandwich) itemToEdit;
-            System.out.println("\n1.Edit Sandwich size" +
-                    "\n2.Edit bread choice" +
-                    "\n3.Change bread toast" +
-                    "\n4.Edit meat choice " +
-                    "\n5.Edit Cheese choice " +
-                    "\n6.Edit Topping selection " +
-                    "\n7.Edit Sauce choice");
-            int userInput = getUserInput(scanner);
-            switch (userInput){
+            String[] optionsArray= {"Edit Sandwich Size", "Edit Bread Choice",
+            "Change Bread Toast", "Edit Meat Choice", "Edit Cheese Choice",
+            "Edit Topping Selection", "Edit Sauce Selection"};
+            switch (getUserInputFromMenu(optionsArray)){
                 case 1:
                     editSandwichSize(editedSandwich);
                     break;
