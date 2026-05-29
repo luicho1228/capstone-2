@@ -10,7 +10,7 @@ public class OrderFileManager {
     private OrderFileManager(){}
 
     public static void saveOrder(Order order){
-        String receipt = receiptFilePath + order.getReceiptName();
+        String receipt = receiptFilePath + order.getReceiptFileName();
         try{
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(receipt));
             bufferedWriter.write(order.getOrderDetails());

@@ -36,7 +36,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
                     break;
                 case 2:
                     Item itemToEdit = selectItemToEdit();
-                    order.replaceItem(editOrder(itemToEdit),itemToEdit);
+                    order.replaceItem(itemToEdit,editOrder(itemToEdit));
                     break;
                 case 3:
                     Item itemToRemove = selectItemToEdit();
@@ -56,7 +56,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
 
     public Item selectItemToEdit(){
         System.out.println("Select item to edit");
-        List<Item> items = order.getItemsInOrder();
+        List<Item> items = order.getItems();
         int count = 1;
         for (Item item: items){
             System.out.println("* " + count+ ". " + item.getItemHeader());
