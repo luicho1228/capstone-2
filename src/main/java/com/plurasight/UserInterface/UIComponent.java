@@ -74,11 +74,11 @@ public class UIComponent {
                 if (userInput > 0 && userInput <= menu.length) {
                     return userInput;
                 } else {
-                    System.err.println("Select an option provided");
+                    displayErrorMessage();
                 }
 
             } catch (InputMismatchException ime) {
-                System.err.println("Error: Select a numeric value from the options provided");
+               displayErrorMessage();
                 scanner.nextLine();
             }
         } while (true);
@@ -103,10 +103,10 @@ public class UIComponent {
                 } else if (userInput == 2) {
                     return false;
                 } else {
-                    System.err.println("Enter correct value!");
+                   displayErrorMessage();
                 }
             } catch (InputMismatchException ime) {
-                System.err.println("Error: Select a numeric value from the options provided");
+               displayErrorMessage();
                 scanner.nextLine();
             }
         } while (true);
@@ -140,10 +140,10 @@ public class UIComponent {
                     selectedEnum = options[userInput - 1];
                     needsInput = false;
                 } else {
-                    System.err.println("Invalid Selection. Please choose one of the options provided.");
+                    displayErrorMessage();
                 }
             } catch (InputMismatchException ime) {
-                System.err.println("Error: Select a numeric value from the options provided");
+               displayErrorMessage();
                 scanner.nextLine();
             }
         }
@@ -189,15 +189,20 @@ public class UIComponent {
                 } else if (userInput == 0) {
                     break;
                 } else {
-                    System.err.println("Invalid selection, try again select from the options provided");
+                   displayErrorMessage();
                 }
             } catch (InputMismatchException ime) {
-                System.err.println("Error: Select a numeric value from the options provided");
+                displayErrorMessage();
                 scanner.nextLine();
             }
         }
 
         return selectedEnums;
+    }
+
+    protected void displayErrorMessage(){
+        displayBorders();
+        System.err.println("Error Invalid Selection: Select a numeric value from the options provided");
     }
 
     protected void displayBorders() {

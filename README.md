@@ -46,10 +46,7 @@ DELI-smart POS System is a Java command-line point-of-sale application created f
 
 When the application starts, the user can choose to:
 
-```text
-1. New Order
-2. Exit
-```
+![deli_mainmenu.png](src/main/resources/Images/deli_mainmenu.png)
 
 Selecting **New Order** starts a new customer order. Selecting **Exit** closes the application.
 
@@ -59,17 +56,17 @@ Selecting **New Order** starts a new customer order. Selecting **Exit** closes t
 
 After starting a new order, the user can:
 
-```text
-1. Add Sandwich
-2. Add Signature Sandwich
-3. Add Drink
-4. Add Chips
-5. Add Customer Name to the order
-6. Checkout
-7. Cancel Order
-```
+![order_menu.png](src/main/resources/Images/order_menu.png)
 
 The application continues running until the user chooses to exit from the main menu.
+
+---
+
+## Checkout Section
+
+The checkout section allows the user to confirm the order, edit the order, remove item from the order, and of course confirm the order!
+
+![checkout_ui.png](src/main/resources/Images/checkout_ui.png)
 
 ---
 
@@ -131,7 +128,9 @@ This project uses Object-Oriented Programming to keep the code organized and mai
 | `OrderFileManager`    | Saves completed orders as receipt files                 |
 | `CheckoutUIComponent` | Handles checkout, editing, removing, and saving orders  |
 
+## UML Diagram
 
+![UML_diagram.jpeg](src/main/resources/Images/UML_diagram.jpeg)
 
 ## Receipt Files
 

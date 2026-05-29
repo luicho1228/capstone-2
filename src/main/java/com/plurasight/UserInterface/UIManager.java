@@ -29,9 +29,8 @@ public class UIManager {
                 "                                                                                                            \n" +
                 "                                                                                                            ");
 
-        MainMenuUIComponent mainMenuUIComponent = new MainMenuUIComponent(scanner);
-
         do {
+            MainMenuUIComponent mainMenuUIComponent = new MainMenuUIComponent(scanner);
             mainMenuUIComponent.displayComponent();
             int menuResults = mainMenuUIComponent.getAction();
 
