@@ -4,29 +4,11 @@ import java.util.*;
 
 public class UIComponent{
 
-
     protected Scanner scanner;
-    private int padding;
-    private String stringColor;
+
 
     public UIComponent(Scanner scanner){
         this.scanner = scanner;
-    }
-
-    public int getPadding() {
-        return padding;
-    }
-
-    public void setPadding(int padding) {
-        this.padding = padding;
-    }
-
-    public String getStringColor() {
-        return stringColor;
-    }
-
-    public void setStringColor(String stringColor) {
-        this.stringColor = stringColor;
     }
 
     public static String formatPadding(int stringLength){
@@ -39,25 +21,49 @@ public class UIComponent{
         return tabs.toString();
     }
 
-
-    protected int getUserInputFromMenu(String[] menu){
-        System.out.println("Select from the options:");
-        for (int i = 0; i < menu.length; i++){
-            System.out.println((i + 1) + ". " + menu[i]);
-        }
-        return getUserInput(scanner);
+    protected int getUserInputFromMenu(String[] menu , boolean indexZeroAllowed){
+        do {
+            System.out.println("Select from the options:");
+            for (int i = 0; i < menu.length; i++) {
+                System.out.println((i + 1) + ". " + menu[i]);
+            }
+            try {
+                int userInput = getUserInput(scanner);
+                if (!indexZeroAllowed) {
+                    if (userInput > 0 && userInput <= menu.length) {
+                        return userInput;
+                    } else {
+                        System.err.println("Select an option provided");
+                    }
+                }else {
+                    if (userInput >= 0 && userInput <= menu.length) {
+                        return userInput;
+                    } else {
+                        System.err.println("Select an option provided");
+                    }
+                }
+            } catch (InputMismatchException ime) {
+                System.err.println("Error: Select a numeric value from the options provided");
+                scanner.nextLine();
+            }
+        }while (true);
     }
 
     protected boolean getBooleanFromPrompt(String prompt){
         do {
             System.out.println(prompt);
-            int userInput = getUserInput(scanner);
-            if (userInput == 1) {
-                return true;
-            } else if (userInput == 2) {
-               return false;
-            } else {
-                System.out.println("Enter correct value!");
+            try {
+                int userInput = getUserInput(scanner);
+                if (userInput == 1) {
+                    return true;
+                } else if (userInput == 2) {
+                    return false;
+                } else {
+                    System.err.println("Enter correct value!");
+                }
+            }catch (InputMismatchException ime){
+                System.err.println("Error: Select a numeric value from the options provided");
+                scanner.nextLine();
             }
         } while (true);
 
@@ -71,12 +77,17 @@ public class UIComponent{
             for (int i = 0; i< options.length; i++){
                 System.out.println((i+1) + ". " + options[i]);
             }
+            try {
             int userInput = getUserInput(scanner);
             if (userInput > 0 && userInput <= options.length){
                 selectedEnum = options[userInput -1];
                 needsInput =false;
             }else {
                 System.err.println("Invalid Selection. Please choose one of the option provided.");
+            }
+            }catch (InputMismatchException ime){
+                System.err.println("Error: Select a numeric value from the options provided");
+                scanner.nextLine();
             }
         }
         return selectedEnum;
@@ -100,14 +111,19 @@ public class UIComponent{
 
             System.out.println("0. Done adding");
 
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= enumOptions.size()) {
-                T chosenEnum = enumOptions.remove(userInput - 1);
-                selectedEnums.add(chosenEnum);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Invalid selection");
+            try {
+                int userInput = getUserInput(scanner);
+                if (userInput > 0 && userInput <= enumOptions.size()) {
+                    T chosenEnum = enumOptions.remove(userInput - 1);
+                    selectedEnums.add(chosenEnum);
+                } else if (userInput == 0) {
+                    break;
+                } else {
+                    System.err.println("Invalid selection, try again select from the options provided");
+                }
+            }catch (InputMismatchException ime){
+                System.err.println("Error: Select a numeric value from the options provided");
+                scanner.nextLine();
             }
         }
         return selectedEnums;

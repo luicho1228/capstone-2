@@ -25,7 +25,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
         do {
             displayOrder();
             String[] menuArray = {"Process check-out", "Edit Order", "Remove Item", "Go Back"};
-            switch (getUserInputFromMenu(menuArray)) {
+            switch (getUserInputFromMenu(menuArray,false)) {
                 case 1:
                     finishCheckout();
                     needsInput = false;
@@ -85,7 +85,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
             String[] optionsArray= {"Edit Sandwich Size", "Edit Bread Choice",
             "Change Bread Toast", "Edit Meat Choice", "Edit Cheese Choice",
             "Edit Topping Selection", "Edit Sauce Selection"};
-            switch (getUserInputFromMenu(optionsArray)){
+            switch (getUserInputFromMenu(optionsArray,false)){
                 case 1:
                     editSandwichSize(editedSandwich);
                     break;
@@ -213,22 +213,8 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
     }
 
     private void editCheeseChoice(Sandwich sandwichToEdit) {
-        Cheese[] cheeseOptions = Cheese.values();
-        boolean needsInput = true;
-        do {
-            int count = 1;
-            for (Cheese c : cheeseOptions) {
-                System.out.println(count + ". " + c);
-                count++;
-            }
-            int userInput = getUserInput(scanner);
-            if (userInput > 0 && userInput <= cheeseOptions.length) {
-                sandwichToEdit.setCheese(cheeseOptions[userInput - 1]);
-                needsInput = false;
-            } else {
-                System.out.println("Select correct value");
-            }
-        } while (needsInput);
+       sandwichToEdit.setCheese(selectEnumOptions(Cheese.values(),"Select cheese:"));
+
     }
 
     private void editMeatChoice(Sandwich sandwichToEdit) {
@@ -268,7 +254,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
         } while (needsInput);
     }
 
-    private Sandwich editSandwichSize(Sandwich sandwichToEdit) {
+    private void editSandwichSize(Sandwich sandwichToEdit) {
         System.out.println("Select Sandwich size: " +
                 "\n1. 4\"Bread (Small)" +
                 "\n2. 8\"Bread (Medium)" +
@@ -285,7 +271,6 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
                 break;
             default:
         }
-        return sandwichToEdit;
     }
 
 
