@@ -52,6 +52,8 @@ public class UIManager {
                     break;
                 case 2:
 
+                    
+
                     break;
                 case 3:
                     DrinkUIComponent drinkUi = new DrinkUIComponent(scanner);

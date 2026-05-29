@@ -21,4 +21,9 @@ public class SignatureSandwich extends Sandwich{
     public SignatureSandwich(Bread bread, Size size, boolean isToasted, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese, HashSet<Topping> toppings, HashSet<Sauce> sauces) {
         super(bread, size, isToasted, meat, extraMeat, cheese, extraCheese, toppings, sauces);
     }
+
+    @Override
+    public void setSandwichName(String name) {
+        super.setSandwichName(name);
+    }
 }
