@@ -1,6 +1,7 @@
-package com.plurasight;
+package com.plurasight.UserInterface;
 
-import java.util.InputMismatchException;
+import com.plurasight.Models.Displayable;
+
 import java.util.Scanner;
 
 /**

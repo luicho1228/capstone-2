@@ -1,6 +1,7 @@
-package com.plurasight;
+package com.plurasight.Models;
 
 import com.plurasight.Enums.*;
+import com.plurasight.UserInterface.UIComponent;
 
 import java.util.HashSet;
 import java.util.Set;

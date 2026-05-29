@@ -1,4 +1,6 @@
-package com.plurasight;
+package com.plurasight.UserInterface;
+
+import com.plurasight.Models.Order;
 
 import java.util.Scanner;
 

@@ -1,6 +1,7 @@
-package com.plurasight;
+package com.plurasight.UserInterface;
 
 import com.plurasight.Enums.*;
+import com.plurasight.Models.*;
 
 import java.util.List;
 import java.util.Scanner;

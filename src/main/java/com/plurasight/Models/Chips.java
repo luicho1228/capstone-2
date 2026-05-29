@@ -1,6 +1,7 @@
-package com.plurasight;
+package com.plurasight.Models;
 
 import com.plurasight.Enums.ChipsType;
+import com.plurasight.UserInterface.UIComponent;
 
 /**
  * This class represents a chips item in the order.

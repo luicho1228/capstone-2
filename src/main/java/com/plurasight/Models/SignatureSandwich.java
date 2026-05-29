@@ -1,10 +1,10 @@
-package com.plurasight;
+package com.plurasight.Models;
 
 import com.plurasight.Enums.*;
 
 import java.util.HashSet;
 
-public class SignatureSandwich extends Sandwich{
+public class SignatureSandwich extends Sandwich {
     /**
      * Constructs a complete, immutable instance of a Sandwich configuration.
      *

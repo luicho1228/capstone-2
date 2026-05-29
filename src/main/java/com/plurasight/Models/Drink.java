@@ -1,6 +1,7 @@
-package com.plurasight;
+package com.plurasight.Models;
 
 import com.plurasight.Enums.Size;
+import com.plurasight.UserInterface.UIComponent;
 
 /**
  * This class represents a drink item in the order.

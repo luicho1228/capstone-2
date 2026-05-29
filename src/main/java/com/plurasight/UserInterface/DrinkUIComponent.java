@@ -1,6 +1,9 @@
-package com.plurasight;
+package com.plurasight.UserInterface;
 
+import com.plurasight.Models.Displayable;
 import com.plurasight.Enums.Size;
+import com.plurasight.Models.Item;
+import com.plurasight.Models.Drink;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.plurasight;
+package com.plurasight.Models;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

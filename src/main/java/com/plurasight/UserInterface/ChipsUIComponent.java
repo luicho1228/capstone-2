@@ -1,6 +1,9 @@
-package com.plurasight;
+package com.plurasight.UserInterface;
 
+import com.plurasight.Models.Chips;
+import com.plurasight.Models.Displayable;
 import com.plurasight.Enums.ChipsType;
+import com.plurasight.Models.Item;
 
 import java.util.Scanner;
 

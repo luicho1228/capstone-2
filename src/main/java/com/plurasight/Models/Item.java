@@ -1,4 +1,4 @@
-package com.plurasight;
+package com.plurasight.Models;
 
 /**
  * This abstract class represents an item in an order.

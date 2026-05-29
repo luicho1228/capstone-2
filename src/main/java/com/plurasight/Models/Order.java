@@ -1,4 +1,6 @@
-package com.plurasight;
+package com.plurasight.Models;
+
+import com.plurasight.UserInterface.UIComponent;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
