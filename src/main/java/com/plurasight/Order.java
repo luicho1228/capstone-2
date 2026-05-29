@@ -37,8 +37,7 @@ public class Order {
         this.items.add(newItem);
     }
     public void removeItem(Item item){
-        this.items.remove(item);
-    }
+        this.items.remove(item);}
     public String getOrderDetails(){
         StringBuilder stringBuilder = new StringBuilder();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy-HH:mm");

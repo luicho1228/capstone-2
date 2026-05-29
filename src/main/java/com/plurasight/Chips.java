@@ -3,7 +3,7 @@ package com.plurasight;
 import com.plurasight.Enums.ChipsType;
 
 public class Chips extends Item{
-    private final ChipsType chipsType;
+    private ChipsType chipsType;
 
     public Chips(ChipsType chipsType){
         this.chipsType = chipsType;
@@ -24,6 +24,10 @@ public class Chips extends Item{
 
     @Override
     public String getItemHeader() {
-        return "";
+        return "Chips {"+chipsType+", $"+getValue()+"}";
+    }
+
+    public void setChipsType(ChipsType chipsType){
+        this.chipsType = chipsType;
     }
 }

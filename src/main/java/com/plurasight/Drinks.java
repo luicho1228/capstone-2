@@ -10,6 +10,10 @@ public class Drinks extends Item {
         this.size = size;
     }
 
+    public void setSize(Size size){
+        this.size =size;
+    }
+
     @Override
     public double getValue() {
         double value = 0.0;
@@ -31,6 +35,6 @@ public class Drinks extends Item {
 
     @Override
     public String getItemHeader() {
-        return "";
+        return "Drink {Size: " + size +", $"+getValue()+"}";
     }
 }

@@ -8,6 +8,7 @@ import java.util.*;
 public class CheckoutUIComponent extends UIComponent implements Displayable{
 
     private Order order;
+    private boolean isOrdercheckedout = false;
     public CheckoutUIComponent(Scanner scanner,Order order) {
         super(scanner);
         this.order = order;
@@ -32,24 +33,16 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
             switch (userInput) {
                 case 1:
                     finishCheckout();
+                    needsInput = false;
                     break;
                 case 2:
-                    System.out.println("Select item to edit");
-                    List<Item> items = order.getItemsInOrder();
-                    int count = 1;
-                    for (Item item: items){
-                        System.out.println("* " + count+ ". " + item.getItemHeader());
-                        count++;
-                    }
-                    Item itemToEdit = null;
-                    userInput = getUserInput(scanner);
-                    if (userInput > 0 && userInput <= items.size()){
-                        itemToEdit = items.get(userInput - 1);
-                    }
+                    Item itemToEdit = selectItemToEdit();
                     order.replaceItem(editOrder(itemToEdit),itemToEdit);
                     break;
                 case 3:
-                    removeOrder();
+                    Item itemToRemove = selectItemToEdit();
+                    Item removedItem = removeOrder(itemToRemove);
+                    System.out.println("This Item has been removed: " + removedItem);
                     break;
                 case 4:
                     needsInput = false;
@@ -58,16 +51,40 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
         }while (needsInput);
     }
 
+    public Item selectItemToEdit(){
+        System.out.println("Select item to edit");
+        List<Item> items = order.getItemsInOrder();
+        int count = 1;
+        for (Item item: items){
+            System.out.println("* " + count+ ". " + item.getItemHeader());
+            count++;
+        }
+        Item itemToEdit = null;
+        int userInput = getUserInput(scanner);
+        if (userInput > 0 && userInput <= items.size()){
+            itemToEdit = items.get(userInput - 1);
+        }
+        return itemToEdit;
+    }
+
+    public boolean isOrdercheckeout(){
+        return this.isOrdercheckedout;
+    }
     private void finishCheckout() {
         OrderFileManager.saveOrder(order);
         System.out.println("Receipt saved!");
+        isOrdercheckedout = true;
+
 
     }
-    private void removeOrder() {
+    private Item removeOrder(Item itemToRemove) {
+        order.removeItem(itemToRemove);
+        return itemToRemove;
     }
     private Item editOrder(Item itemToEdit) {
+
         if (itemToEdit instanceof Sandwich){
-            Sandwich sandwichToEdit = (Sandwich) itemToEdit;
+            Sandwich editedSandwich = (Sandwich) itemToEdit;
             System.out.println("1.Edit Sandwich size" +
                     "\n2.Edit bread choice" +
                     "\n3.Edit meat choice " +
@@ -77,29 +94,60 @@ public class CheckoutUIComponent extends UIComponent implements Displayable{
             int userInput = getUserInput(scanner);
             switch (userInput){
                 case 1:
-                    editSandwichSize(sandwichToEdit);
+                    editSandwichSize(editedSandwich);
                     break;
                 case 2:
-                    editBreadChoice(sandwichToEdit);
+                    editBreadChoice(editedSandwich);
                     break;
                 case 3:
-                    editMeatChoice(sandwichToEdit);
+                    editMeatChoice(editedSandwich);
                     break;
                 case 4:
-                    editCheeseChoice(sandwichToEdit);
+                    editCheeseChoice(editedSandwich);
                     break;
                 case 5:
-                    editToppings(sandwichToEdit);
+                    editToppings(editedSandwich);
                     break;
                 case 6:
-                    editSauces(sandwichToEdit);
+                    editSauces(editedSandwich);
                     break;
                 default:
             }
-            return sandwichToEdit;
+            return editedSandwich;
+        }else if (itemToEdit instanceof Drinks){
+            Drinks editedDrink =(Drinks)itemToEdit;
+            System.out.println("Change editedDrink size:" +
+                    "\n1.Small" +
+                    "\n2.Medium" +
+                    "\n3.Large");
+            switch (getUserInput(scanner)){
+                case 1:
+                    editedDrink.setSize(Size.SMALL);
+                    break;
+                case 2:
+                    editedDrink.setSize(Size.MEDIUM);
+                    break;
+                case 3:
+                    editedDrink.setSize(Size.LARGE);
+                    break;
+                default:
+            }
+            return editedDrink;
+        } else if (itemToEdit instanceof Chips) {
+            Chips editedChips = (Chips) itemToEdit;
+            ChipsType[] chipsTypes = ChipsType.values();
+            System.out.println("select chips type:");
+            int count = 1;
+            for (ChipsType chips: chipsTypes){
+                System.out.println(count + ". " + chips);
+                count++;
+            }
+            int userInput = getUserInput(scanner);
+            if (userInput > 0 && userInput <= ChipsType.values().length){
+                editedChips.setChipsType(chipsTypes[userInput-1]);
+            }
+            return editedChips;
         }
-
-
         return null;
     }
 

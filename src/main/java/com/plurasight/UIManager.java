@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class UIManager {
 
-    private Scanner scanner = new Scanner(System.in);
-    Order newOrder = null;
+    private final Scanner scanner = new Scanner(System.in);
+    private Order newOrder = null;
 
     public void displayMainMenu() {
         boolean isRunning = true;
@@ -62,6 +62,10 @@ public class UIManager {
                 case 4:
                     CheckoutUIComponent checkoutUIComponent = new CheckoutUIComponent(scanner,newOrder);
                     checkoutUIComponent.displayComponent();
+                    if (checkoutUIComponent.isOrdercheckeout()) {
+                        newOrder = null;
+                        isRunning = false;
+                    }
                     break;
                 case 0 :
                     isRunning = false;

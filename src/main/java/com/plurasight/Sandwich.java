@@ -13,6 +13,7 @@ import java.util.HashSet;
  */
 public class Sandwich extends Item {
 
+    private boolean isToasted;
     private Bread bread;
     private Size size;
     private Cheese cheese;
@@ -44,6 +45,7 @@ public class Sandwich extends Item {
         this.extraCheese = extraCheese;
         this.toppings = toppings;
         this.sauces = sauces;
+        this.isToasted = false;
     }
 
     /**
@@ -76,7 +78,7 @@ public class Sandwich extends Item {
         details.append(getTaps()).append(breadDisplay).append(UIComponent.formatTaps(breadDisplay.length())).append(getSizeValue());
         details.append(getTaps()).append(meat).append(UIComponent.formatTaps(meat.toString().length())).append(getMeatValue());
         details.append(getSubTaps()).append(extraMeatDisplay).append(UIComponent.formatTaps(("* " + extraMeatDisplay).length())).append(getExtraMeatValue());
-        details.append(getTaps()).append(cheese).append("Cheese").append(UIComponent.formatTaps(cheese.toString().length())).append(getCheeseValue());
+        details.append(getTaps()).append(cheese).append(UIComponent.formatTaps(cheese.toString().length())).append(getCheeseValue());
         details.append(getSubTaps()).append(extraCheeseDisplay).append(UIComponent.formatTaps(("* " + extraCheeseDisplay).length())).append(getExtraCheeseValue());
 
         //Process toppings
@@ -118,7 +120,7 @@ public class Sandwich extends Item {
 
     @Override
     public String getItemHeader() {
-        return sandwichName + "{ "+meat+","+cheese+","+toppings.toString()+","+sauces+","+"$"+getValue()+ "}" ;
+        return sandwichName + "{ "+getBreadSize()+" "+bread+","+meat+","+cheese+","+toppings.toString()+","+sauces+","+"$"+getValue()+ "}" ;
     }
 
     /**
@@ -264,6 +266,12 @@ public class Sandwich extends Item {
         return extraCheeseValue;
     }
 
+    public void ToasteIt(){
+        this.isToasted = true;
+    }
+    public boolean isToasted(){
+        return this.isToasted;
+    }
     public void setBread(Bread bread) {
         this.bread = bread;
     }
