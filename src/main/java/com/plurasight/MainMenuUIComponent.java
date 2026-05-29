@@ -3,21 +3,38 @@ package com.plurasight;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This class handles the main menu screen.
+ * It lets the user choose between starting a new order or exiting the program.
+ */
 public class MainMenuUIComponent extends UIComponent implements Displayable {
 
-    private  int input = 0;
+    private int input = 0;
 
+    /**
+     * Creates a MainMenuUIComponent.
+     *
+     * @param scanner The Scanner used to read user input.
+     */
     public MainMenuUIComponent(Scanner scanner) {
         super(scanner);
     }
 
-    public int getAction(){
+    /**
+     * Gets the option selected by the user.
+     *
+     * @return The selected menu option.
+     */
+    public int getAction() {
         return input;
     }
 
+    /**
+     * Displays the main menu options and saves the user's choice.
+     */
     @Override
-    public void displayComponent() {String[] optionsArray = {"New Order", "Exit"};
-       input = getUserInputFromMenu(optionsArray,false);
-
+    public void displayComponent() {
+        String[] optionsArray = {"New Order", "Exit"};
+        input = getUserInputFromMenu(optionsArray, false);
     }
 }

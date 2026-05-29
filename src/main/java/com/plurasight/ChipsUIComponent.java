@@ -4,23 +4,42 @@ import com.plurasight.Enums.ChipsType;
 
 import java.util.Scanner;
 
+/**
+ * This class handles the chips selection screen.
+ * It lets the user choose a chips type and creates a Chips item.
+ */
 public class ChipsUIComponent extends UIComponent implements Displayable {
 
-
     private Item item;
+
+    /**
+     * Creates a ChipsUIComponent.
+     *
+     * @param scanner The Scanner used to read user input.
+     */
     public ChipsUIComponent(Scanner scanner) {
         super(scanner);
     }
 
-    private Item selectChips(){
-      return new Chips(selectEnumOption(ChipsType.values(),"Select Chips type"));
+    /**
+     * Lets the user select a chips type and creates a Chips item.
+     *
+     * @return A Chips item with the selected chips type.
+     */
+    private Item selectChips() {
+        return new Chips(selectEnumOption(ChipsType.values(), "Select Chips type"));
     }
 
+    /**
+     * Displays the chips selection screen.
+     * After the user selects a chips type, the created item is saved.
+     */
     @Override
     public void displayComponent() {
         item = selectChips();
     }
-    public Item getItem(){
+
+    public Item getItem() {
         return this.item;
     }
 }

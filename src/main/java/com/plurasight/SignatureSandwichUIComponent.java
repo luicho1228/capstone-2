@@ -4,17 +4,31 @@ import com.plurasight.Enums.*;
 
 import java.util.*;
 
+/**
+ * This class handles the signature sandwich selection screen.
+ * It loads the available signature sandwiches and lets the user choose one.
+ */
 public class SignatureSandwichUIComponent extends UIComponent implements Displayable {
 
     private final List<SignatureSandwich> signatureSandwiches;
     private SignatureSandwich signatureSandwich;
 
+    /**
+     * Creates a SignatureSandwichUIComponent.
+     * It also loads the signature sandwiches that the user can choose from.
+     *
+     * @param scanner The Scanner used to read user input.
+     */
     public SignatureSandwichUIComponent(Scanner scanner) {
         super(scanner);
         signatureSandwiches = new ArrayList<>();
         loadSignatureSandwiches();
     }
 
+    /**
+     * Creates the default signature sandwiches and adds them to the list.
+     * These sandwiches are shown to the user when they open the signature sandwich menu.
+     */
     private void loadSignatureSandwiches() {
         HashSet<Topping> toppings = new HashSet<>(List.of(Topping.LETTUCE, Topping.TOMATOES));
         HashSet<Sauce> sauces = new HashSet<>(List.of(Sauce.RANCH));
@@ -29,6 +43,10 @@ public class SignatureSandwichUIComponent extends UIComponent implements Display
         signatureSandwiches.add(phillyCheeseSteak);
     }
 
+    /**
+     * Displays all the signature sandwiches to the user.
+     * Each sandwich is shown with a number so the user can select one.
+     */
     private void displaySignatureSandwiches() {
         System.out.println("SIGNATURE SANDWICHES");
         System.out.println("Select a signature sandwich:");
@@ -39,10 +57,19 @@ public class SignatureSandwichUIComponent extends UIComponent implements Display
         }
     }
 
+    /**
+     * Gets the signature sandwich selected by the user.
+     *
+     * @return The selected signature sandwich.
+     */
     public SignatureSandwich getSignatureSandwich() {
         return this.signatureSandwich;
     }
 
+    /**
+     * Displays the signature sandwich menu and saves the user's selection.
+     * If the user enters an invalid value, it asks again.
+     */
     @Override
     public void displayComponent() {
         do {
@@ -53,13 +80,13 @@ public class SignatureSandwichUIComponent extends UIComponent implements Display
                     signatureSandwich = signatureSandwiches.get(userInput - 1);
                     break;
                 } else {
-                    System.err.println("Invalid Selection. Please choose one of the option provided.");
+                    System.err.println("Invalid Selection. Please choose one of the options provided.");
                 }
-            } catch (
-                    InputMismatchException ime) {
+            } catch (InputMismatchException ime) {
                 System.err.println("Error: Select a numeric value from the options provided");
                 scanner.nextLine();
             }
-        }while (true);
+        } while (true);
     }
 }
+
