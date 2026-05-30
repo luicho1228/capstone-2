@@ -1,7 +1,5 @@
 package com.plurasight.Models;
 
-import com.plurasight.UserInterface.UIComponent;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -59,24 +57,11 @@ public class Order {
      * @return A formatted String with the order details.
      */
     public String getOrderDetails() {
-        StringBuilder orderDetails = new StringBuilder();
+        return OrderReceiptManager.formatOrderReceipt(this);
+    }
 
-        orderDetails.append("Order number: ").append(orderNumber).append("\n").append(customerName).append("\t\t\t\t\t").append("Date created: ").append(ORDER_DATE_FORMATTER.format(createdAt)).append("\n");
-
-        orderDetails.append("---------------------------------------------------\n");
-        orderDetails.append("Item count: ").append(getItemCount()).append("\n");
-
-        for (Item item : items) {
-            orderDetails.append(item.getDetails()).append("\n");
-        }
-
-        orderDetails.append("---------------------------------------------------\n");
-
-        String totalLabel = "Total:";
-
-        orderDetails.append(totalLabel).append(UIComponent.formatPadding(totalLabel.length() - Item.getTaps().length())).append("$").append(String.format("%.2f", getTotalPrice()));
-
-        return orderDetails.toString();
+    public String getOrderReceiptDate() {
+        return ORDER_DATE_FORMATTER.format(createdAt);
     }
 
     /**
@@ -131,20 +116,28 @@ public class Order {
     }
 
     /**
-     * Sets the customer's name for the order.
-     *
-     * @param customerName The name of the customer.
-     */
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    /**
      * Generates a random order number.
      *
      * @return A random order number.
      */
     private int generateOrderNumber() {
         return (int) (Math.random() * 100000);
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    /**
+     * Sets the customer's name for the order.
+     *
+     * @param customerName The name of the customer.
+     */
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }

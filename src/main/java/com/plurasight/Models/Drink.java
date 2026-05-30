@@ -1,7 +1,6 @@
 package com.plurasight.Models;
 
 import com.plurasight.Enums.Size;
-import com.plurasight.UserInterface.UIComponent;
 
 /**
  * This class represents a drink item in the order.
@@ -17,15 +16,6 @@ public class Drink extends Item {
      * @param size The size selected for the drink.
      */
     public Drink(Size size) {
-        this.size = size;
-    }
-
-    /**
-     * Changes the size of the drink.
-     *
-     * @param size The new size for the drink.
-     */
-    public void setSize(Size size) {
         this.size = size;
     }
 
@@ -52,9 +42,11 @@ public class Drink extends Item {
      */
     @Override
     public String getDetails() {
-        String drinkName = "Drink";
+//        String drinkName = "Drink";
+//
+//        return drinkName + UIComponent.formatPadding(drinkName.length() - getTaps().length()) + String.format("$%.2f",getValue()) + getTaps() + size.toString();
 
-        return drinkName + UIComponent.formatPadding(drinkName.length() - getTaps().length()) + String.format("$%.2f",getValue()) + getTaps() + size.toString();
+        return OrderReceiptManager.formatItemReceipt(this);
     }
 
     /**
@@ -66,5 +58,18 @@ public class Drink extends Item {
     @Override
     public String getItemHeader() {
         return "Drink {Size: " + size + ", $" + getValue() + "}";
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    /**
+     * Changes the size of the drink.
+     *
+     * @param size The new size for the drink.
+     */
+    public void setSize(Size size) {
+        this.size = size;
     }
 }

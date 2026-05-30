@@ -1,7 +1,6 @@
 package com.plurasight.Models;
 
 import com.plurasight.Enums.ChipsType;
-import com.plurasight.UserInterface.UIComponent;
 
 /**
  * This class represents a chips item in the order.
@@ -36,10 +35,7 @@ public class Chips extends Item {
      */
     @Override
     public String getDetails() {
-        String chipsString = "Chips";
-        return chipsString + UIComponent.formatPadding(chipsString.length() - getTaps().length())+String.format("$%.2f",getValue()) +
-                getTaps() + chipsType;
-
+        return OrderReceiptManager.formatItemReceipt(this);
     }
 
     /**
@@ -51,6 +47,10 @@ public class Chips extends Item {
     @Override
     public String getItemHeader() {
         return "Chips {" + chipsType + ", $" + getValue() + "}";
+    }
+
+    public ChipsType getChipsType() {
+        return chipsType;
     }
 
     /**

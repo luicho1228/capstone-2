@@ -10,6 +10,8 @@ import java.util.*;
 public class UIComponent {
 
     protected final static int BORDER_LENGTH = 100;
+    private final static String TAPS = "\n\t* ";
+    private final static String SUB_TAPS = "\n\t\t";
     protected Scanner scanner;
 
     /**
@@ -53,6 +55,41 @@ public class UIComponent {
         return userInput;
     }
 
+    public static String getBorder(){
+        System.err.println("border is printing");
+        String border = "";
+        for (int i = 0; i < BORDER_LENGTH; i++) {
+            border += "-";
+        }
+        border += "\n";
+        return border;
+    }
+
+    public static void displayBorders() {
+        for (int i = 0; i < BORDER_LENGTH; i++) {
+            System.out.print("-");
+        }
+        System.out.print("\n");
+    }
+
+    /**
+     * Gets the spacing used for main item details.
+     *
+     * @return A String used to format item details.
+     */
+    public static String getTaps() {
+        return TAPS;
+    }
+
+    /**
+     * Gets the spacing used for extra item details.
+     *
+     * @return A String used to format sub-details.
+     */
+    public static String getSubTaps() {
+        return SUB_TAPS;
+    }
+
     /**
      * Shows a menu and gets the option selected by the user.
      *
@@ -78,7 +115,7 @@ public class UIComponent {
                 }
 
             } catch (InputMismatchException ime) {
-               displayErrorMessage();
+                displayErrorMessage();
                 scanner.nextLine();
             }
         } while (true);
@@ -103,10 +140,10 @@ public class UIComponent {
                 } else if (userInput == 2) {
                     return false;
                 } else {
-                   displayErrorMessage();
+                    displayErrorMessage();
                 }
             } catch (InputMismatchException ime) {
-               displayErrorMessage();
+                displayErrorMessage();
                 scanner.nextLine();
             }
         } while (true);
@@ -143,7 +180,7 @@ public class UIComponent {
                     displayErrorMessage();
                 }
             } catch (InputMismatchException ime) {
-               displayErrorMessage();
+                displayErrorMessage();
                 scanner.nextLine();
             }
         }
@@ -189,7 +226,7 @@ public class UIComponent {
                 } else if (userInput == 0) {
                     break;
                 } else {
-                   displayErrorMessage();
+                    displayErrorMessage();
                 }
             } catch (InputMismatchException ime) {
                 displayErrorMessage();
@@ -200,15 +237,7 @@ public class UIComponent {
         return selectedEnums;
     }
 
-    protected void displayErrorMessage(){
-        displayBorders();
+    protected void displayErrorMessage() {
         System.err.println("Error Invalid Selection: Select a numeric value from the options provided");
-    }
-
-    protected void displayBorders() {
-        for (int i = 0; i < BORDER_LENGTH; i++) {
-            System.out.print("-");
-        }
-        System.out.print("\n");
     }
 }

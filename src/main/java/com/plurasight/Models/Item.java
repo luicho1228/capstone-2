@@ -8,9 +8,6 @@ package com.plurasight.Models;
  */
 public abstract class Item {
 
-    private final static String TAPS = "\n\t* ";
-    private final static String SUB_TAPS = "\n\t\t";
-
     /**
      * Gets the price of the item.
      *
@@ -25,24 +22,6 @@ public abstract class Item {
      * @return A formatted String with the item details.
      */
     public abstract String getDetails();
-
-    /**
-     * Gets the spacing used for main item details.
-     *
-     * @return A String used to format item details.
-     */
-    public static String getTaps() {
-        return TAPS;
-    }
-
-    /**
-     * Gets the spacing used for extra item details.
-     *
-     * @return A String used to format sub-details.
-     */
-    public static String getSubTaps() {
-        return SUB_TAPS;
-    }
 
     /**
      * Gets a short summary of the item.

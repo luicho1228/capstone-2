@@ -1,7 +1,6 @@
 package com.plurasight.Models;
 
 import com.plurasight.Enums.*;
-import com.plurasight.UserInterface.UIComponent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,9 +18,9 @@ public class Sandwich extends Item {
     private Bread bread;
     private Size size;
     private Cheese cheese;
-    private boolean extraCheese;
+    private final boolean extraCheese;
     private Meat meat;
-    private boolean extraMeat;
+    private final boolean extraMeat;
     private Set<Topping> toppings;
     private Set<Sauce> sauces;
     private String sandwichName = "Custom Sandwich";
@@ -29,16 +28,16 @@ public class Sandwich extends Item {
     /**
      * Constructs a complete, immutable instance of a Sandwich configuration.
      *
-     * @param bread        The chosen bread type.
-     * @param size         The chosen sandwich length profile.
-     * @param meat         The base meat choice.
-     * @param extraMeat    True if an extra portion of meat should be charged and added.
-     * @param cheese       The base cheese choice.
-     * @param extraCheese  True if an extra portion of cheese should be charged and added.
-     * @param toppings     A set of chosen garnishes.
-     * @param sauces       A set of chosen sauces.
+     * @param bread       The chosen bread type.
+     * @param size        The chosen sandwich length profile.
+     * @param meat        The base meat choice.
+     * @param extraMeat   True if an extra portion of meat should be charged and added.
+     * @param cheese      The base cheese choice.
+     * @param extraCheese True if an extra portion of cheese should be charged and added.
+     * @param toppings    A set of chosen garnishes.
+     * @param sauces      A set of chosen sauces.
      */
-    public Sandwich(Bread bread, Size size,boolean isToasted ,Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese,HashSet<Topping> toppings,HashSet<Sauce> sauces) {
+    public Sandwich(Bread bread, Size size, boolean isToasted, Meat meat, boolean extraMeat, Cheese cheese, boolean extraCheese, HashSet<Topping> toppings, HashSet<Sauce> sauces) {
         this.bread = bread;
         this.size = size;
         this.meat = meat;
@@ -69,69 +68,12 @@ public class Sandwich extends Item {
      */
     @Override
     public String getDetails() {
-        String extraMeatDisplay = extraMeat ? "Extra Meat" : "No-Extra Meat";
-        String extraCheeseDisplay = extraCheese ? "Extra Cheese" : "No-Extra Cheese";
-        String isToastedDisplay = isToasted ? "Toasted" : "Not-Toasted";
-        String breadDisplay = isToastedDisplay + " " + getBreadSize()+ " " + bread + " Bread";
-
-        //print general sandwich details
-        StringBuilder details = new StringBuilder();
-        details.append(sandwichName).append(UIComponent.formatPadding(sandwichName.length() - getTaps().length())).append("$").append(getValue());
-        details.append(getTaps()).append(breadDisplay).append(UIComponent.formatPadding(breadDisplay.length())).append(getSizeValue());
-        details.append(getTaps()).append(meat).append(UIComponent.formatPadding(meat.toString().length())).append(getMeatValue());
-        details.append(getSubTaps()).append(extraMeatDisplay).append(UIComponent.formatPadding(("* " + extraMeatDisplay).length())).append(getExtraMeatValue());
-        details.append(getTaps()).append(cheese).append(UIComponent.formatPadding(cheese.toString().length())).append(getCheeseValue());
-        details.append(getSubTaps()).append(extraCheeseDisplay).append(UIComponent.formatPadding(("* " + extraCheeseDisplay).length())).append(getExtraCheeseValue());
-
-        //Process toppings
-        details.append(getTaps()).append("Toppings");
-        if (!(toppings.isEmpty())) {
-            StringBuilder toppingString = new StringBuilder();
-            int toppingCount = 1;
-            for (Topping topping : toppings) {
-                if (toppingCount % 3 == 0) {
-                    toppingString.append(getSubTaps());
-                }
-                toppingString.append(topping.toString()).append(", ");
-                toppingCount++;
-            }
-            details.append(getSubTaps()).append(toppingString);
-        }else {
-            details.append(getSubTaps()).append("No Toppings");
-        }
-
-        //process Sauces
-        details.append(getTaps()).append("Sauces");
-        if (!(sauces.isEmpty())) {
-            StringBuilder sauceString = new StringBuilder();
-            int sauceCount = 1;
-            for (Sauce sauce : sauces) {
-                if (sauceCount % 3 == 0) {
-                    sauceString.append(getSubTaps());
-                }
-                sauceString.append(sauce.toString()).append(", ");
-                sauceCount++;
-            }
-            details.append(getSubTaps()).append(sauceString);
-        } else {
-            details.append(getSubTaps()).append("No Sauce");
-        }
-
-        return details.toString();
+        return OrderReceiptManager.formatItemReceipt(this);
     }
 
     @Override
     public String getItemHeader() {
-        return sandwichName + "{ "+getBreadSize()+" "+bread+","+meat+","+cheese+","+toppings.toString()+","+sauces+","+"$"+getValue()+ "}" ;
-    }
-
-    /**
-     * Updates the identifier name of the sandwich.
-     *
-     * @param name The new custom display name for this sandwich string line.
-     */
-    public void setSandwichName(String name){
-        this.sandwichName = name;
+        return sandwichName + "{ " + getBreadSize() + " " + bread + "," + meat + "," + cheese + "," + toppings.toString() + "," + sauces + "," + "$" + getValue() + "}";
     }
 
     /**
@@ -139,7 +81,7 @@ public class Sandwich extends Item {
      *
      * @return A string literal indicating the length of the bread item (e.g. 4", 8", 12").
      */
-    private String getBreadSize() {
+    String getBreadSize() {
         return switch (size) {
             case SMALL -> "4\"";
             case MEDIUM -> "8\"";
@@ -152,7 +94,7 @@ public class Sandwich extends Item {
      *
      * @return a double representing The base size cost of the sandwich item.
      */
-    private double getSizeValue() {
+    double getSizeValue() {
         return switch (size) {
             case SMALL -> 5.5;
             case MEDIUM -> 7;
@@ -165,7 +107,7 @@ public class Sandwich extends Item {
      *
      * @return a double representing the total cost addition assigned to base meat provisions.
      */
-    private double getMeatValue() {
+    double getMeatValue() {
         double meatValue = 0.0;
         switch (size) {
             case SMALL:
@@ -192,7 +134,7 @@ public class Sandwich extends Item {
      *
      * @return a double representing The total extra meat cost.
      */
-    private double getExtraMeatValue() {
+    double getExtraMeatValue() {
         double extraMeatValue = 0.0;
         switch (size) {
             case SMALL:
@@ -217,9 +159,9 @@ public class Sandwich extends Item {
     /**
      * Calculates fundamental cheese premiums according to the sandwich size.
      *
-     * @return  a double representing the total cost of base cheese addition.
+     * @return a double representing the total cost of base cheese addition.
      */
-    private double getCheeseValue() {
+    double getCheeseValue() {
         double cheeseValue = 0.0;
         switch (size) {
             case SMALL:
@@ -246,7 +188,7 @@ public class Sandwich extends Item {
      *
      * @return a double representing the total extra cheese cost.
      */
-    private double getExtraCheeseValue() {
+    double getExtraCheeseValue() {
         double extraCheeseValue = 0.0;
         switch (size) {
             case SMALL:
@@ -268,31 +210,80 @@ public class Sandwich extends Item {
         return extraCheeseValue;
     }
 
-    public void setToast(boolean isToasted){
+    public void setToast(boolean isToasted) {
         this.isToasted = isToasted;
+    }
+
+    public boolean isToasted() {
+        return isToasted;
+    }
+
+    public Bread getBread() {
+        return bread;
     }
 
     public void setBread(Bread bread) {
         this.bread = bread;
     }
 
+    public Size getSize() {
+        return size;
+    }
+
     public void setSize(Size size) {
         this.size = size;
     }
 
-    public void setMeat(Meat meat) {
-        this.meat = meat;
+    public Cheese getCheese() {
+        return cheese;
     }
 
     public void setCheese(Cheese cheese) {
         this.cheese = cheese;
     }
 
+    public boolean isExtraCheese() {
+        return extraCheese;
+    }
+
+    public Meat getMeat() {
+        return meat;
+    }
+
+    public void setMeat(Meat meat) {
+        this.meat = meat;
+    }
+
+    public boolean isExtraMeat() {
+        return extraMeat;
+    }
+
+    public Set<Topping> getToppings() {
+        return toppings;
+    }
+
     public void setToppings(HashSet<Topping> toppings) {
         this.toppings = toppings;
     }
 
+    public Set<Sauce> getSauces() {
+        return sauces;
+    }
+
     public void setSauces(HashSet<Sauce> sauces) {
         this.sauces = sauces;
+    }
+
+    public String getSandwichName() {
+        return sandwichName;
+    }
+
+    /**
+     * Updates the identifier name of the sandwich.
+     *
+     * @param name The new custom display name for this sandwich string line.
+     */
+    public void setSandwichName(String name) {
+        this.sandwichName = name;
     }
 }
