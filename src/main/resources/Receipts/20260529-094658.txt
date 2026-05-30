@@ -1,0 +1,31 @@
+Order number: 25492
+No-Name					Date created: 05/29/2026 09:46
+---------------------------------------------------
+Item count: 4
+Custom Sandwich                                        $11.1
+	* Toasted 8" WHITE Bread                             7.0
+	* SALAMI                                             2.0
+		No-Extra Meat                                    0.0
+	* SWISS                                              1.5
+		Extra Cheese                                     0.6
+	* Toppings
+		TOMATOES, LETTUCE, 
+		CUCUMBERS, 
+	* Sauces
+		MUSTARD, 
+Philly Cheese Steak                                    $7.25
+	* Toasted 4" WHITE Bread                             5.5
+	* STEAK                                              1.0
+		No-Extra Meat                                    0.0
+	* AMERICAN                                           0.75
+		No-Extra Cheese                                  0.0
+	* Toppings
+		PEPPERS, 
+	* Sauces
+		MAYO, 
+Drink                                                  $2.00
+	* SMALL
+Chips                                                  $1.50
+	* CHEETOS_JALAPENOS_CHEESE
+---------------------------------------------------
+Total:                                                 $21.85

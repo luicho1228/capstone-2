@@ -1,0 +1,32 @@
+Order number: 73904
+No-Name					Date created: 05/30/2026 00:58
+---------------------------------------------------
+Item count: 4
+Philly Cheese Steak                                    $7.25
+	* Toasted 4" WHITE Bread                             5.5
+	* STEAK                                              1.0
+		No-Extra Meat                                    0.0
+	* AMERICAN                                           0.75
+		No-Extra Cheese                                  0.0
+	* Toppings
+		PEPPERS, 
+	* Sauces
+		MAYO, 
+Custom Sandwich                                        $13.75
+	* Toasted 12" WHITE Bread                            8.5
+	* HAM                                                3.0
+		No-Extra Meat                                    0.0
+	* SWISS                                              2.25
+		No-Extra Cheese                                  0.0
+	* Toppings
+		ONIONS, MUSHROOMS, 
+		LETTUCE, CUCUMBERS, 
+	* Sauces
+		VINAIGRETTE, KETCHUP, 
+		MAYO, 
+Drink                                                  $2.00
+	* SMALL
+Chips                                                  $1.50
+	* CLASSIC_POTATO_CHIPS
+---------------------------------------------------
+Total:                                                 $24.50

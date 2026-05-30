@@ -1,0 +1,16 @@
+Order number: 55489
+No-Name					Date created: 05/29/2026 23:35
+---------------------------------------------------
+Item count: 1
+BLT                                                    $7.25
+	* Toasted 4" WHITE Bread                             5.5
+	* BACON                                              1.0
+		No-Extra Meat                                    0.0
+	* CHEDDAR                                            0.75
+		No-Extra Cheese                                  0.0
+	* Toppings
+		TOMATOES, LETTUCE, 
+	* Sauces
+		RANCH, 
+---------------------------------------------------
+Total:                                                 $7.25

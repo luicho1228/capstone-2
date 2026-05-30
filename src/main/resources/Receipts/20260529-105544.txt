@@ -1,0 +1,19 @@
+Order number: 54450
+Luis Vasquez					Date created: 05/29/2026 10:55
+---------------------------------------------------
+Item count: 2
+Custom Sandwich                                        $11.5
+	* Toasted 8" WHITE Bread                             7.0
+	* CHICKEN                                            2.0
+		Extra Meat                                       1.0
+	* AMERICAN                                           1.5
+		No-Extra Cheese                                  0.0
+	* Toppings
+		PICKLES, MUSHROOMS, 
+		LETTUCE, 
+	* Sauces
+		MAYO, KETCHUP, 
+Drink                                                  $3.00
+	* LARGE
+---------------------------------------------------
+Total:                                                 $14.50
