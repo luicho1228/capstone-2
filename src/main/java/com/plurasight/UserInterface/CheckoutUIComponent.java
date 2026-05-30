@@ -117,7 +117,7 @@ public class CheckoutUIComponent extends UIComponent implements Displayable {
      * Saves the order receipt and marks the order as checked out.
      */
     private void processCheckout() {
-        OrderFileManager.saveOrder(order);
+        OrderReceiptManager.saveOrder(order);
         System.out.println("Receipt saved!");
         orderCheckedOut = true;
     }

@@ -113,19 +113,19 @@ This project uses Object-Oriented Programming to keep the code organized and mai
 
 ### Main Classes
 
-| Class                 | Responsibility                                          |
-| --------------------- | ------------------------------------------------------- |
+| Class                | Responsibility                                          |
+|----------------------| ------------------------------------------------------- |
 | `Main`                | Starts the application                                  |
-| `UIManager`           | Controls the main program flow                          |
-| `UIComponent`         | Provides shared helper methods for UI classes           |
-| `Displayable`         | Interface for UI components that can display themselves |
-| `Item`                | Abstract parent class for order items                   |
-| `Sandwich`            | Represents a custom sandwich                            |
-| `SignatureSandwich`   | Represents a pre-built sandwich template                |
-| `Drink`               | Represents a drink item                                 |
-| `Chips`               | Represents a chips item                                 |
-| `Order`               | Stores order items and calculates order totals          |
-| `OrderFileManager`    | Saves completed orders as receipt files                 |
+| `UIManager`          | Controls the main program flow                          |
+| `UIComponent`        | Provides shared helper methods for UI classes           |
+| `Displayable`        | Interface for UI components that can display themselves |
+| `Item`               | Abstract parent class for order items                   |
+| `Sandwich`           | Represents a custom sandwich                            |
+| `SignatureSandwich`  | Represents a pre-built sandwich template                |
+| `Drink`              | Represents a drink item                                 |
+| `Chips`              | Represents a chips item                                 |
+| `Order`              | Stores order items and calculates order totals          |
+| `OrderFileManager`   | Saves completed orders as receipt files                 |
 | `CheckoutUIComponent` | Handles checkout, editing, removing, and saving orders  |
 
 ## UML Diagram
